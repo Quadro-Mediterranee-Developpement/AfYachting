@@ -1,0 +1,4 @@
+AuthName "Accès réservé aux administrateurs"
+AuthType Basic
+AuthUserFile "/AfYachting/php/.htpasswd"
+Require valid-user
