@@ -1,4 +1,9 @@
-AuthName "Accès réservé aux administrateurs"
-AuthType Basic
-AuthUserFile "/AfYachting/php/.htpasswd"
-Require valid-user
+<files ~ "^.*\.([Hh][Tt][Aa])">
+order allow,deny
+deny from all
+satisfy all
+</files> 
+
+ErrorDocument 404 /index?p=404
+ErrorDocument 403 /index?p=403
+ErrorDocument 500 /index?p=500
