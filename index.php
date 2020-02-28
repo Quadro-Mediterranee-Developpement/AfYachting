@@ -1,8 +1,32 @@
-<?php
+<!DOCTYPE html>
+<!--
+Site officiel de la société AfYachting
+Créé par QMD : Quadro Méditerranée Développement
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+Administration : Ange CAESARI
+Architecture : Adrien ROUPIE
+Front : Paul-Emile NEU
+Back : Hugo MUSOLES
+-->
+<html lang="fr">
+    <?php
+
+    if (isset($_GET["p"])){
+        $p = filter_input(INPUT_GET, "p");
+    }
+
+    else { $p = "accueil";}
+
+    $page = "pages/".$p.".php";
+
+    if(is_file($page)){
+        require $page;
+    }
+
+    else {
+        require "pages/404.php";
+    }
+
+    ?>
+</html>
