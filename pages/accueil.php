@@ -17,7 +17,6 @@ require 'mod/head.php'; ?>
 
     
     $content_title = "";
-    $content_index = 3;
     $content_col = [["","","","","",""],["","","","","",""],["","","","","",""]] ;
     require 'mod/contents.php';
     
