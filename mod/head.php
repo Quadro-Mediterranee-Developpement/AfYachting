@@ -18,11 +18,7 @@
         
         <!-- Meta pour le référencement google -->
         <meta name="description" content="<?php echo $description ?>">
-<<<<<<< HEAD
         <title><?php echo $Title ?></title>
-=======
-        <title>AfYachting: location/vente de batteaux à St Tropez</title><!-- A améliorer -->
->>>>>>> 8ea563ad6ef5bb0535b7045bce3421e659b8a1c6
         
         
         <!-- Meta pour les liens facebook -->
