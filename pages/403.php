@@ -13,11 +13,7 @@ require 'mod/head.php'; ?>
     
     
     $illustration_img = "";
-    $illustration_textual_title = "";
-    $illustration_textual_bar = TRUE;
-    $illustration_textual_data = "";
-    $illustration_textual_button = "";
-    $illustration_textual_button_link = "";
+    $illustration_input = function() {};
     require 'mod/illustration.php';
     
     
