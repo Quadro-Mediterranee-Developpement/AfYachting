@@ -1,9 +1,9 @@
 <?php
 
-$required = ["column","contents","footer","header","illustration", "panoramique","textual"];
-$description = "Description de la page d'acceuil adaptée au référencement";
-$Title = "Titre de la page d'acceuil adaptée au référencement";
-require 'mod/head.php'; ?>
+require 'mod/head.php';
+
+head.content([],"Description de la page d'acceuil adaptée au référencement","Titre de la page d'acceuil adaptée au référencement");
+ ?>
 
 <body>
     

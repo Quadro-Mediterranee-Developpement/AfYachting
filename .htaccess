@@ -7,3 +7,13 @@ satisfy all
 ErrorDocument 404 /index?p=404
 ErrorDocument 403 /index?p=403
 ErrorDocument 500 /index?p=500
+
+# CORE
+<IfModule mod_autoindex.c>
+Options -Indexes
+</IfModule>
+Options -MultiViews
+Options +FollowSymlinks
+AddDefaultCharset UTF-8
+ServerSignature Off
+FileETag none

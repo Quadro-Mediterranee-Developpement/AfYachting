@@ -1,3 +1,7 @@
+<?php
+
+function head ($required, $description, $Title){ ?>
+
 
     <head>
         <meta charset="UTF-8">
@@ -44,3 +48,5 @@
         }
         ?>
     </head>
+
+<?php }
