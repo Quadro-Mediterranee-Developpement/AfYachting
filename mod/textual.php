@@ -1,3 +1,7 @@
-<span class="textual">
+<?php
+function textual()
+{ ?>
+    <span class="textual">
     
-</span>
+    </span>
+<?php }

@@ -1,8 +1,7 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function mosaic_ellement($mosaic_ellement_photo,$mosaic_ellement_name,$mosaic_ellement_description,$mosaic_ellement_tags)
+{
+   echo $mosaic_ellement_photo,$mosaic_ellement_name,$mosaic_ellement_description,$mosaic_ellement_tags;
+}
 

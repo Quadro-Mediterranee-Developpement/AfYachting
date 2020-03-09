@@ -1,3 +1,8 @@
+<?php require 'mod/column.php';
+
+function contents($content_title,$content_col)
+{?>
+
 <article class="content">
     
     <p1 class = "content_title"><?php echo $content_title ?></p1>
@@ -12,8 +17,11 @@
         $col_button = $i[4];
         $col_button_link = $i[5];
         
-        require 'mod/column.php';
         
-    }?>
+        
+    }
+    colum($col_title,$col_img,$col_subtitle,$col_data,$col_button,$col_button_link)
+    ?>
     </span>
 </article>
+<?php } 

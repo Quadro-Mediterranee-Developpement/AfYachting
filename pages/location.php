@@ -1,22 +1,23 @@
 <?php
-
-$required = ["column","contents","footer","header"];
+require 'mod/head.php';
+require 'mod/header.php';
+require 'mod/contents.php';
+require 'mod/footer.php';
+$required = ["column", "contents", "footer", "header"];
 $description = "Description de la page de location adaptée au référencement";
 $Title = "Titre de la page de location adaptée au référencement";
-require 'mod/head.php'; ?>
+
+head($required, $description, $Title);
+?>
 
 <body>
-    
-    <?php
-    
-    require 'mod/header.php';
 
-    
+    <?php
+    header();
     $content_title = "";
-    $content_col = [["","","","","",""],["","","","","",""],["","","","","",""]] ;
-    require 'mod/contents.php';
-    
-    
-    require 'mod/footer.php'; ?>
+    $content_col = [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]];
+    contents($content_title, $content_col);
+    footer();
+    ?>
 
 </body>
