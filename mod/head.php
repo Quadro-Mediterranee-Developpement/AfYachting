@@ -42,7 +42,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
             <!-- Inclusion auto des js et css -->
             <link href="../css/default.css" rel="stylesheet" type="text/css"/>
-            <!-- Mettre bootstrap à la place de ce commentaire -->
+            <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <?php
             foreach ($required as $i) {
 
