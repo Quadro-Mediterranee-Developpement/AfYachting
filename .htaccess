@@ -12,7 +12,6 @@ ErrorDocument 500 /index?p=500
 <IfModule mod_autoindex.c>
 Options -Indexes
 </IfModule>
-Options -MultiViews
 Options +FollowSymlinks
 AddDefaultCharset UTF-8
 ServerSignature Off

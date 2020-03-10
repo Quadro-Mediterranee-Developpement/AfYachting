@@ -1,27 +1,27 @@
-<?php require 'mod/column.php';
+<?php
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-function contents($content_title,$content_col)
-{?>
+    require_once 'mod/column.php';
 
-<article class="content">
-    
-    <p1 class = "content_title"><?php echo $content_title ?></p1>
-    
-    <span class="content_sub">
-    <?php foreach ($content_col as $i){
-        
-        $col_title = $i[0];
-        $col_img = $i[1];
-        $col_subtitle = $i[2];
-        $col_data = $i[3];
-        $col_button = $i[4];
-        $col_button_link = $i[5];
-        
-        
-        
+    function contents($content_title, $content_col) {
+        ?>
+
+        <article class="content">
+
+            <p1 class = "content_title"><?php echo $content_title ?></p1>
+
+            <span class="content_sub">
+                <?php
+                foreach ($content_col as $i) {
+                    column($i[0], $i[1], $i[2], $i[3], $i[4], $i[5]);
+                }
+                ?>
+            </span>
+        </article>
+        <?php
     }
-    colum($col_title,$col_img,$col_subtitle,$col_data,$col_button,$col_button_link)
-    ?>
-    </span>
-</article>
-<?php } 
+
+}

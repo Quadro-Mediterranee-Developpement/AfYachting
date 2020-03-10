@@ -1,32 +1,43 @@
 <?php
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-$required = ["column","footer","header","bateau", "bateau_form"];
-$description = "Description de la page bateau adaptée au référencement";
-$Title = "Titre de la page bateau adaptée au référencement";
-require 'mod/head.php'; ?>
+    require_once 'mod/head.php';
+    require_once 'mod/header.php';
+    require_once 'mod/column.php';
+    require_once 'mod/bateau_form.php';
+    require_once 'mod/footer.php';
 
-<body>
-    
-    <?php
-    
-    require 'mod/header.php';
-    
-    
-    ?> <article class="bateau"><?php
-    
-        $col_title = "";
-        $col_img = "";
-        $col_subtitle = "";
-        $col_data = "";
-        $col_button = "";
-        $col_button_link = "";
-        require 'mod/column.php';
+    foreach ($included = get_included_files() as $i) {
+        $buffer = explode(".", $i)[0];
+        $next_buff = explode("/",$buffer);
+        $i = end($next_buff);
+    }
 
-        require 'mod/bateau_form.php';
-    
-    ?> </article> <?php
-    
-    
-    require 'mod/footer.php'; ?>
+    head($included, "Description de la page bateau adaptée au référencement", "Titre de la page bateau adaptée au référencement");
+    ?>
 
-</body>
+    <body>
+
+        <?php
+        bloc_header();
+
+        
+        ?> <article class="bateau"><?php
+        
+        column("","","","","","");
+        
+        bateau_form();
+        
+        ?> </article> <?php
+
+
+        footer();
+        ?>
+
+    </body>
+
+<?php
+}

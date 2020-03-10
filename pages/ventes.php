@@ -1,25 +1,46 @@
 <?php
-require 'mod/vente_form.php';
-require 'mod/mosaic.php';
-require 'mod/header.php';
-require 'mod/head.php';
-require 'mod/footer.php';
-$required = ["footer", "header", "ventes", "mosaic", "mosaic_ellement", "vente_form"];
-$description = "Description de la page ventes adaptée au référencement";
-$Title = "Titre de la page ventes adaptée au référencement";
-head($required, $description, $Title);
-?>
-<body>
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-    <?php
-    header()
-    ?> <article class="ventes"><?php
-    $mosaic = [["source_photo.jpg", "Informations", "Lorem ipsum sit dolor amet", "tags mis en classe pour le tri JS"], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]];
+    require_once 'mod/head.php';
+    require_once 'mod/header.php';
+    require_once 'mod/vente_form.php';
+    require_once 'mod/mosaic.php';
+    require_once 'mod/footer.php';
 
-    mosaic($mosaic);
-    vente_form();
-    ?> </article> <?php
+    foreach ($included = get_included_files() as $i) {
+        $buffer = explode(".", $i)[0];
+        $next_buff = explode("/",$buffer);
+        $i = end($next_buff);
+    }
+
+    head($included, "Description de la page contact adaptée au référencement", "Titre de la page contact adaptée au référencement");
+    ?>
+
+    <body>
+
+        <?php
+        bloc_header();
+        
+        
+        ?> <article class="ventes"><?php
+
+        
+            mosaic([["source_photo.jpg", "Informations", "Lorem ipsum sit dolor amet", "tags mis en classe pour le tri JS"], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]);
+            
+            
+            vente_form();
+        
+        
+        ?> </article> <?php
+
+
         footer();
         ?>
 
-</body>
+    </body>
+
+<?php
+}

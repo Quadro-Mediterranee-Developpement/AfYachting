@@ -1,46 +1,48 @@
 <?php
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-require 'mod/head.php';
+    require_once 'mod/head.php';
+    require_once 'mod/header.php';
+    require_once 'mod/carousel.php';
+    require_once 'mod/contents.php';
+    require_once 'mod/textual.php';
+    require_once 'mod/illustration.php';
+    require_once 'mod/footer.php';
 
-head.content([],"Description de la page d'acceuil adaptée au référencement","Titre de la page d'acceuil adaptée au référencement");
- ?>
+    foreach ($included = get_included_files() as $i) {
+        $buffer = explode(".", $i)[0];
+        $next_buff = explode("/",$buffer);
+        $i = end($next_buff);
+    }
 
-<body>
-    
-    <?php
-    
-    require 'mod/header.php';
-    
-    
-    $panoramique_img = "";
-    require 'mod/panoramique.php';
+    head($included, "Description de la page d'accueil adaptée au référencement", "Titre de la page d'accueil adaptée au référencement");
+    ?>
 
-    
-    $content_title = "";
-    $content_col = [["","","","","",""],["","","","","",""],["","","","","",""]] ;
-    require 'mod/contents.php';
-    
-    
-    $textual_title = "";
-    $textual_bar = FALSE;
-    $textual_data = "";
-    $textual_button = "";
-    $textual_button_link = "";
-    require 'mod/textual.php';
-    
-    
-    $illustration_img = "";
-    $illustration_input = function(){
-        $textual_title = "";
-        $textual_bar = TRUE;
-        $textual_data = "";
-        $textual_button = "";
-        $textual_button_link = "";
-        require 'mod/textual.php'; 
-    };
-    require 'mod/illustration.php';
-    
-    
-    require 'mod/footer.php'; ?>
+    <body>
 
-</body>
+        <?php
+        bloc_header();
+
+
+        carousel(["",""]);
+
+
+        contents("",[["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]]);
+
+
+        textual("",FALSE,"","","");
+
+        
+        illustation("",function(){textual("",TRUE,"","","");});
+
+
+        footer();
+        ?>
+
+    </body>
+
+<?php
+}

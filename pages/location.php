@@ -1,23 +1,36 @@
 <?php
-require 'mod/head.php';
-require 'mod/header.php';
-require 'mod/contents.php';
-require 'mod/footer.php';
-$required = ["column", "contents", "footer", "header"];
-$description = "Description de la page de location adaptée au référencement";
-$Title = "Titre de la page de location adaptée au référencement";
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-head($required, $description, $Title);
-?>
+    require_once 'mod/head.php';
+    require_once 'mod/header.php';
+    require_once 'mod/contents.php';
+    require_once 'mod/footer.php';
 
-<body>
+    foreach ($included = get_included_files() as $i) {
+        $buffer = explode(".", $i)[0];
+        $next_buff = explode("/",$buffer);
+        $i = end($next_buff);
+    }
 
-    <?php
-    header();
-    $content_title = "";
-    $content_col = [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]];
-    contents($content_title, $content_col);
-    footer();
+    head($included, "Description de la page location adaptée au référencement", "Titre de la page location adaptée au référencement");
     ?>
 
-</body>
+    <body>
+
+        <?php
+        bloc_header();
+
+        
+        contents("",[["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]]);
+
+
+        footer();
+        ?>
+
+    </body>
+
+<?php
+}

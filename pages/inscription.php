@@ -1,23 +1,29 @@
 <?php
-require 'mod/head.php'; 
-require 'mod/displayer.php';
-require 'mod/inscription_form.php';
-$required = ["displayer","inscription_form"];
-$description = "Description de la page d'inscription adaptée au référencement";
-$Title = "Titre de la page d'inscription adaptée au référencement";
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-head($required, $description, $Title);
-?>
+    require_once 'mod/head.php';
+    require_once 'mod/displayer.php';
+    require_once 'mod/inscription_form.php';
 
-<body>
-    
-    <?php
+    foreach ($included = get_included_files() as $i) {
+        $i = end(explode("/",explode(".", $i)[0]));
+    }
 
-    
-    $displayer_img = "";
-    $displayer_img_2 = "";
-    $displayer_input = function() {inscription_form();};
-    displayer($displayer_img,$displayer_img_2,$displayer_input);
+    head($included, "Description de la page inscription adaptée au référencement", "Titre de la page inscription adaptée au référencement");
     ?>
 
-</body>
+    <body>
+
+        <?php
+        
+            display("", "", function(){inscription_form();});
+        
+        ?>
+
+    </body>
+
+<?php
+}

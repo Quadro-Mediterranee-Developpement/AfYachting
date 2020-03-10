@@ -1,9 +1,17 @@
-<?php 
-function bateau_form()
-{ ?>
-<span class="bateau_form">
-    
-</span>
-<?php 
+<?php
+
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
+
+    function bateau_form() {
+        ?>
+        <span class="bateau_form">
+
+        </span>
+        <?php
+
+    }
 
 }

@@ -1,20 +1,23 @@
 <?php
-require 'mod/mosaic_ellement.php';
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    header('Location: ../index?p=404');
+    exit();
+} else {
 
-function mosaic($mosaic) {
-    ?>
+    require_once 'mod/mosaic_ellement.php';
 
-    <span class="mosaic">
-
-        <?php
-        foreach ($mosaic as $i) {
-            $mosaic_ellement_photo = $i[0];
-            $mosaic_ellement_name = $i[1];
-            $mosaic_ellement_description = $i[2];
-            $mosaic_ellement_tags = $i[3];
-        }
-        mosaic_ellement($mosaic_ellement_photo, $mosaic_ellement_name, $mosaic_ellement_description, $mosaic_ellement_tags);
+    function mosaic($mosaic) {
         ?>
-    </span>
-    <?php
+
+        <span class="mosaic">
+
+            <?php
+            foreach ($mosaic as $i) {
+                mosaic_ellement($i[0], $i[1], $i[2], $i[3]);
+            }
+            ?>
+        </span>
+        <?php
+    }
+
 }
