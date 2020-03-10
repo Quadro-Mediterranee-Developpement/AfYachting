@@ -41,15 +41,17 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
 
             <!-- Inclusion auto des js et css -->
+            <link href="../css/default.css" rel="stylesheet" type="text/css"/>
+            <!-- Mettre bootstrap à la place de ce commentaire -->
             <?php
             foreach ($required as $i) {
 
                 if (is_file('css/' . $i . '.css')) {
-                    echo '<link rel="stylesheet" href="css/' . $i . '.css">';
+                    echo '<link rel="stylesheet" href="css/' . $i . '.css" type="text/css"/>';
                 }
 
                 if (is_file('js/' . $i . '.js')) {
-                    echo '<script src="js/' . $i . '.js"></script>';
+                    echo '<script src="js/' . $i . '.js" type="text/javascript"></script>';
                 }
             }
             ?>
