@@ -18,7 +18,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $i = end($next_buff);
     }
 
-    head($included, "Description de la page d'accueil adaptée au référencement", "Titre de la page d'accueil adaptée au référencement");
+    head($included, "Description de la page d'accueil adaptée au référencement", "AfYachting Locations et vente de bateaux à St Tropez");
     ?>
 
     <body>
