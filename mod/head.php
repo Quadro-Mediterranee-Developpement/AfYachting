@@ -32,12 +32,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
             <!-- Meta pour les liens facebook -->
             <meta property="og:image" content=""><!-- A remplir -->
-            <meta property="og:description" content=""><!-- A remplir -->
-            <meta property="og:title" content="AfYachting">
+            <meta property="og:description" content="<?php echo $description ?>">
+            <meta property="og:title" content="<?php echo $Title ?>">
 
 
             <!-- Meta pour les liens twitter -->
-            <meta name="twitter:title" content="AfYachting">
+            <meta name="twitter:title" content="<?php echo $Title ?>">
 
 
             <!-- Inclusion auto des js et css -->

@@ -16,7 +16,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $i = end($next_buff);
     }
 
-    head($included, "Description de la page 403 adaptée au référencement", "Titre de la page 403 adaptée au référencement");
+    head($included, "Page bad occurence 403", "Page bad occurence 403");
     ?>
 
     <body>
