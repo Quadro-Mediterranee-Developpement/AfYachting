@@ -27,7 +27,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         bloc_header();
 
 
-        carousel(["",""]);
+        carousel(["img/img_slider_1.png","img/img_slider_2.png","img/img_slider_3.png"]);
 
 
         contents("",[["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]]);

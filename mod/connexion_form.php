@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 } else {
 
     function connexion_form() {
-        
+         
     }
 
 }

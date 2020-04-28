@@ -8,3 +8,27 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+.pictSize{
+    width: 100vw;
+    height: 88vh;
+    object-fit: cover;
+}
+
+.midPict{
+    width: 28vw;
+    height: 300px;;
+}
+
+.size{
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.center{
+   margin: auto;
+}
+
+
+
