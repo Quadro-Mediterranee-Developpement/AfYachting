@@ -11,13 +11,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <button class="navbar-toggler"data-toggle="collapse" data-target="#collapse-target"><span class=navbar-toggler-icon></span></button>
 
             <div class="collapse navbar-collapse" id="collapse-target">
-                <a class="navbar-brand"><img src="pictures/Logo-AFYACHTING.png" alt="" width="50" height="50"/> </a>
+                <a class="navbar-brand"><img src="img/Logo-AFYACHTING.png" alt="" width="50" height="50"/> </a>
 
                 <span class="navbar-text"></span>
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accueil</a>
+                        <a class="nav-link" href="pages/accueil.php">Accueil</a>
                     </li>
 
                     <li class="nav-item">
@@ -25,7 +25,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/vente.php">Vente</a>
+                        <a class="nav-link" href="pages/ventes.php">Vente</a>
                     </li>
 
                     <li class="nav-item">
