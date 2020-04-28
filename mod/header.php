@@ -17,30 +17,19 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/accueil.php">Accueil</a>
+                        <a class="nav-link" href="index?p=accueil">Accueil</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/location.php">Location</a>
+                        <a class="nav-link" href="index?p=location">Location</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ventes.php">Vente</a>
+                        <a class="nav-link" href="index?p=ventes">Vente</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/services.php">Services</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/equipe.php">Notre équipe</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/contact.php">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/aide.php">Aide</a>
+                        <a class="nav-link" href="index?p=contact">Contact</a>
                     </li>
 
                 </ul>
