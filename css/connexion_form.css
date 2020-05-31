@@ -24,8 +24,7 @@ and open the template in the editor.
 }
 
 body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: scroll center url('../img/boat2.jpg');
 }
 
 .card-signin {
@@ -44,7 +43,7 @@ body {
 .card-signin .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+  background: scroll center url('../img/boat1.jpg');
   background-size: cover;
 }
 
