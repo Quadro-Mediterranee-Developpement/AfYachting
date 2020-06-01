@@ -22,7 +22,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     <body>
 
         <?php
-        bloc_header();
+        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
 
         
         illustation("",function(){textual("Erreur 404",TRUE,"La page que vous cherchez semble introuvable.","","");});

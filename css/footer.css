@@ -8,3 +8,35 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+footer{
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    background-color :#4682B4;
+}
+
+.footer .link ul{
+    list-style-type: none;
+}
+
+.footer .link li a{
+    color: #fff;
+    transition: color 0.2s;
+    
+}
+
+.footer .link li a:hover{
+    text-decoration: none;
+    color: rgb(30,118,226);
+}
+
+.footer .localisation i{
+    font-size: 18px;
+    
+}
+
+.footer .copyright p{
+    font-size: 1.3rem;
+    text-shadow : 1px 1px black;
+    border-top : 1px solid rgba(255,255,255,0.8);
+}

@@ -9,18 +9,15 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     function contents($content_title, $content_col) {
         ?>
 
-        <article class="content">
+            <h1 class="text-center mt-5 titleLocation"><?php echo $content_title ?></h1>
+            <hr>
 
-            <p1 class = "content_title"><?php echo $content_title ?></p1>
-
-            <span class="content_sub">
+            
                 <?php
-                foreach ($content_col as $i) {
-                    column($i[0], $i[1], $i[2], $i[3], $i[4], $i[5]);
-                }
+                    column($content_col);
                 ?>
-            </span>
-        </article>
+            
+        
         <?php
     }
 
