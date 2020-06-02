@@ -18,18 +18,9 @@ $included = ["head","header","vente_form","mosaic","textual","footer","foot"];
         <?php
         bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
         
-        
-      textual("Achetez un bateau",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],"","");
-
-
-        
-            //mosaic([["source_photo.jpg", "Informations", "Lorem ipsum sit dolor amet", "tags mis en classe pour le tri JS"], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]);
+        textual("Achetez un bateau",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],"","");            
             
-            
-            vente_form("ventes",["cheval","vache"],["renaux","autrechose"],[["carousel_test/img_slider_1","salut"],["carousel_test/img_slider_2","defrg"]]);
-        
-        
-
+        vente_form(["cheval","vache"],["renaux","autrechose"],(function() {mosaic([["img_slider_1", "Informations", "Lorem ipsum sit dolor amet", ["vache","renaux","150"]], ["img_slider_1", "Informations", "Lorem ipsum sit dolor amet", ["vache","renaux","150"]], ["img_slider_1", "Informations", "Lorem ipsum sit dolor amet", ["vache","renaux","150"]], ["img_slider_1", "Informations", "Lorem ipsum sit dolor amet", ["vache","renaux","150"]], ["img_slider_1", "Informations", "Lorem ipsum sit dolor amet", ["vache","renaux","150"]]]);}));
 
         footer();
         foot($included);
