@@ -13,3 +13,7 @@ and open the template in the editor.
     font-size: x-large;
     font-weight: bold;
 }
+
+nav {
+    height: 8vh;
+}

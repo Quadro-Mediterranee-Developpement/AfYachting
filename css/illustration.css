@@ -8,3 +8,23 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+.whiteBox{
+    background-color: #ffffff;
+    padding: 25px;
+    width : 25vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+.illustration {
+    width: 100%;
+    height: 100vh;
+}
+
+.posissioned {
+    position: absolute;
+    top: 20vh;
+    left: 12vw;
+}

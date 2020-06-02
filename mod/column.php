@@ -7,7 +7,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
 //$col_title, $col_img, $col_subtitle, $col_data, $col_button, $col_button_link
     function column($information) {
-        echo "<div class='container-fluid mt-4 mb-4 imgBgBoat infoContainer'> <div class='row ml-3 '>";
+        echo "<div class='container-fluid mt-4 mb-4 infoContainer'> <div class='row ml-3 '>";
         foreach ($information as $i) {
             echo "<div class='col d-flex flex-column mt-3 mb-3'>";
             if ($i[0] != NULL) {

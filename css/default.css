@@ -12,13 +12,34 @@ and open the template in the editor.
     padding: 0;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .bgColor{
     background: #1560BD;
 }
 
 .pictSize{
     width: 100%;
-    height: 88vh;
+    height: 92vh;
     object-fit: cover;
 }
 
@@ -28,10 +49,13 @@ and open the template in the editor.
 }
 
 .size{
-    width: 60vw;
+    width: 100%;
+    max-width:  30vw;
     height: auto;
     display: flex;
     flex-direction: column;
+    margin-top: 5vh!important;
+    margin-bottom: 5vh!important;
 }
 
 .center{
@@ -54,13 +78,13 @@ and open the template in the editor.
     margin-left: 0;
 }
 
-.whiteBox{
+/*.whiteBox{
     background-color: #ffffff;
     border: solid #000;
-    width : 400px;
-    height: 450px;
+    width : 25vw;
+    height: 50vh;
     
-}
+}*/
 
 .top-left {
   position: absolute;

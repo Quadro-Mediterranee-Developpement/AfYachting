@@ -7,7 +7,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     require_once 'mod/column.php';
 
     function contents($content_title, $content_col) {
-       if($content_title != NULL) {echo "<h1 class='text-center mt-5'>$content_title</h1><hr>";}
+       if($content_title != NULL) {echo "<h1 class='text-center mt-5'>$content_title</h1>";}
             column($content_col);
     }
 }
