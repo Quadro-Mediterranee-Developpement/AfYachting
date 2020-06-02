@@ -7,18 +7,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     require_once 'mod/column.php';
 
     function contents($content_title, $content_col) {
-        ?>
-
-            <h1 class="text-center mt-5 titleLocation"><?php echo $content_title ?></h1>
-            <hr>
-
-            
-                <?php
-                    column($content_col);
-                ?>
-            
-        
-        <?php
+       if($content_title != NULL) {echo "<h1 class='text-center mt-5'>$content_title</h1><hr>";}
+            column($content_col);
     }
-
 }
