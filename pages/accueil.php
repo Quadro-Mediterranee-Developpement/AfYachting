@@ -26,11 +26,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header();
 
+        carousel(["img/img_slider_1.png","img/img_slider_2.png","img/img_slider_3.png"]);
 
-        carousel(["",""]);
 
-
-        contents("",[["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]]);
+        contents("Louez un bateau",[["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]]);
 
 
         textual("",FALSE,"","","");
