@@ -4,9 +4,20 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 29 févr. 2020, 11:50:05
-    Author     : andiren.roupie
+    Created on : 14 janv. 2020, 01:27:52
+    Author     : paul-emile.neu
 */
+@font-face{
+    font-family: "Trend";
+    src: url('../font/space age.ttf');
+}
+
+.trendFont{
+    font-family: "Trend";
+    font-size: 30px;
+    padding-right: 20px;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Rubik:500,700|Roboto:400,600");
 .section-padding {
     padding: 45px 0;
@@ -571,4 +582,3 @@ select.form-control[multiple] {
     font-weight: 500;
     height: auto
 }
-

@@ -4,7 +4,28 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 28 févr. 2020, 14:41:33
-    Author     : andiren.roupie
+    Created on : 1 juin 2020, 10:48:46
+    Author     : paul-emile.neu
 */
 
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.textBoxLocation{
+    width: 60vw;
+    margin: auto;
+}
+
+.imgBgBoat{
+    background: url("img/background-boat.png") no-repeat ;
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;    
+}
+
+.infoContainer{
+    height: auto;
+}

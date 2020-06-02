@@ -3,41 +3,36 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-
-    require_once 'mod/head.php';
-    require_once 'mod/header.php';
-    require_once 'mod/vente_form.php';
-    require_once 'mod/mosaic.php';
-    require_once 'mod/footer.php';
-
-    foreach ($included = get_included_files() as $i) {
-        $buffer = explode(".", $i)[0];
-        $next_buff = explode("/",$buffer);
-        $i = end($next_buff);
+$included = ["head","header","vente_form","mosaic","textual","footer","foot"];
+ 
+    foreach ($included as $i) {
+        require_once "mod/$i.php";
     }
+ 
 
-    head($included, "Vente de bateau Afyachting", "Page de vente");
+    head($included, "Description de la page contact adaptée au référencement", "Titre de la page contact adaptée au référencement");
     ?>
 
     <body>
 
         <?php
-        bloc_header();
+        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
         
         
-        ?> <article class="ventes"><?php
+      textual("Achetez un bateau",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],"","");
+
 
         
-            mosaic([["source_photo.jpg", "Informations", "Lorem ipsum sit dolor amet", "tags mis en classe pour le tri JS"], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]);
+            //mosaic([["source_photo.jpg", "Informations", "Lorem ipsum sit dolor amet", "tags mis en classe pour le tri JS"], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]]);
             
             
-            vente_form();
+            vente_form("ventes",["cheval","vache"],["renaux","autrechose"],[["carousel_test/img_slider_1","salut"],["carousel_test/img_slider_2","defrg"]]);
         
         
-        ?> </article> <?php
 
 
         footer();
+        foot($included);
         ?>
 
     </body>

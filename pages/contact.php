@@ -3,32 +3,26 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-
-    require_once 'mod/head.php';
-    require_once 'mod/header.php';
-    require_once 'mod/contact_form.php';
-    require_once 'mod/illustration.php';
-    require_once 'mod/footer.php';
-
-    foreach ($included = get_included_files() as $i) {
-        $buffer = explode(".", $i)[0];
-        $next_buff = explode("/",$buffer);
-        $i = end($next_buff);
+$included = ["head","header","contact_form","footer","foot"];
+ 
+    foreach ($included as $i) {
+        require_once "mod/$i.php";
     }
 
-    head($included, "Page de contact du site Afyachting", "Page de contact");
+    head($included, "Description de la page contact adaptée au référencement", "Titre de la page contact adaptée au référencement");
     ?>
 
     <body>
 
         <?php
-        bloc_header();
+        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
 
         
-        illustation("",function(){contact_form();});
+        contact_form("contact.php");
 
 
         footer();
+        foot($included);
         ?>
 
     </body>

@@ -4,17 +4,24 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    function illustation($illustration_img, $illustration_input) {
+    function illustation($illustration_img, $illustration_title, $illustration_text) {
         ?>
-        <article class="illustration">
+        <div class="boxContainer mt-1">
 
-            <img src="<?php echo $illustration_img ?>">
+            <img src="img/<?php echo $illustration_img ?>.png">
 
-            <span class="illustration_sub">
+            <div class="whiteBox top-left">
+                <div class="row ml-3 textBox ">
+                    <h4 class="mt-4 titleTextBox"><?php echo $illustration_title ?></h4>
+                    <?php foreach ($illustration_text as $i) { ?>
+                        <p class="animationText">
+                            <?php echo $i; ?>
+                        </p>
 
-                <?php $illustration_input(); ?>
-            </span>
-        </article>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
         <?php
     }
 

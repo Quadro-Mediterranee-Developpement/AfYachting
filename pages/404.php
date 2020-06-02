@@ -16,13 +16,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $i = end($next_buff);
     }
 
-    head($included, "Page bad occurence 404", "Page bad occurence 404");
+    head($included, "Description de la page 404 adaptée au référencement", "Titre de la page 404 adaptée au référencement");
     ?>
 
     <body>
 
         <?php
-        bloc_header();
+        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
 
         
         illustation("",function(){textual("Erreur 404",TRUE,"La page que vous cherchez semble introuvable.","","");});

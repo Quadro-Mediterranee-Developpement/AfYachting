@@ -4,7 +4,59 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 29 févr. 2020, 11:37:44
-    Author     : andiren.roupie
+    Created on : 31 mai 2020, 20:56:17
+    Author     : paul-emile.neu
 */
 
+*{
+    margin : 0;
+    padding : 0;
+}
+
+.textBoxVente{
+    width: 60vw;
+    margin: auto;
+}
+
+.pictSizeVente{
+    width : 200px;
+    height : 200px;
+}
+
+.color{
+    background-color: #DFF2FF;
+    height: auto;
+}
+
+.boxSize{
+    width : 70vw;
+    height : auto;
+}
+
+.formBox{
+    width : 20vw;
+    height : 350px;
+    background-color : #4682B4;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form{
+    height : 100%;
+
+}
+
+.input{
+    width: 60%;
+    margin: auto;
+}
+
+.label{
+    width: 100%;
+}
+
+.button{
+    width: 70%;
+    margin-left: 40px;
+    background-color : #03224C;
+}
