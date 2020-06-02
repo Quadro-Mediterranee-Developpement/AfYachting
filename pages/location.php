@@ -15,7 +15,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $i = end($next_buff);
     }
 
-    head($included, "Description de la page location adaptée au référencement", "Titre de la page location adaptée au référencement");
+    head($included, "Page de location du site Afyachting", "Page de location");
     ?>
 
     <body>

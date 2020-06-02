@@ -12,7 +12,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $i = end(explode("/",explode(".", $i)[0]));
     }
 
-    head($included, "Description de la page connexion adaptée au référencement", "Titre de la page connexion adaptée au référencement");
+    head($included, "Page de connexion du site Afyachting", "Page de connexion");
     ?>
 
     <body>
