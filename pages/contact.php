@@ -16,10 +16,8 @@ $included = ["head","header","contact_form","footer","foot"];
 
         <?php
         bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
-
-        
-        contact_form("contact.php");
-
+ 
+        contact_form((function() {echo "rien";}));
 
         footer();
         foot($included);

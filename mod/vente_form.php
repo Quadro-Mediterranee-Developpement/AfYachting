@@ -4,27 +4,17 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    function vente_form($cible, $categorie, $marque, $bateau) {
+    function vente_form($categorie, $marque, $input) {
         ?>
-
         <div class=" container-fluid d-flex justify-content-between mt-5 color infoContainer ">
             <div class="row boxSize">
                 <div>
-
-                    <?php
-                    foreach ($bateau as $i) {
-                        ?>
-                        <img src="img/<?php echo $i[0]; ?>" alt="img/<?php echo $i[1]; ?>" class="img-fluid pictSizeVente"/>
-
-                        <?php
-                    }
-                    ?>
-
+                    <?php $input(); ?>
                 </div>
 
             </div>
             <div class="formBox mt-4">
-                <form class="form" action="<?php echo $cible; ?>" method="get">
+                <form class="form" action="index.php" method="get">
                     <div class="form-group">
                         <label for="categorie" class="text-center label">Recherche par catégories</label>
                         <select class="form-control input" id="typeModele">

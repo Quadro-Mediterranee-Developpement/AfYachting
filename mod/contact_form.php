@@ -5,14 +5,14 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    function contact_form($cible) {
+    function contact_form($input) {
         ?>
                <div class="col-md-6 mt-5 mb-5 contact-widget-section2 wow animated fadeInLeft d-flex justify-content-between" data-wow-delay=".2s">
            
             <!-- SECTION FORMULAIRE -->
             <div class="col-md-6 wow animated fadeInRight mt-5" data-wow-delay=".2s">
 
-                <form action="<?php echo $cible; ?>" method="POST" class="shake">
+                <form action="index.php" method="POST" class="shake">
                     <div class="form-group label-floating">
                         <input name="nom" type="text" placeholder="Nom Prenom" id='name' class="form-control">
                         <label class="control-label" for="name">Name</label>
@@ -44,7 +44,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             
             <!-- SECTION LOCALISATION-->
             <div class="map mt-5 align-self-center ml-5">
-                <p>map a mettre ici</p>
+                <?php $input();?>
             </div>
         </div>
 <?php
