@@ -9,9 +9,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <div class="boxContainer">
             <img class="illustration" src="img/<?php echo $illustration_img ?>.png">
             <div class="whiteBox posissioned">
-                <div class="row mx-auto ">
-                    <?php $illustration_input();?>
-                </div>
+                <?php $illustration_input(); ?>
             </div>
         </div>
         <?php

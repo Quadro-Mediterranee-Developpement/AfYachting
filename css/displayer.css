@@ -8,11 +8,6 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
-:root {
-    --input-padding-x: 1.5rem;
-    --input-padding-y: .75rem;
-}
-
 body {
     background-size: cover;
 }
