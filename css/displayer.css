@@ -32,6 +32,9 @@ body {
 .card-body {
   padding: 2rem;
   overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-img-left {
