@@ -16,10 +16,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     <body>
 
         <?php
-        bloc_header();
+        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
 
         
-        illustation("",function(){textual("Erreur 500 : erreur serveur",TRUE,"Désolé, il semble que le serveur ait eu un problême. Veuillez réessayer plus tard.","","");});
+        illustation("carousel_test/img_slider_1",function(){textual("Erreur 500 : erreur serveur",FALSE,["Désolé, il semble que le serveur ait eu un problême.", "Veuillez réessayer plus tard."],"","");});
 
 
         footer();
