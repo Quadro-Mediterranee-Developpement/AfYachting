@@ -28,3 +28,7 @@ and open the template in the editor.
     top: 20vh;
     left: 12vw;
 }
+
+.boxContainer{
+     position: relative;
+}

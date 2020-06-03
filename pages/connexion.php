@@ -17,7 +17,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         <?php
         
-            displayer("", "", function(){connexion_form();});
+            displayer("img_slider_2", "boat1", function(){connexion_form();});
             
             foot($included);
         

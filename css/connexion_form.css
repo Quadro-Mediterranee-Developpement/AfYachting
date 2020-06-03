@@ -1,15 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 29 févr. 2020, 15:11:38
-    Author     : andiren.roupie
-*/
-
-/*
-To change this license header, choose License Headers in Project Properties.
+/*To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
@@ -18,37 +7,10 @@ and open the template in the editor.
     Author     : paul-emile.neu
 */
 
-:root {
-  --input-padding-x: 1.5rem;
-  --input-padding-y: .75rem;
-}
-
-body {
-  background: scroll center url('../img/boat2.jpg');
-}
-
-.card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.card-signin .card-title {
+.card-title {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
-}
-
-.card-signin .card-img-left {
-  width: 45%;
-  /* Link to your background image using in the property below! */
-  background: scroll center url('../img/boat1.jpg');
-  background-size: cover;
-}
-
-.card-signin .card-body {
-  padding: 2rem;
 }
 
 .form-signin {
@@ -124,14 +86,4 @@ body {
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
   color: #777;
-}
-
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
 }

@@ -8,3 +8,16 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+.size{
+    width: 100%;
+    max-width:  30vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh!important;
+    margin-bottom: 5vh!important;
+}
+
+.center{
+   margin: auto;
+}

@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3 juin 2020, 09:43:14
+    Author     : andiren.roupie
+*/
+
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+body {
+    background-size: cover;
+}
+
+.card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 50vh;
+    width: 50vw;
+    position: relative;
+    top: 25vh;
+    left: 25vw;
+}
+
+.card-body {
+  padding: 2rem;
+  overflow: auto;
+}
+
+.card-img-left {
+    width: 45%;
+    background: center / contain no-repeat;
+    background-size: cover;
+}
+
+.closer:hover {
+    cursor: pointer;
+}
+
+.closer {
+    position: relative;
+    height: 4vh;
+    top: -24.5vh;
+    left: 72.75vw;
+}
+

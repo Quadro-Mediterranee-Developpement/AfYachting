@@ -6,20 +6,17 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     function displayer($displayer_img_1, $displayer_img_2, $displayer_input) {
         ?>
-        <article class="displayer">
 
-            <span class="displayer_sub">
-                <img src="<?php echo $displayer_img_1 ?>">
+        <style>body {background-image: URL("img/<?php echo $displayer_img_1 ?>.png");}</style>
 
-                <img src="<?php echo $displayer_img_2 ?>">
-
+        <div class="card flex-row ">
+            <div class="card-img-left d-none d-md-flex" style="background-image: URL('img/<?php echo $displayer_img_2 ?>.png');"></div>
+            <div class="card-body">
                 <?php $displayer_input(); ?>
-
-            </span>
-
-
-        </article>
-    <?php
+            </div>
+        </div>
+        <img class="closer" src="img/close.png" alt="" onclick="goBack();"/>
+        <?php
     }
 
 }

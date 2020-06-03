@@ -37,10 +37,6 @@ body::-webkit-scrollbar {
   background: #555;
 }
 
-.bgColor{
-    background: #1560BD;
-}
-
 .pictSize{
     width: 100%;
     height: 92vh;
@@ -50,87 +46,6 @@ body::-webkit-scrollbar {
 .midPict{
     width: 28vw;
     height: 300px;;
-}
-
-.size{
-    width: 100%;
-    max-width:  30vw;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 5vh!important;
-    margin-bottom: 5vh!important;
-}
-
-.center{
-   margin: auto;
-}
-
-
-
-.scroll{
-    scroll-behavior: smooth;
-}
-
-.boxContainer{
-     position: relative;
-}
-
-.imgBoat{
-    width : 100%;
-    height: 100vh;
-    margin-left: 0;
-}
-
-/*.whiteBox{
-    background-color: #ffffff;
-    border: solid #000;
-    width : 25vw;
-    height: 50vh;
-    
-}*/
-
-.top-left {
-  position: absolute;
-  top : 100px;
-  left : 250px;
-}
-
-.textBox{
-    width : 300px;
-    height: 400px;
-}
-
-
-
-.social{
-    padding: 0;
-}
-
-h4{
-    padding: 15px 0px;
-}
-
-.social li{
-    display: inline-block;
-    background-color: #fff;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    padding: 0cm;
-}
-
-.social li a i{
-    padding-top : 4px;
-    color: #333;
-    transition: .3s;
-    font-size: 25px;
-}
-.social li a i:hover{
-    color : rgb(30,118,226);
-    text-decoration: none;
 }
 
 .col
