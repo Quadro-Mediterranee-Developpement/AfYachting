@@ -8,3 +8,34 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+.mosaic {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
+
+.mosaic_ellement {
+    background: center / contain no-repeat;
+    background-size: cover;
+    margin: 20px;
+}
+
+.mosaic_ellement div {
+    display: flex;
+    background: rgba(255,255,255,0.3);
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    overflow: auto;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+.mosaic_ellement div:hover {
+    opacity: 1;
+}

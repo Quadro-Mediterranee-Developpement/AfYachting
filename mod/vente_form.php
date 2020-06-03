@@ -6,13 +6,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     function vente_form($categorie, $marque, $input) {
         ?>
-        <div class=" container-fluid d-flex justify-content-between mt-5 color infoContainer ">
-            <div class="row boxSize">
-                <div>
-                    <?php $input(); ?>
-                </div>
-
-            </div>
+        <div class=" container-fluid d-flex justify-content-between mt-5 infoContainer ">
+            <?php $input(); ?>
             <div class="formBox mt-4">
                 <form class="form" action="index.php" method="get">
                     <div class="form-group">

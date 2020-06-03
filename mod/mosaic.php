@@ -7,9 +7,18 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     require_once 'mod/mosaic_ellement.php';
 
     function mosaic($mosaic) {
+        ?>
+
+        <div class="mosaic">
+            
+            <?php
             foreach ($mosaic as $i) {
                 mosaic_ellement($i[0], $i[1], $i[2], $i[3]);
             }
-    }
+        
+            ?>
 
-}
+        </div>
+
+    <?php
+}}
