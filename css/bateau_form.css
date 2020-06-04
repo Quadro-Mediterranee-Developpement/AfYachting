@@ -29,14 +29,15 @@ and open the template in the editor.
 }
 
 .formBox{
-    width : 20vw;
-    height : 40vh;
-    background-color : #4682B4;
+    width: 39vw;
+    height: fit-content;
+    background-color: #4682B4;
     margin-right: auto;
     margin-left: auto;
-    position: sticky;
-    left: 70vw;
-    top: 30vh;
+    position: absolute;
+    left: 57vw;
+    top: 17vh;
+    padding: 5vh;
     margin-bottom: 20vh;
 }
     
@@ -50,6 +51,10 @@ and open the template in the editor.
     align-items: center;
     justify-content: center;
 
+}
+
+.form-group{
+    width: 80%;
 }
 
 .input{
