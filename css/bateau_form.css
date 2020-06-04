@@ -39,6 +39,7 @@ and open the template in the editor.
     top: 17vh;
     padding: 5vh;
     margin-bottom: 20vh;
+    z-index: 99;
 }
     
 
