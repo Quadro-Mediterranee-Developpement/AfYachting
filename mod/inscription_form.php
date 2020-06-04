@@ -33,7 +33,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 <?php if (isset($_SESSION['erreur'])): ?>
                     <p id="errorform" class="form-control is-invalid"><?= $_SESSION['erreur']['desc']; ?></p>
                 <?php endif; ?>
-                <a class="d-block text-center mt-2 small" href="index?p=connexion">Connexion</a>
+                <a class="d-block text-center mt-2 small" href="index?p=connexion&g=<?= (isset($_GET['g']))?$_GET['g']:'accueil'; ?>">Connexion</a>
             </form>
         </div>
 

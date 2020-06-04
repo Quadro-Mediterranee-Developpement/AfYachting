@@ -15,7 +15,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 <?php $displayer_input(); ?>
             </div>
         </div>
-        <img class="closer" src="img/close.png" alt="" onclick="goBack();"/>
+        <a href="index?p=<?= (isset($_GET['g']))?$_GET['g']:'accueil'; ?>"><img class="closer" src="img/close.png" alt=""/></a>
         <?php
     }
 
