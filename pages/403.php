@@ -16,7 +16,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     <body>
 
         <?php
-        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
+        bloc_header($menu);
 
         
         illustation("carousel_test/img_slider_1",function(){textual("Erreur 403 : accès refusé",FALSE,["Désolé, mais vous n'avez pas les droits pour accéder à cette page ou ce contenu.", "Il se peut que votre session ait expiré, et vous êtes donc invité à vous reconnecter."],"","");});

@@ -7,6 +7,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     function vente_creat_form() {
         ?>
+        <h5 class="card-title text-center">Ajouter un skippeur</h5>
         <form method='POST' action='index.php' class="form-signin">
 
 
