@@ -4,28 +4,63 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 1 juin 2020, 10:48:46
+    Created on : 31 mai 2020, 20:56:17
     Author     : paul-emile.neu
 */
 
 *{
-    margin: 0;
-    padding: 0;
-    
+    margin : 0;
+    padding : 0;
 }
 
-.textBoxLocation{
+.textBoxVente{
     width: 60vw;
     margin: auto;
 }
 
-.imgBgBoat{
-    background: url("img/background-boat.png") no-repeat ;
-    object-fit: cover;
-    width: 100vw;
-    height: 100vh;    
+.pictSizeVente{
+    width : 200px;
+    height : 200px;
 }
 
-.infoContainer{
-    height: auto;
+.boxSize{
+    width : 70vw;
+    height : auto;
+}
+
+.formBox{
+    width : 20vw;
+    height : 40vh;
+    background-color : #4682B4;
+    margin-right: auto;
+    margin-left: auto;
+    position: sticky;
+    left: 70vw;
+    top: 30vh;
+    margin-bottom: 20vh;
+}
+    
+
+
+.form{
+    height : 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.input{
+    margin: auto;
+}
+
+.label{
+    width: 100%;
+}
+
+.button{
+    width: 70%;
+    background-color : #03224C;
 }

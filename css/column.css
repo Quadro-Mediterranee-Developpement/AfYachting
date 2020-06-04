@@ -8,3 +8,10 @@ and open the template in the editor.
     Author     : andiren.roupie
 */
 
+.flex-column>.carousel {
+    width: 28vw;
+}
+
+.flex-column .carousel .carousel-inner .carousel-item .pictSize{
+    height: 300px;
+}

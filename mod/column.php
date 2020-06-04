@@ -14,7 +14,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 echo "<h5 class='text-center mt-3'>$i[0]</h5>";
             }
             if ($i[1] != NULL) {
-                echo "<img src='img/$i[1].png' alt='' class='midPict '/>";
+                if (is_array($i[1])) {
+                    require_once 'mod/carousel.php';
+                    carousel($i[1]);
+                } else {
+                    echo "<img src='img/$i[1].png' alt='' class='midPict '/>";
+                }
             }
             if ($i[2] != NULL) {
                 echo "<h5 class='text-center mt-3'>$i[2]</h5>";
@@ -23,7 +28,29 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 echo "<p class='text-center'>$i[3]</p>";
             }
             if ($i[4] != NULL && $i[5] != NULL) {
-                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=$i[5]'>$i[4]</a>";
+                if ($i[4] == $i[5] & $i[4] == "GigahBigah") {
+                    ?>
+                    <style>
+                        .midPict {
+                            width: 50vw;
+                            height: 636px;
+                        }
+                        .col {
+                            max-width: 53%;
+                        }
+                        .flex-column>.carousel {
+                            width: 50vw;
+                        }
+
+                        .flex-column .carousel .carousel-inner .carousel-item .pictSize{
+                            height: 636px;
+                        }
+                    </style>
+                    <?php
+
+                } else {
+                    echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=$i[5]'>$i[4]</a>";
+                }
             } echo "</div>";
         } echo "</div></div>";
     }

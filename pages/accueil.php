@@ -3,7 +3,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-    $included = ["head","header","carousel","contents","textual","illustration","footer","foot"];
+    $included = ["head","header","carousel","column","contents","textual","illustration","footer","foot"];
  
     foreach ($included as $i) {
         require_once "mod/$i.php";
@@ -21,7 +21,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         carousel(["carousel_test/img_slider_1","carousel_test/img_slider_2","carousel_test/img_slider_3"]);
 
 
-        contents("Location de bateaux",[["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"],["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"]]);
+        contents("Location de bateaux",[["image1", ["carousel_test/img_slider_1","carousel_test/img_slider_2","carousel_test/img_slider_3"], "l'image 1", "quoi?", "IMAge1", "location&bat=image1"],["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"]]);
 
         
         textual("Location toute la saison",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],null,null);
