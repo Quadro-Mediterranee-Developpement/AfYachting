@@ -2,14 +2,14 @@
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESSION['ID'])) {
     header('Location: ../index?p=404');
     exit();
-} else if ($_SESSION['ID']['ROLE'] !== 'admin') {
+} else if ($_SESSION['ID']['ROLE'] !== 'skipper') {
     header('Location: ../index?p=404');
     exit();
 } else {
 
 
 
-    $included = ["head", "header", "vente_creat_form", "location_creat_form", "skippeur_creat_form", "footer", "foot"];
+    $included = ["head", "header" ,"textual","illustration", "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -22,14 +22,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         <?php
         bloc_header($menu);
 
-        //vente_creat_form();
+        
+        illustation("carousel_test/img_slider_1",function(){textual("Espace skipper",FALSE,["En construction"],"","");});
 
-        location_creat_form();
-
-        //skippeur_creat_form();
 
         footer();
-
         foot($included);
         ?>
 

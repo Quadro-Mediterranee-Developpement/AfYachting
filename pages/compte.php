@@ -1,7 +1,7 @@
 <?php
 
 
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || isset($_SESSION['ID']) === false) {
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESSION['ID'])) {
     header('Location: ../index?p=404');
     exit();
 } else {

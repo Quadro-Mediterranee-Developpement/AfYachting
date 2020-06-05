@@ -26,7 +26,28 @@ Back : Hugo MUSOLES
         $p = "accueil";
     }
     $erreur = "Tous les champs doivent être  complétés !";
-    $menu = ["Accueil" => "Accueil", "Bateau" => "Bateau", "Connexion" => "Connexion", "Contact" => "Contact", "Inscription" => "Inscription", "Location" => "Location", "Ventes" => "Ventes"];
+
+    if (isset($_SESSION['ID'])) {
+        switch ($_SESSION['ID']['ROLE']) {
+            case 'admin':
+                $menu = ["Gestion" => "Gestion", "Compte" => "Compte"];
+                break;
+
+            case 'skipper':
+                $menu = ["Espace" => "espace_skipper", "Compte" => "Compte"];
+                break;
+
+            case 'client':
+                $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Compte" => "Compte"];
+                break;
+
+            default:
+                $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
+                break;
+        }
+    } else {
+        $menu = ["Accueil" => "Accueil", "Bateau" => "Bateau", "Connexion" => "Connexion", "Contact" => "Contact", "Inscription" => "Inscription", "Location" => "Location", "Ventes" => "Ventes"];
+    }
     if (isset($_SESSION['ID'])) {
         unset($menu["Connexion"]);
         unset($menu["Inscription"]);
