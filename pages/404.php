@@ -16,7 +16,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     <body>
 
         <?php
-        bloc_header(["Accueil","Bateau","Connexion","Contact","Inscription","Location","Ventes"]);
+        bloc_header($menu);
 
         
         illustation("carousel_test/img_slider_1",function(){textual("Erreur 404",FALSE,["La page que vous cherchez semble introuvable."],"","");});
