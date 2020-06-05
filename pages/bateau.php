@@ -20,7 +20,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         
         bateau_form();
         
-       column([["image1", ["carousel_test/img_slider_1","carousel_test/img_slider_1","carousel_test/img_slider_1","carousel_test/img_slider_1"], "l'image 1", "quoi?", "GigahBigah", "GigahBigah"]]);
+        column([["image1", ["carousel_test/img_slider_1","carousel_test/img_slider_1","carousel_test/img_slider_1","carousel_test/img_slider_1"], "l'image 1", "quoi?", "GigahBigah", "GigahBigah"]]);
 
         
         footer();
