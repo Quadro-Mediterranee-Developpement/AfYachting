@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['skipper']) && isset($_POST['date']) && isset($_POST['heureD']) && isset($_POST['heureF']) && isset($_POST['heureF']) && isset($_POST['calcul'])) {
-    if (!empty($_POST['userName']) AND!empty($_POST['password'])) {
+    if (!empty($_POST['skipper']) && !empty($_POST['date']) && !empty($_POST['heureD']) && !empty($_POST['heureF']) && !empty($_POST['heureF']) && !empty($_POST['calcul'])) {
         $userNameConnect = htmlspecialchars($_POST['userName']);
         $passwordConnect = sha1($_POST['password']);
         if (empty($id = compteMANAGER::recupIDone($passwordConnect, $userNameConnect)) === false) {
@@ -18,6 +18,6 @@ if (isset($_POST['skipper']) && isset($_POST['date']) && isset($_POST['heureD'])
 }
 else
 {
-    //header('Location: ../index?p=404');
+    header('Location: ../index?p=404');
 }
 
