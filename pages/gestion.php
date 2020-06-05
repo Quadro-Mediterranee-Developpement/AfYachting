@@ -3,13 +3,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-    if (isset($_SESSION)) {
+    if (isset($_SESSION['ID'])) {
         if ($_SESSION['ID']['ROLE'] !== 'admin') {
-            header('Location: ../index?p=404');
+            header('Location: index?p=404');
             exit();
         }
     } else {
-        header('Location: ../index?p=404');
+        header('Location: index?p=404');
         exit();
     }
 

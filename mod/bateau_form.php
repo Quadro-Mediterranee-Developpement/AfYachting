@@ -7,19 +7,31 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     function bateau_form() {
         ?>
         <div class="formBox mt-4">
-            <form class="form" action="index.php?p=bateau" method="get">
-                <?php creatListDeroulante($nombre = [], 'nombre', 'Nombre de personne maximum'); ?>
-                <?php creatListDeroulante($categorie = [], 'categorie', 'Recherche par catégorie'); ?>
-                <?php creatListDeroulante($marque = [], 'marque', 'Recherche par marques'); ?>
+            <form class="form" action="traitementPOST/index.php?p=bateauLocation" method="POST">
                 <div class="form-group">
-                    <label for="date" class="text-center label">Recherche par date</label>
-                    <input type="date" id="date" name="date" value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d',strtotime('+1 year')); ?>" class="form-control input">
+                    <label for="date" class="text-center label">date</label>
+                    <input type="date" id="date" name="date" value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d', strtotime('+1 year')); ?>" class="form-control input" required>
                 </div>
                 <div class="form-group">
-                    <label for="prix" class="text-center label">Recherche par prix</label>
-                    <input type="number" class="form-control input" id="prix" name="prix" min="1" max="9999999" placeholder="Entrez un prix minimum">
+                    <label for="heureD" class="text-center label">heure debut</label>
+                    <input type="time" min="08:00" max="20:00" id="heureD" name="heureD" value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d', strtotime('+1 year')); ?>" class="form-control input" required>
                 </div>
-                <button type="submit" class="btn btn-primary button">afficher les résultats</button>
+                <div class="form-group">
+                    <label for="heureF" class="text-center label">heure fin</label>
+                    <input type="time" min="08:00" max="20:00" id="heureF" name="heureF" value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d', strtotime('+1 year')); ?>" class="form-control input" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="skipper" name="skipper" checked>
+                    <label for="skipper">skipper</label>
+                </div>
+                <button type="submit" class="btn btn-primary button" name="calcul" value="<?= (isset($_GET["batID"]))?$_GET["batID"]:"-1"; ?>">Calculer le prix</button>
+                <?php if(isset($_GET['price'])): ?>
+                <div class="form-group">
+                    <label for="prix" class="text-center label">prix</label>
+                    <input type="text"  id="prix" name="prix" value="<?= $_GET['price'] ?>€" class="form-control input" disabled="disabled">
+                </div>
+                <button type="submit" class="btn btn-primary button" name="payer" >Payer</button>
+                <?php endif; ?>
             </form>
         </div>
         <?php

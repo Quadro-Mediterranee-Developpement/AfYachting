@@ -13,7 +13,7 @@
  */
 class compteMANAGER extends loaderBDD {
 
-    private const tables = ["admin", "client", "entreprise", "skipper"];
+    private const tables = ["admin", "client", "skipper"];
 
     private static function simpleREQUESTselect($condition, $table, $select) {
         $sql = "SELECT $select FROM $table WHERE $condition LIMIT 1";

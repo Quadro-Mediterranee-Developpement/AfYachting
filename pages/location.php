@@ -20,7 +20,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         textual("Louez un bateau",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],"","");
 
-        column([["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"],["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", "location&bat=image1"]]);
+        column([["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(1)],["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(2)], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(3)], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(4)]]);
         
         footer();
         
@@ -30,4 +30,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     </body>
 
 <?php
+}
+
+function creatLienLocation($id)
+{
+    return 'bateau&batID='.$id;
 }
