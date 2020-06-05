@@ -45,7 +45,8 @@ class compteMANAGER extends loaderBDD {
     }
 
     public static function creatNEWuser($username, $password, $email, $phone, $table) {
-        $sql = "INSERT INTO $table (Username, Password, Mail, Phone) VALUES ('$username',  '$password', '$email', '$phone')";
+        $time = DateTime::getTimestamp();
+        $sql = "INSERT INTO $table (Username, Password, Mail, Phone, Creation) VALUES ('$username',  '$password', '$email', '$phone', '$time')";
         loaderBDD::connexionBDD()->exec($sql);
         return self::recupIDone($password,$username);
     }

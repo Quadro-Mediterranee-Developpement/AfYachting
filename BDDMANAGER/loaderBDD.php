@@ -3,7 +3,7 @@
 class loaderBDD {
     protected static function connexionBDD()
     {
-        $bdd = new PDO('mysql:host=localhost:3308;dbname=afyachting', 'root', '');
+        $bdd = new PDO('mysql:host=localhost;dbname=afyachting', 'root', '');
         return $bdd;
     }
 }
