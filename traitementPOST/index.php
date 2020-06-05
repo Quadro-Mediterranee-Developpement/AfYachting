@@ -14,8 +14,8 @@ if (isset($_GET["p"])) {
         }
         require $page;
     } else {
-        header("Location: ./index.php?p=404");
+        header("Location: ../index.php?p=404");
     }
 } else {
-    header("Location: ./index.php?p=404");
+    header("Location: ../index.php?p=404");
 }

@@ -16,10 +16,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    foreach ($lien as $i) {
+                    foreach ($lien as $k=>$i) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="?p=<?php echo $i ?>&g=<?= (isset($_GET['p'])) ? $_GET['p'] : "accueil"; ?>"><?php echo $i ?></a>
+                            <a class="nav-link" href="?p=<?php echo $i ?>&g=<?= (isset($_GET['p'])) ? $_GET['p'] : "accueil"; ?>"><?php echo $k ?></a>
                         </li>
                     <?php } ?>
 
