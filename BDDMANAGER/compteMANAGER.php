@@ -47,7 +47,14 @@ class compteMANAGER extends loaderBDD {
     public static function creatNEWuser($username, $password, $email, $phone, $table) {
         $sql = "INSERT INTO $table (Username, Password, Mail, Phone) VALUES ('$username',  '$password', '$email', '$phone')";
         loaderBDD::connexionBDD()->exec($sql);
-        return self::recupIDone($password,$username);
+        return self::recupIDone($password, $username);
+    }
+
+    public static function creatNEWTEMPOuser($username, $email) {
+        $sql = "INSERT INTO client_ponctuel (Username, Mail) VALUES ('$username',   '$email')";
+        loaderBDD::connexionBDD()->exec($sql);
+        $id = self::simpleREQUESTselect("(Username LIKE '$username' AND Mail LIKE '$email')", "client_ponctuel", 'ID');
+        return ['ID'=>$id['ID'],'ROLE'=>'client_ponctuel'];
     }
 
     public static function recupIDby($username, $email) {
