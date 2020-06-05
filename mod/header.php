@@ -20,7 +20,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 foreach ($lien as $i) { 
                 ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?p=<?php echo $i ?>"><?php echo $i ?></a>
+                        <a class="nav-link" href="?p=<?php echo $i ?>&g=<?= (isset($_GET['p']))?$_GET['p']:$i; ?>"><?php echo $i ?></a>
                     </li>
                 <?php } ?>
 
