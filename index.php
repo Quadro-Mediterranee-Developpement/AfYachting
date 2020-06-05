@@ -46,7 +46,7 @@ Back : Hugo MUSOLES
                 break;
         }
     } else {
-        $menu = ["Accueil" => "Accueil", "Bateau" => "Bateau", "Connexion" => "Connexion", "Contact" => "Contact", "Inscription" => "Inscription", "Location" => "Location", "Ventes" => "Ventes"];
+        $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
     }
     if (isset($_SESSION['ID'])) {
         unset($menu["Connexion"]);
