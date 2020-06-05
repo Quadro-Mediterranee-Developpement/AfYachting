@@ -48,14 +48,7 @@ Back : Hugo MUSOLES
     } else {
         $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
     }
-    if (isset($_SESSION['ID'])) {
-        unset($menu["Connexion"]);
-        unset($menu["Inscription"]);
-        $menu['Compte'] = 'Compte';
-        if ($_SESSION['ID']['ROLE'] === 'admin') {
-            $menu['Gestion'] = 'gestion';
-        }
-    }
+
 
     $page = "pages/" . $p . ".php";
 
