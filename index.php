@@ -47,7 +47,13 @@ Back : Hugo MUSOLES
         }
     } else {
         $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
+
+        if ($p == "Bateau" || $p == "bateau") {
+            unset($menu['Connexion']);
+            unset($menu['Inscription']);
+        }
     }
+
 
 
     $page = "pages/" . $p . ".php";
