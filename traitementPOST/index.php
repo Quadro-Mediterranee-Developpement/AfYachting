@@ -1,6 +1,6 @@
 <?php
 session_start();
-unset($_SESSION['erreur']);
+
 
 if (isset($_GET["p"])) {
     require_once '../BDDMANAGER/loaderBDD.php';

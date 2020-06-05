@@ -4,6 +4,7 @@ if (isset($_GET['destroy'])) {
     unset($_SESSION['ID']);
     session_destroy();
 }
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -63,5 +64,6 @@ Back : Hugo MUSOLES
     } else {
         require "pages/404.php";
     }
+    unset($_SESSION['erreur']);
     ?>
 </html>
