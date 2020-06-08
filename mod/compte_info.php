@@ -5,11 +5,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 } else {
 
     function compte_info() {
-
-        var_dump(compteMANAGER::recupINFORMATIONone($_SESSION['ID']));
-        ?>
-        <a href="index.php?p=accueil&destroy=1">quitter session</a>
-        <?php
+        return '<a href="index.php?p=accueil&destroy=1">Déconnexion</a>';
     }
 
 }

@@ -3,7 +3,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-    $included = ["head", "header", "carousel", "column", "contents", "textual", "illustration", "footer", "foot"];
+    $included = ["head", "header","popup" ,"carousel", "column", "contents", "textual", "illustration", "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -15,7 +15,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         <?php
         bloc_header($menu);
-
+    
+        popup();
 
         carousel(["carousel_test/img_slider_1", "carousel_test/img_slider_2", "carousel_test/img_slider_3"]);
 

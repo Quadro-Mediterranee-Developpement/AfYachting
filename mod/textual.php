@@ -5,7 +5,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    function textual($textual_title, $textual_bar, $textual_data, $textual_button, $textual_button_link) {
+    function textual($textual_title, $textual_bar, $textual_data = [], $textual_button = null, $textual_button_link = null) {
         echo "<div class='center size'>";
         if ($textual_title != NULL) {
             echo "<h3 class='text-center'>$textual_title</h3>";

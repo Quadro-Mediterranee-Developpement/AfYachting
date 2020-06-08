@@ -20,12 +20,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         bloc_header($menu);
 
         if (isset($_SESSION['ID'])) {
-            if ($_SESSION['ID']['ROLE'] == 'skipper') {
+            if ($_SESSION['ID']['ROLE'] == 'client') {
                 illustation("carousel_test/img_slider_1", function() {
-                    textual("Espace skipper", FALSE, ["En construction"], "", "");
+                    textual("Espace client", FALSE, ["En construction"], "", "");
                 });
             } else {
-                textual("Veuiller vous connectez avec un compte skipper", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+                textual("Veuiller vous connectez avec un compte client", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
             }
         } else {
             textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);

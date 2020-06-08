@@ -2,9 +2,6 @@
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESSION['ID'])) {
     header('Location: ../index?p=404');
     exit();
-} else if ($_SESSION['ID']['ROLE'] !== 'admin') {
-    header('Location: ../index?p=404');
-    exit();
 } else {
 
 
@@ -22,11 +19,17 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         <?php
         bloc_header($menu);
 
-        //vente_creat_form();
-
-        location_creat_form();
-
-        //skippeur_creat_form();
+        if (isset($_SESSION['ID'])) {
+            if ($_SESSION['ID']['ROLE'] == 'admin') {
+                illustation("carousel_test/img_slider_1", function() {
+                    textual("Espace admin", FALSE, ["En construction"], "", "");
+                });
+            } else {
+                textual("Veuiller vous connectez avec un compte admin", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+            }
+        } else {
+            textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+        }
 
         footer();
 
