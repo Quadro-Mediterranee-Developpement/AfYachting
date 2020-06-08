@@ -3,7 +3,15 @@
 class loaderBDD {
     protected static function connexionBDD()
     {
-        $bdd = new PDO('mysql:host=localhost:3308;dbname=afyachting', 'root', '');
+        try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=afyachting', 'root', '');
+        }
+        catch (Exception $e)
+        {
+            $bdd = new PDO('mysql:host=localhost:3308;dbname=afyachting', 'root', '');
+        }
+        $bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         return $bdd;
     }
 }

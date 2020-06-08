@@ -1,10 +1,32 @@
 <?php
+//gestion des variables de session
+
 session_start();
 if (isset($_GET['destroy'])) {
     unset($_SESSION['ID']);
     session_destroy();
+    session_start();
+}
+if(!isset($_SESSION['ActiveAjax']))
+{
+    $_SESSION['ActiveAjax'] = true;
+}
+if(!isset($_SESSION['activeBackPage']))
+{
+    $_SESSION['activeBackPage']['url'] = 'Accueil';
 }
 
+if(isset($_GET['ajax']))
+{
+    if($_GET['ajax'] == 'false')
+    {
+        $_SESSION['ActiveAjax'] = false;
+    }
+    else if($_GET['ajax'] == 'true')
+    {
+        $_SESSION['ActiveAjax'] = true;
+    }
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -48,15 +70,8 @@ Back : Hugo MUSOLES
         }
     } else {
         $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
-
-        if ($p == "Bateau" || $p == "bateau") {
-            unset($menu['Connexion']);
-            unset($menu['Inscription']);
-        }
     }
-
-
-
+    
     $page = "pages/" . $p . ".php";
 
     if (is_file($page)) {
@@ -64,6 +79,8 @@ Back : Hugo MUSOLES
     } else {
         require "pages/404.php";
     }
+    
+    
     unset($_SESSION['erreur']);
     ?>
 </html>

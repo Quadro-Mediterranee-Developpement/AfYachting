@@ -8,7 +8,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
 } else {
 
 
-
+    $_SESSION['activeBackPage']['url'] = $p;
     $included = ["head", "header", "vente_creat_form", "location_creat_form", "skippeur_creat_form", "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";

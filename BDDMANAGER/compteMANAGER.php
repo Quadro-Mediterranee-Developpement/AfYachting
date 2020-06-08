@@ -15,53 +15,52 @@ class compteMANAGER extends loaderBDD {
 
     private const tables = ["admin", "client", "skipper"];
 
-    private static function simpleREQUESTselect($condition, $table, $select) {
-        $sql = "SELECT $select FROM $table WHERE $condition LIMIT 1";
-        $requete = loaderBDD::connexionBDD()->query($sql);
-        if ($requete) {
-            return $requete->fetch();
-        }
-    }
-
     public static function recupIDone($password, $identifiant) {
         foreach (self::tables as $table) {
-            if (empty($id = self::simpleREQUESTselect("(Username LIKE '$identifiant' OR Mail LIKE '$identifiant' OR Phone LIKE '$identifiant') AND Password LIKE '$password'", $table, "ID")) === false) {
+            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE (Username = ? OR Mail = ?) AND Password = ?");
+            $requete->execute(array($identifiant, $identifiant, $password));
+
+            if (($id = $requete->fetch())) {
                 return ['ID' => $id['ID'], 'ROLE' => $table];
             }
         }
+        return false;
     }
 
     public static function recupINFORMATIONone($id) {
-
-        if (empty($request = self::simpleREQUESTselect("ID LIKE " . $id['ID'], $id['ROLE'], "Username, Mail, Phone, Creation")) === false) {
-            return $request;
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation FROM " . $id['ROLE'] . " WHERE ID = ?");
+        $requete->execute(array($id['ID']));
+        if (($retour = $requete->fetch())) {
+            return $retour;
         }
     }
 
     public static function recupINFORMATIONall($table) {
-        if (empty($request = self::simpleREQUESTselect(1, $table, "Username, Mail, Phone, Creation")) === false) {
-            return $request;
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation FROM $table WHERE 1");
+        $requete->execute();
+        if (($retour = $requete->fetch())) {
+            return $retour;
         }
     }
 
     public static function creatNEWuser($username, $password, $email, $phone, $table) {
-        $sql = "INSERT INTO $table (Username, Password, Mail, Phone) VALUES ('$username',  '$password', '$email', '$phone')";
-        loaderBDD::connexionBDD()->exec($sql);
+        $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO $table (Username, Password, Mail, Phone) VALUES (?,  ?, ?, ?)");
+        $requete->execute(array($username, $password, $email, $phone));
         return self::recupIDone($password, $username);
     }
 
-    public static function creatNEWTEMPOuser($username, $email) {
-        $sql = "INSERT INTO client_ponctuel (Username, Mail) VALUES ('$username',   '$email')";
-        loaderBDD::connexionBDD()->exec($sql);
-        $id = self::simpleREQUESTselect("(Username LIKE '$username' AND Mail LIKE '$email')", "client_ponctuel", 'ID');
-        return ['ID'=>$id['ID'],'ROLE'=>'client_ponctuel'];
+    public static function creatNEWTEMPOuser($username, $email) { //a tester
+        $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO client_ponctuel (Username, Mail) VALUES (?, ?)");
+        $requete->execute(array($username, $email));
+        return ['ID' =>  $requete->lastInsertId(), 'ROLE' => 'client_ponctuel'];
     }
 
     public static function recupIDby($username, $email) {
         foreach (self::tables as $table) {
-            if (empty($id = self::simpleREQUESTselect("(Username LIKE '$username' OR Mail LIKE '$email')", $table, 'ID')) === false) {
-                var_dump($id);
-                return $id;
+            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE Username = ? OR Mail = ?");
+            $requete->execute(array($username, $email));
+            if (($id = $requete->fetch())) {
+                return ['ID' => $id['ID'], 'ROLE' => $table];
             }
         }
     }

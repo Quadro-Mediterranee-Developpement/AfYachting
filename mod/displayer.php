@@ -8,14 +8,15 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         ?>
 
         <style>body {background-image: URL("img/<?php echo $displayer_img_1 ?>.png");}</style>
-
+        
         <div class="card flex-row ">
+            <a href="index?p=<?= $_SESSION['activeBackPage']['url'] ?>"><img class="closer" src="img/close.png" alt=""/></a>
             <div class="card-img-left d-none d-md-flex" style="background-image: URL('img/<?php echo $displayer_img_2 ?>.png');"></div>
             <div class="card-body">
                 <?php $displayer_input(); ?>
             </div>
         </div>
-        <a href="index?p=<?= (isset($_GET['g']))?$_GET['g']:'accueil'; ?>"><img class="closer" src="img/close.png" alt=""/></a>
+        
         <?php
     }
 
