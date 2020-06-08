@@ -9,7 +9,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         ?>
         <div style="width: 100%;">
             <h5 class="card-title text-center">Connexion</h5>
-            <form <?= ($mode) ? "onsubmit='connexion()'" : ''; ?> class="form-signin" method="POST" action="traitementPOST/index.php?p=connexion&g=<?= (isset($_GET['g'])) ? $_GET['g'] : 'accueil'; ?>">
+            <form <?= ($mode) ? "onsubmit='connexion()'" : ''; ?> class="form-signin" method="POST" action="traitementPOST/index.php?p=connexion">
                 <?php
                 creationFormType::input_text("text", "inputNameEmail", "Nom ou adresse Email", "userName", "Nom ou adresse Email");
                 creationFormType::input_text("password", "inputPassword", "Mot de passe", "password", "Mot de passe");
