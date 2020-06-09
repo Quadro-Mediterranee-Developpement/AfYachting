@@ -9,10 +9,7 @@ and open the template in the editor.
 */
 
 .concated {
-    width: 50vw;
-    height: 70vh;
-    position: absolute;
-    top: 23vh;
-    left: 45vw;
+    width: 100%;
+    height: auto;
 
 }

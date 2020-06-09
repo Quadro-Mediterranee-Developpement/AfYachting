@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
 
 
     $_SESSION['activeBackPage']['url'] = $p;
-    $included = ["head", "header", "displayer", "location_creat_form",'modif_compte_form', 'depliant', 'afficheAllcompte', "new_compte_form", "footer", "foot"];
+    $included = ["head", "header", "displayer", "location_creat_form", 'iframe', 'modif_compte_form', 'depliant', 'afficheAllcompte', "new_compte_form", "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -20,9 +20,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         bloc_header($menu);
 
         if (isset($_SESSION['ID'])) {
-
-
             if ($_SESSION['ID']['ROLE'] == 'admin') {
+
+                iframe("./mod/calendar");
+
                 foreach (['admin' => 'admin', 'client' => 'client', 'skipper' => 'skipper'] as $k => $i) {
                     $info[$k] = compteMANAGER::recupINFORMATIONall($i);
                 }
@@ -40,8 +41,6 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
                         modif_compte_form($_SESSION['ActiveAjax']);
                     }, $lien);
                 });
-                
-                
             } else {
                 textual("Veuiller vous connectez avec un compte admin", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
             }
