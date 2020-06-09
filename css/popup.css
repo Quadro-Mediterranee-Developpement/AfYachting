@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 juin 2020, 00:48:43
+    Author     : HugoMUSOLES
+*/
+
+#popup
+{
+    width: 100%;
+    background-color:transparent;
+    position: absolute;
+    z-index: 12;
+}
+
+.popup
+{
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin: auto;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+}
+
+.green
+{
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.red
+{
+    color: #FF0000;
+    background-color: #F08080;
+    border-color: #F7230C;
+}

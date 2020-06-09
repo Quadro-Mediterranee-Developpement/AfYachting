@@ -3,9 +3,10 @@
 
 session_start();
 if (isset($_GET['destroy'])) {
-    unset($_SESSION['ID']);
-    session_destroy();
-    session_start();
+    if (isset($_SESSION['ID'])) {
+        $_SESSION['news']['deconnexion'] = ['desc' => 'Vous êtes déconnecter', 'code' => false];
+        unset($_SESSION['ID']);
+    }
 }
 if (!isset($_SESSION['ActiveAjax'])) {
     $_SESSION['ActiveAjax'] = true;
@@ -20,11 +21,6 @@ if (isset($_GET['ajax'])) {
     } else if ($_GET['ajax'] == 'true') {
         $_SESSION['ActiveAjax'] = true;
     }
-}
-
-if(isset($_SESSION['news']['email']))
-{
-    unset($_SESSION['news']['email']);
 }
 ?>
 <!DOCTYPE html>
@@ -44,52 +40,47 @@ require 'BDDMANAGER/loaderBDD.php';
 
 if (isset($_GET["p"])) {
     $p = filter_input(INPUT_GET, "p");
-    if($p == 'lastpage')
-    {
+    if ($p == 'lastpage') {
         $p = $_SESSION['activeBackPage']['url'];
     }
-
 } else {
     $p = "accueil";
 }
 
 if (isset($_GET["validationEmail"])) {
     $code = filter_input(INPUT_GET, "validationEmail");
-    if(compteMANAGER::validedation($code))
-    {
-        $_SESSION['news']['email'] = ['desc'=>'email valider','code'=>true];
-    }
-    else
-    {
-        $_SESSION['news']['email'] = ['desc'=>'code de validation invalide','code'=>false];
+    if (compteMANAGER::validedation($code)) {
+        $_SESSION['news']['email'] = ['desc' => 'email valider', 'code' => true];
+    } else {
+        $_SESSION['news']['email'] = ['desc' => 'code de validation invalide', 'code' => false];
     }
     $p = "accueil";
-} 
+}
 
 if (isset($_SESSION['ID'])) {
     switch ($_SESSION['ID']['ROLE']) {
         case 'admin':
-            $menu = ["Accueil" => "Accueil", "Gestion" => "Gestion", "Compte" => "Compte"];
+            $menu = ["Accueil" => "Accueil", "Gestion" => "Gestion"];
             break;
 
         case 'skipper':
-            $menu = ["Accueil" => "Accueil", "Espace" => "espace_skipper", "Compte" => "Compte"];
+            $menu = ["Accueil" => "Accueil", "Espace" => "espace_skipper"];
             break;
 
         case 'client':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Espace" => "espace_client","Compte" => "Compte"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Espace" => "espace_client"];
             break;
 
         case 'client_ponctuel':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Compte" => "Compte"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
             break;
-        
+
         default:
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
             break;
     }
 } else {
-    $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Connexion" => "Connexion", "Inscription" => "Inscription"];
+    $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
 }
 
 $page = "pages/" . $p . ".php";
@@ -100,6 +91,8 @@ if (is_file($page)) {
     require "pages/404.php";
 }
 
+
+unset($_SESSION['news']);
 
 unset($_SESSION['erreur']);
 ?>

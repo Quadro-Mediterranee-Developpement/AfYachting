@@ -35,6 +35,6 @@ class verificationType
     
     public static function simpleText($data) : bool
     {
-        return (preg_match("/^(?=.{1,16}$)(?=.*\S).*$/", $data));
+        return (preg_match("/^(?=.{1,32}$)(?=.*\S).*$/", $data));
     }
 }

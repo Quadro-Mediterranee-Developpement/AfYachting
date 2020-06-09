@@ -49,7 +49,7 @@ if (isset($_POST['type'])) {
                     compteMANAGER::deleteID(array('ID' => $_POST['ID'], 'ROLE' => $_POST['table']));
                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
                 } else {
-                    $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas les droit nécéssaire', 'code' => 50];
+                    $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas les droits nécéssaires', 'code' => 50];
                 }
             }
             break;
@@ -82,15 +82,16 @@ function connexion($user, $pass) {
                 if ($id) {
                     if (compteMANAGER::verifActivate($id)) {
                         $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                        $_SESSION['news']['connexion'] = ['desc'=>'Connexion réussite','code'=>true];
                         $_SESSION['ID'] = $id;
                     } else {
-                        $_SESSION['erreur'] = ['desc' => 'compte non activer (verifier les spam)', 'code' => 1];
+                        $_SESSION['erreur'] = ['desc' => 'compte non activé (verifiez les spams)', 'code' => 1];
                     }
                 } else {
                     $_SESSION['erreur'] = ['desc' => 'mauvais identifiant ou mot de passe', 'code' => 1];
                 }
             } else {
-                $_SESSION['erreur'] = ['desc' => 'champ mot de passe ou identifiant depasse le nombre de charactere maximum', 'code' => 3];
+                $_SESSION['erreur'] = ['desc' => 'un champ dépasse le nombre maximum de charactère', 'code' => 3];
             }
         } else {
             $_SESSION['erreur'] = ['desc' => 'champ mot de passe ou identifiant vide', 'code' => 2];
@@ -114,28 +115,29 @@ function inscription($user, $mail, $pass, $verifpass, $tel, $table) {
                             if (empty(compteMANAGER::recupIDby($username, $email))) {
                                 if (empty($id = compteMANAGER::creatNEWuser($username, $password, $email, $phone, $table)) === false) {
                                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                                    $_SESSION['news']['inscription'] = ['desc'=>'Inscription réussite, email de validation envoyé','code'=>true];
                                 } else {
                                     $erreur = "erreur inconnue, l'inscription à échouer";
                                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 11];
                                 }
                             } else {
-                                $erreur = "email, nom ou telephone deja existant";
+                                $erreur = "email ou nom déjà existant";
                                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 12];
                             }
                         } else {
-                            $erreur = "le nom d'utilisateur n'es pas correcte";
+                            $erreur = "le nom d'utilisateur ne respecte pas le format";
                             $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 13];
                         }
                     } else {
-                        $erreur = "l'email n'es pas correcte";
+                        $erreur = "l'email est incorrecte";
                         $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 14];
                     }
                 } else {
-                    $erreur = "le mot de passe n'es pas correcte";
+                    $erreur = "le mot de passe ne respecte pas le format";
                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 15];
                 }
             } else {
-                $erreur = "la confirmation du mot de passe a echouer";
+                $erreur = "Les mots de passes ne sont pas identiques";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 16];
             }
         } else {
@@ -160,7 +162,7 @@ function modification($user, $mail, $pass, $verifpass, $tel, $id, $table) {
                 if (empty(compteMANAGER::recupIDby($user, '', $id, $table))) {
                     $prepare['Username'] = $username;
                 } else {
-                    $erreur = "nom deja pris";
+                    $erreur = "Le nom est déjà pris";
                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 30];
                 }
             } else {
@@ -180,7 +182,7 @@ function modification($user, $mail, $pass, $verifpass, $tel, $id, $table) {
                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 32];
                 }
             } else {
-                $erreur = "l'email n'es pas conforme";
+                $erreur = "l'email n'est pas conforme";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 32];
             }
         }
