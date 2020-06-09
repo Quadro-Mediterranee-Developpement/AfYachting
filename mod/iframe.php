@@ -4,11 +4,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    function iframe($src) {
+    function iframe($src,$otherclass='') {
         ?>
-
-        <iframe src="<?php echo $src ?>" class="concated" frameborder="0" style="border:0; margin: auto;" allowfullscreen="TRUE" aria-hidden="false" tabindex="0"></iframe>
-
+        <div>
+            <iframe src="<?php echo $src ?>" class="concated <?php echo $otherclass ?>" frameborder="0" style="border:0; " allowfullscreen="TRUE" aria-hidden="false" tabindex="0"></iframe>
+            <a href="<?php echo $src ?>" target="_blank">ouvrir a part</a>
+        </div>
         <?php
     }
 

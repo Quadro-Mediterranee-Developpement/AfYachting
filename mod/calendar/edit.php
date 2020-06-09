@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_start();
+
 if(!isset($_SESSION['ID']))
 {
     header('Location: 404calendar.php');
@@ -70,12 +70,12 @@ if ($event == null) {
             } else {
                 $events->hydrate($event, $data);
                 $events->update($event);
-                header('Location: ../Calendrier/index?success=1');
+                header('Location: ./index?success=1');
                 exit();
             }
         } else if ($data["mode"] === "suppr") {
             $events->suppr($event);
-            header('Location: ../Calendrier/index?success=1');
+            header('Location: ./index?success=1');
             exit();
         }
     }

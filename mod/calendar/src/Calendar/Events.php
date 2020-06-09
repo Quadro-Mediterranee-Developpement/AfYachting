@@ -39,6 +39,30 @@ class Events {
         return $results;
     }
 
+    public function getEventsBetweenAndID(\DateTime $start, \DateTime $end, $id): array {
+        switch ($id['ROLE']) {
+            case 'admin':
+                $add = "";
+                break;
+            case 'skipper':
+                $add = " evenement.ID_Skipper = " . $id['ID'] . " AND ";
+                break;
+            case 'client':
+                $add = " evenement.ID_Client = " . $id['ID'] . " AND ";
+                break;
+            default:
+                $add = " 1 = 2 AND ";
+                break;
+        }
+        $sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix FROM evenement WHERE $add Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
+        $statement = $this->bdd->query($sql);
+        $results = [];
+        if (!$statement == null) {
+            $results = $statement->fetchAll();
+        }
+        return $results;
+    }
+
     /**
      * Récupere les arguments commençant entre 2 dates indexés par jour
      * @param \DateTime $start
@@ -47,6 +71,20 @@ class Events {
      */
     public function getEventsBetweenByDay(\DateTime $start, \DateTime $end): array {
         $events = $this->getEventsBetween($start, $end);
+        $days = [];
+        foreach ($events as $event) {
+            $date = explode(' ', $event['start'])[0];
+            if (!isset($days[$date])) {
+                $days[$date] = [$event];
+            } else {
+                $days[$date][] = $event;
+            }
+        }
+        return $days;
+    }
+
+    public function getEventsBetweenByDayAndID(\DateTime $start, \DateTime $end, $id): array {
+        $events = $this->getEventsBetweenAndID($start, $end, $id);
         $days = [];
         foreach ($events as $event) {
             $date = explode(' ', $event['start'])[0];

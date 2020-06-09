@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
 
 
     $_SESSION['activeBackPage']['url'] = $p;
-    $included = ["head", "header", "textual", "illustration", "footer", "foot"];
+    $included = ["head", "header", "textual", "illustration",'iframe', "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -21,6 +21,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
 
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'client') {
+                iframe("./mod/calendar","takeplace");
                 illustation("carousel_test/img_slider_1", function() {
                     textual("Espace client", FALSE, ["En construction"], "", "");
                 });
