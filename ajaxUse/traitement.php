@@ -43,6 +43,16 @@ if (isset($_POST['type'])) {
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 22];
             }
             break;
+        case 'suprimer':
+            if (isset($_SESSION['ID'])) {
+                if ($_SESSION['ID']['ROLE'] == 'admin' && isset($_POST['ID']) && isset($_POST['table'])) {
+                    compteMANAGER::deleteID(array('ID' => $_POST['ID'], 'ROLE' => $_POST['table']));
+                    $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                } else {
+                    $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas les droit nécéssaire', 'code' => 50];
+                }
+            }
+            break;
         case 'addboat':
             if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
                 
@@ -70,14 +80,11 @@ function connexion($user, $pass) {
                 $passwordConnect = sha1($pass);
                 $id = compteMANAGER::recupIDone($passwordConnect, $userNameConnect);
                 if ($id) {
-                    if(compteMANAGER::verifActivate($id))
-                    {
+                    if (compteMANAGER::verifActivate($id)) {
                         $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
                         $_SESSION['ID'] = $id;
-                    }
-                    else
-                    {
-                        $_SESSION['erreur'] = ['desc' => 'compte non activer, renvoi de l\'email (verifier les spam)', 'code' => 1];
+                    } else {
+                        $_SESSION['erreur'] = ['desc' => 'compte non activer (verifier les spam)', 'code' => 1];
                     }
                 } else {
                     $_SESSION['erreur'] = ['desc' => 'mauvais identifiant ou mot de passe', 'code' => 1];
@@ -106,7 +113,6 @@ function inscription($user, $mail, $pass, $verifpass, $tel, $table) {
                             $phone = $tel;
                             if (empty(compteMANAGER::recupIDby($username, $email))) {
                                 if (empty($id = compteMANAGER::creatNEWuser($username, $password, $email, $phone, $table)) === false) {
-                                    $_SESSION['ID'] = $id;
                                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
                                 } else {
                                     $erreur = "erreur inconnue, l'inscription à échouer";

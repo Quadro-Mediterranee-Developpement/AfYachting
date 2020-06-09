@@ -17,7 +17,7 @@ class compteMANAGER extends loaderBDD {
 
     public static function recupIDone($password, $identifiant) {
         foreach (self::tables as $table) {
-            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE (Username = ? OR Mail = ?) AND Password = ?");
+            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE (Username = ? OR Mail = ?) AND Password = ? AND Password IS NOT NULL");
             $requete->execute(array($identifiant, $identifiant, $password));
 
             if (($id = $requete->fetch())) {
@@ -28,7 +28,7 @@ class compteMANAGER extends loaderBDD {
     }
 
     public static function recupINFORMATIONone($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation FROM " . $id['ROLE'] . " WHERE ID = ?");
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation FROM " . $id['ROLE'] . " WHERE ID = ? AND Password IS NOT NULL");
         $requete->execute(array($id['ID']));
         if (($retour = $requete->fetch())) {
             return $retour;
@@ -36,16 +36,16 @@ class compteMANAGER extends loaderBDD {
     }
 
     public static function recupINFORMATIONall($table) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation FROM $table WHERE 1");
-        $requete->execute();
-        if (($retour = $requete->fetch())) {
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username, Mail, Phone, Creation, ID FROM $table WHERE ? AND Password IS NOT NULL");
+        $requete->execute(array(1));
+        if (($retour = $requete->fetchAll())) {
             return $retour;
         }
     }
 
     public static function creatNEWuser($username, $password, $email, $phone, $table) {
         $code = random_bytes(10);
-        $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO $table (Username, Password, Mail, Phone, code) VALUES (?,  ?, ?, ?, ?)");
+        $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO $table (Username, Password, Mail, Phone, valide) VALUES (?,  ?, ?, ?, ?)");
         $requete->execute(array($username, $password, $email, $phone, $code));
         return self::recupIDone($password, $username);
     }
@@ -60,11 +60,11 @@ class compteMANAGER extends loaderBDD {
         foreach (self::tables as $table) {
             $requete = null;
             if ($tbl != $table) {
-                $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE Username = ? OR Mail = ?");
+                $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE Username = ? OR Mail = ? AND Password IS NOT NULL");
                 $requete->execute(array($username, $email));
             } else {
 
-                $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE (Username = ? OR Mail = ?) AND ID != ?");
+                $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE (Username = ? OR Mail = ?) AND ID != ? AND Password IS NOT NULL");
                 $requete->execute(array($username, $email, $id));
             }
             if (($id = $requete->fetch())) {
@@ -75,10 +75,10 @@ class compteMANAGER extends loaderBDD {
 
     public static function validedation($code) {
         foreach (self::tables as $table) {
-            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE code = ?");
+            $requete = loaderBDD::connexionBDD()->prepare("SELECT ID FROM $table WHERE valide = ? AND Password IS NOT NULL");
             $requete->execute(array($code));
             if (($id = $requete->fetch())) {
-                _self::updateUSERone('code', '0', $id['ID'], $table);
+                self::updateUSERone('valide', '0', $id['ID'], $table);
                 return ['ID' => $id['ID'], 'ROLE' => $table];
             }
         }
@@ -86,20 +86,29 @@ class compteMANAGER extends loaderBDD {
     }
 
     public static function updateUSERone($colname, $text, $id, $tbl) {
-        $requete = loaderBDD::connexionBDD()->prepare("UPDATE $tbl SET $colname = ? WHERE ID = ?");
+        $requete = loaderBDD::connexionBDD()->prepare("UPDATE $tbl SET $colname = ? WHERE ID = ? AND Password IS NOT NULL");
         $requete->execute(array($text, $id));
     }
 
     public static function verifActivate($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username FROM " . $id['ROLE'] . " WHERE ID = ? AND code = '0'");
-        $requete->execute(array($id['ID']));
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Username FROM " . $id['ROLE'] . " WHERE ID = ? AND valide = ? AND Password IS NOT NULL");
+        $requete->execute(array($id['ID'], '0'));
         if (($requete->fetch())) {
             return true;
         }
         return false;
     }
 
-    public static function sendEmail($name,$mail, $code) {
+    public static function deleteID($id) {
+        $requete = loaderBDD::connexionBDD()->prepare("UPDATE " . $id['ROLE'] . " set Password = ? WHERE ID = ? AND Password IS NOT NULL");
+        $requete->execute(array(null,$id['ID']));
+        if (($requete->fetch())) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function sendEmail($name, $mail, $code) {
         // Plusieurs destinataires
         $to = $mail; // notez la virgule
         // Sujet

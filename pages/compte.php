@@ -3,7 +3,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-    $included = ["head", "header", "compte_info", "textual", "displayer", "depliant", "compte_mise_a_jour", "footer", "foot"];
+    $included = ["head", "header", "compte_info", "textual","identityCard", "displayer", "depliant", "compte_mise_a_jour", "footer", "foot"];
     $_SESSION['activeBackPage']['url'] = $p;
     foreach ($included as $i) {
         require_once "mod/$i.php";
@@ -19,7 +19,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     bloc_header($menu);
     if (isset($_SESSION['ID'])) {
         textual("espace du compte " . $_SESSION['ID']['ROLE'], true, [compte_info()]);
-
+        $info = compteMANAGER::recupINFORMATIONone($_SESSION['ID']);
+        identityCard($info[0],$info[1],$info[2],$info[3]);
+        
         depliant("faire des modifications", function($lien) {
             displayer(null, null, function() {
                 compte_mise_a_jour($_SESSION['ActiveAjax']);

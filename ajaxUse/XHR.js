@@ -57,9 +57,21 @@ function inscription(callback = log)
     return false;
 }
 
+function inscriptionAll(callback = log)
+{
+    var pseudo = document.getElementById('inputUserame').value;
+    var mail = document.getElementById('inputEmail').value;
+    var pass = document.getElementById('inputPassword').value;
+    var passverif = document.getElementById('inputConfirmPassword').value;
+    var phone = document.getElementById('inputPhone').value;
+    var role = document.getElementById('inputRole').value;
+    ajaxMethode(callback, [pseudo, mail, pass, passverif,phone,role, 'inscription'], ['userName', 'mail', 'password', 'passwordVerif','phone','table', 'type'], 'ajaxUse/traitement.php');
+    return false;
+}
+
 function modification(callback = log)
 {
-    
+
     var pseudo = document.getElementById('inputUserame').value;
     var mail = document.getElementById('inputEmail').value;
     var pass = document.getElementById('inputPassword').value;
@@ -67,12 +79,43 @@ function modification(callback = log)
     var phone = document.getElementById('inputTelephone').value;
     ajaxMethode(callback, [pseudo, mail, pass, passverif, phone, 'modification'], ['userName', 'mail', 'password', 'passwordVerif', 'phone', 'type'], 'ajaxUse/traitement.php');
     return false;
+
+}
+
+function modificationAll(callback = log)
+{
     
+    var pseudo = document.getElementById('inputUserameModif').value;
+    var mail = document.getElementById('inputEmailModif').value;
+    var pass = document.getElementById('inputPasswordModif').value;
+    var passverif = document.getElementById('inputConfirmPasswordModif').value;
+    var phone = document.getElementById('inputPhoneModif').value;
+    var id = document.getElementById('inputIDModif').value;
+    var table = document.getElementById('inputRoleModif').value;
+    
+    ajaxMethode(callback, [pseudo, mail, pass, passverif, phone,id,table, 'modification'], ['userName', 'mail', 'password', 'passwordVerif', 'phone','ID','table', 'type'], 'ajaxUse/traitement.php');
+    return false;
+
+}
+
+function suprimer(id,table)
+{
+    ajaxMethode(function(data){ alert(data); }, [id,table, 'suprimer'], ['ID','table', 'type'], 'ajaxUse/traitement.php');
+    return false;
 }
 
 function log(data) {
     if (data === "OK") {
         document.location.search = "?p=lastpage";
+    } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
+    }
+}
+
+function logm(data) {
+    if (data === "OK") {
+        document.location.reload();
     } else {
         document.getElementById("errorform").innerHTML = data;
         document.getElementById("errorform").style.display = 'block';

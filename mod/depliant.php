@@ -6,21 +6,24 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
 
     function depliant($text, $fonction) {
+        static $id = 0;
+        $id++;
         ?>
-        <h4><a onclick="return depli()" href=""><?= $text ?></a></h4>
-        <div id="depliant" style="height:0px; transition-duration: 1s; overflow:hidden">
-            <?= $fonction('onclick="depli()"') ?>
+        <h4><a onclick="return depli('depliant<?= $id ?>')" href="" ><?= $text ?></a></h4>
+        <div  id="depliant<?= $id ?>" style="height:0px;opacity: 0; transition-duration: 1s; overflow:hidden">
+            <?= $fonction('onclick="return depli(\'depliant' . $id . '\')"') ?>
         </div>
         <script type="text/javascript">
-            function depli()
+            function depli(id)
             {
-                if(window.document.getElementById("depliant").style.height === '0px')
+                if (window.document.getElementById(id).style.height === '0px')
                 {
-                    window.document.getElementById("depliant").style.height = '500px';
-                }
-                else
+                    window.document.getElementById(id).style.height = '550px';
+                    window.document.getElementById(id).style.opacity = '1';
+                } else
                 {
-                    window.document.getElementById("depliant").style.height = '0px';
+                    window.document.getElementById(id).style.height = '0px';
+                    window.document.getElementById(id).style.opacity = '0';
                 }
                 return false;
             }
