@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
 
 
     $_SESSION['activeBackPage']['url'] = $p;
-    $included = ["head", "header", "displayer", "location_creat_form",'afficheAllbateau', 'iframe', 'modif_compte_form', 'depliant', 'afficheAllcompte', "new_compte_form", "footer", "foot"];
+    $included = ["head", "header", "displayer", "location_creat_form", 'afficheAllbateau', 'bateau_creat_form','iframe', 'modif_compte_form', 'depliant', 'afficheAllcompte', "new_compte_form", "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -22,7 +22,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'admin') {
 
-                iframe("./mod/calendar", "takeplace",true);
+                iframe("./mod/calendar", "takeplace", true);
 
                 foreach (['admin' => 'admin', 'client' => 'client', 'skipper' => 'skipper'] as $k => $i) {
                     $info[$k] = compteMANAGER::recupINFORMATIONall($i);
@@ -34,7 +34,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
                 $infobat = bateauMANAGER::recupINFORMATIONall();
 
                 afficheAllbateau($infobat);
-                
+
                 depliant("ajouter un compte", function($lien) {
                     displayer(null, null, function() {
                         new_compte_form($_SESSION['ActiveAjax']);
@@ -44,6 +44,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
                 depliant("modifier un compte", function($lien) {
                     displayer(null, null, function() {
                         modif_compte_form($_SESSION['ActiveAjax']);
+                    }, $lien);
+                });
+                
+                depliant("ajouter un bateau", function($lien) {
+                    displayer(null, null, function() {
+                        bateau_creat_form($_SESSION['ActiveAjax']);
                     }, $lien);
                 });
             } else {

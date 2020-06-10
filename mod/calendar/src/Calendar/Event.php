@@ -26,8 +26,9 @@ class Event {
     private $idSkipper;
     private $idBoat;
     private $prix;
+    private $option;
 
-    public function getIdAdmin()  {
+    public function getIdAdmin() {
         return $this->idAdmin;
     }
 
@@ -49,6 +50,10 @@ class Event {
 
     public function getPrix() {
         return $this->prix;
+    }
+
+    public function getOption() {
+        return $this->option;
     }
 
     public function getId(): int {
@@ -91,28 +96,32 @@ class Event {
         $this->end = $end;
     }
 
-    public function setPrix( $prix): void {
+    public function setPrix($prix): void {
         $this->prix = $prix;
     }
 
-    public function setIdAdmin( $idAdmin): void {
+    public function setIdAdmin($idAdmin): void {
         $this->idAdmin = $idAdmin;
     }
 
-    public function setIdClientTemp( $idClientTemp): void {
+    public function setIdClientTemp($idClientTemp): void {
         $this->idClientTemp = $idClientTemp;
     }
 
-    public function setIdClient( $idClient): void {
+    public function setIdClient($idClient): void {
         $this->idClient = $idClient;
     }
 
-    public function setIdSkipper( $idSkipper): void {
+    public function setIdSkipper($idSkipper): void {
         $this->idSkipper = $idSkipper;
     }
 
-    public function setIdBoat( $idBoat): void {
+    public function setIdBoat($idBoat): void {
         $this->idBoat = $idBoat;
+    }
+
+    public function setOption($option): void {
+        $this->option = $option;
     }
 
 }

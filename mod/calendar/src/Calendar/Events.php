@@ -30,7 +30,7 @@ class Events {
      */
     //$sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end,(SELECT Username FROM admin WHERE admin.ID = evenement.ID_Admin) AS nameAdmin,(SELECT Username FROM client_ponctuel WHERE client_ponctuel.ID = evenement.ID_Client_Ponctuel) AS nameClientTemp, (SELECT Username FROM client WHERE client.ID = evenement.ID_Client) AS nameClient, (SELECT Username FROM skipper WHERE skipper.ID = evenement.ID_Skipper) AS nameSkipper,(SELECT nom FROM bateau WHERE bateau.ID = evenement.ID_Bateau) AS nameBoat, evenement.Total AS prix FROM evenement WHERE Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
     public function getEventsBetween(\DateTime $start, \DateTime $end): array {
-        $sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix FROM evenement WHERE Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
+        $sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix , evenement.ID_routageoptionevenement AS 'option' FROM evenement WHERE Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
         $statement = $this->bdd->query($sql);
         $results = [];
         if (!$statement == null) {
@@ -54,7 +54,7 @@ class Events {
                 $add = " 1 = 2 AND ";
                 break;
         }
-        $sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix FROM evenement WHERE $add Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
+        $sql = "SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix, evenement.ID_routageoptionevenement AS 'option' FROM evenement WHERE $add Start_Override BETWEEN '" . $start->format('Y-m-d 00:00:00') . "' AND '" . $end->format('Y-m-d 23:59:59') . " ORDER BY Start_Override ASC'";
         $statement = $this->bdd->query($sql);
         $results = [];
         if (!$statement == null) {
@@ -103,7 +103,7 @@ class Events {
      * @return array
      */
     public function find(int $id): Event {
-        $statement = $this->bdd->query("SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix FROM evenement WHERE ID = $id LIMIT 1");
+        $statement = $this->bdd->query("SELECT evenement.ID AS id,evenement.State AS name,evenement.Note AS description,evenement.Start_Override AS start,evenement.Stop_Override AS end, evenement.ID_Admin AS idAdmin,evenement.ID_Client_Ponctuel AS idClientTemp, evenement.ID_Client AS idClient, evenement.ID_Skipper AS idSkipper, evenement.ID_Bateau AS idBoat, evenement.Total AS prix , evenement.ID_routageoptionevenement AS 'option' FROM evenement WHERE ID = $id LIMIT 1");
         $statement->setFetchMode(\PDO::FETCH_CLASS, \Calendar\Event::class);
         $retourvariable = $statement->fetch();
         if ($statement === null || $retourvariable === false) {
@@ -114,6 +114,12 @@ class Events {
 
     public function findCompte(string $table) {
         $statement = $this->bdd->query("SELECT ID AS id,Username AS name FROM $table ");
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
+    public function findOption($id) {
+        $statement = $this->bdd->query("SELECT option_boat.Name AS name,option_boat.Description AS description,option_boat.Prix AS prix FROM option_boat INNER JOIN routageoptionevenement ON routageoptionevenement.ID_Option = option_boat.ID WHERE routageoptionevenement.ID_Evenement = $id");
         $statement->execute();
         return $statement->fetchAll();
     }
@@ -145,6 +151,7 @@ class Events {
         $event->setIdClientTemp($data['idClientTemp']);
         $event->setIdSkipper($data['idSkipper']);
         $event->setPrix($data['prix']);
+        $event->setOption($data['option']);
         $event->setStart(\DateTime::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['start'])->format('Y-m-d H:i:s'));
         $event->setEnd(\DateTime::createFromFormat('Y-m-d H:i', $data['date'] . ' ' . $data['end'])->format('Y-m-d H:i:s'));
         return $event;

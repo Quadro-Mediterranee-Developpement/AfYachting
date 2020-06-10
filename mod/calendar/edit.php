@@ -43,6 +43,7 @@ if ($event == null) {
     $eidboat = $event->getIdBoat();
     $eprix = $event->getPrix();
     $eidClientTemp = $event->getIdClientTemp();
+    $eoption = $event->getOption();
     
     
     $data = [
@@ -56,8 +57,8 @@ if ($event == null) {
         'idClient' => $eidClient,
         'idBoat' => $eidboat,
         'prix' => $eprix,
-        'idClientTemp' => $eidClientTemp
-        
+        'idClientTemp' => $eidClientTemp,
+        'option' => $eoption
     ];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

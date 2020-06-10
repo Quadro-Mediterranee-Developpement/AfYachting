@@ -5,16 +5,15 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 } else {
     require_once 'utilityPhp/creationFormType.php';
 
-    function location_creat_form($mode = false) {
+    function bateau_creat_form($mode = false) {
         ?>
-        <div class=" container-fluid d-flex justify-content-between mt-5 infoContainer ">
-            <h5 class="card-title text-center">Ajouter un bateau a la location</h5>
-            <form <?= ($mode) ? "onsubmit='return modificationAll(logm)'" : 'action="traitementPOST/index.php?p=modification" method="POST"'; ?> class="form-signin" >
-    <?php
+        <div style="width: 100%;">
+            <form <?= ($mode) ? "onsubmit='return creatnewboat(logm)'" : 'action="traitementPOST/index.php?p=creatnewboat" method="POST"'; ?> class="form-signin" >
+                <?php
                 creationFormType::input_text("file", "file", "Nom du fichier...", "file", "Nom du fichier");
                 creationFormType::input_text("text", "description", "description du bateau", "description", "description du bateau");
                 creationFormType::input_text("text", "nom", "Nom du bateau", "nom", "Nom du bateau");
-      
+
                 creationFormType::input_text("text", "nomModele", "nom du model du bateau", "nomModele", "nom du model du bateau");
                 creationFormType::input_text("text", "moteur", "moteur", "moteur", "moteur");
                 creationFormType::input_text("text", "longueur", "longueur", "longueur", "longueur");

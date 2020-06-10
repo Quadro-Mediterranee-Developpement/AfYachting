@@ -106,6 +106,12 @@ and open the template in the editor.
                                 $name = $eventss->findOneBoat($event['idBoat']);
                                 echo "<div><strong>Bateau:</strong>$name</div>";
                                 echo "<div><strong>Prix:</strong>" . $event['prix'] . "</div>";
+                                $option = $eventss->findOption($event['option']);
+                                foreach ($option as $i) {
+                                    echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
+                                    echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
+                                    echo "<div><strong>Prix de l'option:</strong>" . $i['prix'] . "</div>";
+                                }
                                 ?>
 
                             </p>

@@ -51,9 +51,10 @@
     <textarea name="description" id="description" class="form-control" ><?php echo isset($data['description']) ? h($data['description']) : ''; ?></textarea>
 </div>
 <div class="row">
-    <?php 
+    <?php
     $acount = new Calendar\Events(get_pdo());
-    foreach (['Admin' => ['idAdmin', 'admin'], 'Client' => ['idClient', 'client'], 'Skipper' => ['idSkipper', 'skipper'], 'ClientTemp' => ['idClientTemp', 'client_ponctuel']] as $k => $y) { ?>
+    foreach (['Admin' => ['idAdmin', 'admin'], 'Client' => ['idClient', 'client'], 'Skipper' => ['idSkipper', 'skipper'], 'ClientTemp' => ['idClientTemp', 'client_ponctuel']] as $k => $y) {
+        ?>
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="<?= $y[0]; ?>"><?= $k; ?></label>
@@ -68,15 +69,15 @@
                 </select>
             </div>
         </div>
-    <?php } ?>
+<?php } ?>
     <div class="col-sm-6">
         <div class="form-group">
             <label for="idBoat">Boat</label>
-            <select class="form-control" name="idBoat" id="idBoat" value="<?php echo isset($data['idBoat']) ? h($data['idBoat']) : ''; ?>">
+            <select class="form-control" name="idBoat" id="idBoat">
                 <option value="">rien</option>
                 <?php
                 foreach ($acount->findBoat() as $i) {
-                    $yo = ($i['id'] == $data[$y[0]]) ? 'selected' : '';
+                    $yo = ($i['id'] == $data['idBoat']) ? 'selected' : '';
                     echo "<option value='" . $i['id'] . "' $yo>" . $i['name'] . "</option>";
                 }
                 ?>

@@ -24,6 +24,22 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 carousel($images);
                 ?>
             </div>
+            <p><strong>option:</strong></p>
+            <div class="cubeForm">
+                <?php
+                require_once 'carousel.php';
+                $option = bateauMANAGER::recupOPTION($info['Option']);
+                foreach ($option as $i)
+                {
+                    ?>
+               
+                    <p><strong>Nom:</strong><?= $i['name'] ?></p>
+                    <p><strong>description:</strong><?= $i['description'] ?></p>
+                    <p><strong>prix:</strong><?= $i['prix'] ?></p>
+                    <?php
+                }
+                ?>
+            </div>
             <h6>Partie location</h6>
             <p><strong>haute saison:</strong><?= $info['HS'] ?></p>
             <p><strong>moyenne saison:</strong><?= $info['MS'] ?></p>
