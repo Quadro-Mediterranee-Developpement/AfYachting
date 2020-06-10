@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mer. 10 juin 2020 à 07:57
+-- Généré le :  mer. 10 juin 2020 à 12:23
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -163,18 +163,20 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `ID_Client` int(11) NOT NULL,
   `ID_Client_Ponctuel` int(11) NOT NULL,
   `ID_Bateau` int(11) NOT NULL,
+  `ID_routageoptionevenement` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`ID`, `Start`, `Stop`, `Total`, `State`, `Note`, `Start_Override`, `Stop_Override`, `ID_Admin`, `ID_Skipper`, `ID_Client`, `ID_Client_Ponctuel`, `ID_Bateau`) VALUES
-(11, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 'zertyu', 'zertyukil', '2020-06-09 10:52:00', '2020-06-09 10:52:00', 0, 0, 0, 0, 0),
-(12, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '555.000', 'klmù', 'hujikolpm', '2020-06-09 13:08:00', '2020-06-09 13:08:00', 1, 1, 1, 0, 0),
-(13, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '5956.000', 'un salut', 'whechfergthyjuil', '2020-06-09 14:08:00', '2020-06-09 14:08:00', 1, 1, 8, 1, 0),
-(14, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0.000', 'fffffff', '', '2020-06-09 20:52:00', '2020-06-09 20:52:00', 0, 0, 0, 0, 0);
+INSERT INTO `evenement` (`ID`, `Start`, `Stop`, `Total`, `State`, `Note`, `Start_Override`, `Stop_Override`, `ID_Admin`, `ID_Skipper`, `ID_Client`, `ID_Client_Ponctuel`, `ID_Bateau`, `ID_routageoptionevenement`) VALUES
+(11, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 'zertyu', 'zertyukil', '2020-06-09 10:52:00', '2020-06-09 10:52:00', 0, 0, 0, 0, 0, 1),
+(12, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '555.000', 'klmù', 'hujikolpm', '2020-06-09 13:08:00', '2020-06-09 13:08:00', 1, 1, 1, 0, 0, 0),
+(13, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '5956.000', 'un salut', 'whechfergthyjuil', '2020-06-09 14:08:00', '2020-06-09 14:08:00', 1, 1, 8, 1, 0, 0),
+(14, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0.000', 'fffffff', '', '2020-06-09 20:52:00', '2020-06-18 20:52:00', 0, 0, 0, 0, 0, 0),
+(15, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '5555.000', 'teste3', 'oui non peut etre', '2020-06-11 12:42:00', '2020-06-11 12:42:00', 2, 1, 15, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -214,6 +216,87 @@ CREATE TABLE IF NOT EXISTS `location` (
   `Caution` decimal(15,3) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `option_boat`
+--
+
+DROP TABLE IF EXISTS `option_boat`;
+CREATE TABLE IF NOT EXISTS `option_boat` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(65) NOT NULL,
+  `Description` text NOT NULL,
+  `Prix` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `option_boat`
+--
+
+INSERT INTO `option_boat` (`ID`, `Name`, `Description`, `Prix`) VALUES
+(1, 'yo', 'yooo', 5),
+(2, 'oui', 'non', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `routageimage`
+--
+
+DROP TABLE IF EXISTS `routageimage`;
+CREATE TABLE IF NOT EXISTS `routageimage` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `routageimage`
+--
+
+INSERT INTO `routageimage` (`ID`) VALUES
+(1),
+(2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `routageoption`
+--
+
+DROP TABLE IF EXISTS `routageoption`;
+CREATE TABLE IF NOT EXISTS `routageoption` (
+  `ID_Bateau` int(11) NOT NULL,
+  `ID_Option` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `routageoption`
+--
+
+INSERT INTO `routageoption` (`ID_Bateau`, `ID_Option`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `routageoptionevenement`
+--
+
+DROP TABLE IF EXISTS `routageoptionevenement`;
+CREATE TABLE IF NOT EXISTS `routageoptionevenement` (
+  `ID_Evenement` int(11) NOT NULL,
+  `ID_Option` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `routageoptionevenement`
+--
+
+INSERT INTO `routageoptionevenement` (`ID_Evenement`, `ID_Option`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
