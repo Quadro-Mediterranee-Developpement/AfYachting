@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  ven. 05 juin 2020 à 12:10
+-- Généré le :  mer. 10 juin 2020 à 07:57
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `afyachting`
+-- Base de données :  `afyachtingv2`
 --
 
 -- --------------------------------------------------------
@@ -36,15 +36,17 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `Mail` varchar(50) DEFAULT NULL,
   `Creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Phone` varchar(25) DEFAULT NULL,
+  `valide` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `admin`
 --
 
-INSERT INTO `admin` (`ID`, `Username`, `Password`, `Mail`, `Creation`, `Phone`) VALUES
-(1, 'hugo', 'eee729d0fa4d59ae5a513061bc16ba42198cb9b1', 'hugo.hugo@gmail.com', '2020-06-02 22:00:00', 'hugo');
+INSERT INTO `admin` (`ID`, `Username`, `Password`, `Mail`, `Creation`, `Phone`, `valide`) VALUES
+(1, 'Admin@12', '1ee6426845a223d3622f39b86a7efadfd6e41dc5', 'Admin@12.com', '2020-06-02 22:00:00', '0652565620', '0'),
+(2, 'Admin', '1ee6426845a223d3622f39b86a7efadfd6e41dc5', 'Admin@12gg.Com', '2020-06-09 06:41:59', '0656822465', '??^n?U?');
 
 -- --------------------------------------------------------
 
@@ -63,13 +65,19 @@ CREATE TABLE IF NOT EXISTS `bateau` (
   `Longueur` float DEFAULT NULL,
   `Equipement` longtext,
   `Divers` longtext,
-  `Images` longtext,
+  `Password` tinyint(1) NOT NULL DEFAULT '1',
+  `ID_Images` int(11) DEFAULT NULL,
   `ID_Vente` int(11) NOT NULL,
   `ID_Location` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_Bateau_ID_Vente` (`ID_Vente`),
-  KEY `FK_Bateau_ID_Location` (`ID_Location`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `bateau`
+--
+
+INSERT INTO `bateau` (`ID`, `Description`, `Nom`, `Modele`, `Passagers`, `Moteur`, `Longueur`, `Equipement`, `Divers`, `Password`, `ID_Images`, `ID_Vente`, `ID_Location`) VALUES
+(1, 'gg', 'gg', 'gg', 4, 'gg', 4, 'gg', 'gg', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -85,21 +93,30 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Mail` varchar(50) DEFAULT NULL,
   `Creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Phone` varchar(25) DEFAULT NULL,
+  `valide` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`ID`, `Username`, `Password`, `Mail`, `Creation`, `Phone`) VALUES
-(1, 'hugohuu', '529a6b923e382614ddda1e768428061465712a44', 'hugo.hugoo@gmail.com', NULL, ''),
-(2, 'hugoop', '2e71a418c35ec3b1c39a2e6e3f5850bff9ee08f5', 'hugoop@gmail.com', NULL, ''),
-(3, 'hugoope', '2e71a418c35ec3b1c39a2e6e3f5850bff9ee08f5', 'hugoop@gmail.come', NULL, ''),
-(4, 'hugoopee', 'af9add22cf5127c342cfb2ddbc230f4baab3ccac', 'hugoop@gmail.comee', NULL, ''),
-(5, 'efrgthy', 'dbaa30de22b1129ec140a188fc3c06a6af8e9f1f', 'unemail@email.com', NULL, ''),
-(6, 'hughh', '8b55feb9bb3828a53041873529ba209ab26053a6', 'hughh@hughh.com', NULL, ''),
-(7, 'yy', '2598804bf38733deaf83708315745aa360006701', 'yy.yy@gmail.com', '2020-06-05 12:07:52', '');
+INSERT INTO `client` (`ID`, `Username`, `Password`, `Mail`, `Creation`, `Phone`, `valide`) VALUES
+(1, 'hugohuu', NULL, 'hugo.hugoo@gmail.com', NULL, '', '0'),
+(2, 'hugoop', NULL, 'hugoop@gmail.com', NULL, '', '0'),
+(3, 'hugoope', NULL, 'hugoop@gmail.come', NULL, '', '0'),
+(4, 'hugoopee', NULL, 'hugoop@gmail.comee', NULL, '', '0'),
+(5, 'efrgthy', NULL, 'unemail@email.com', NULL, '', '0'),
+(6, 'hughh', NULL, 'hughh@hughh.com', NULL, '', '0'),
+(7, 'yy', NULL, 'yy.yy@gmail.com', '2020-06-05 12:07:52', '', '0'),
+(8, 'hugo', NULL, 'f.g@gmail.com', '2020-06-08 10:02:25', '', '0'),
+(9, 'H1@gmail.com', 'cca5153240d5f5d61ea46258bf47fec12b547e98', 'H1@gmail.com', '2020-06-08 10:03:54', '', '0'),
+(10, 'H1', 'cca5153240d5f5d61ea46258bf47fec12b547e98', 'H1@gmail.com', '2020-06-08 10:04:09', '', '0'),
+(11, 'hugo9', NULL, 'H1@gmail.co', '2020-06-08 10:05:09', '', '0'),
+(12, 'huho', NULL, 'huho@huho.fr', '2020-06-08 10:17:15', '', '0'),
+(13, 'hhhh', NULL, 'hugo.hugo@gmail.com', '2020-06-08 16:44:37', '', '0'),
+(14, 'New@12.00', NULL, 'New@12.com', '2020-06-08 16:52:42', '', '0'),
+(15, 'Pop20.salut', NULL, 'hugo.musoles@gmail.com', '2020-06-08 20:34:19', '', '0');
 
 -- --------------------------------------------------------
 
@@ -115,14 +132,15 @@ CREATE TABLE IF NOT EXISTS `client_ponctuel` (
   `Creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Phone` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client_ponctuel`
 --
 
 INSERT INTO `client_ponctuel` (`ID`, `Username`, `Mail`, `Creation`, `Phone`) VALUES
-(1, 'hugo', 'hugo.hugo@gmail.Com', NULL, NULL);
+(1, 'hugo', 'hugo.hugo@gmail.Com', NULL, NULL),
+(2, 'hugo', 'hugo@gmail.com', '2020-06-05 12:29:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -145,13 +163,41 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `ID_Client` int(11) NOT NULL,
   `ID_Client_Ponctuel` int(11) NOT NULL,
   `ID_Bateau` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_Evenement_ID_Admin` (`ID_Admin`),
-  KEY `FK_Evenement_ID_Skipper` (`ID_Skipper`),
-  KEY `FK_Evenement_ID_Client` (`ID_Client`),
-  KEY `FK_Evenement_ID_Client_Ponctuel` (`ID_Client_Ponctuel`),
-  KEY `FK_Evenement_ID_Bateau` (`ID_Bateau`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `evenement`
+--
+
+INSERT INTO `evenement` (`ID`, `Start`, `Stop`, `Total`, `State`, `Note`, `Start_Override`, `Stop_Override`, `ID_Admin`, `ID_Skipper`, `ID_Client`, `ID_Client_Ponctuel`, `ID_Bateau`) VALUES
+(11, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 'zertyu', 'zertyukil', '2020-06-09 10:52:00', '2020-06-09 10:52:00', 0, 0, 0, 0, 0),
+(12, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '555.000', 'klmù', 'hujikolpm', '2020-06-09 13:08:00', '2020-06-09 13:08:00', 1, 1, 1, 0, 0),
+(13, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '5956.000', 'un salut', 'whechfergthyjuil', '2020-06-09 14:08:00', '2020-06-09 14:08:00', 1, 1, 8, 1, 0),
+(14, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0.000', 'fffffff', '', '2020-06-09 20:52:00', '2020-06-09 20:52:00', 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE IF NOT EXISTS `images` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Url` varchar(65) NOT NULL,
+  `Alt_Description` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ID_select` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`ID`, `Url`, `Alt_Description`, `ID_select`) VALUES
+(1, 'boat1.png', 'hh', 1),
+(2, 'boat2.png', 'oo', 1);
 
 -- --------------------------------------------------------
 
@@ -166,9 +212,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `MS` decimal(15,3) DEFAULT NULL,
   `BS` decimal(15,3) DEFAULT NULL,
   `Caution` decimal(15,3) DEFAULT NULL,
-  `ID_Skipper` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_Location_ID_Skipper` (`ID_Skipper`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,8 +229,16 @@ CREATE TABLE IF NOT EXISTS `skipper` (
   `Mail` varchar(50) DEFAULT NULL,
   `Creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Phone` varchar(25) DEFAULT NULL,
+  `valide` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `skipper`
+--
+
+INSERT INTO `skipper` (`ID`, `Username`, `Password`, `Mail`, `Creation`, `Phone`, `valide`) VALUES
+(1, 'Skipper@12.', '9b9ffaa57a745f661ed7e9ceace1a48ec8daf802', 'Skipper@12.com', '2020-06-09 06:43:23', '6666666666', '0');
 
 -- --------------------------------------------------------
 
@@ -203,10 +255,7 @@ CREATE TABLE IF NOT EXISTS `validation` (
   `ID_Client` int(11) NOT NULL,
   `ID_Skipper` int(11) NOT NULL,
   `ID_Admin` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_Validation_ID_Client` (`ID_Client`),
-  KEY `FK_Validation_ID_Skipper` (`ID_Skipper`),
-  KEY `FK_Validation_ID_Admin` (`ID_Admin`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -224,41 +273,6 @@ CREATE TABLE IF NOT EXISTS `vente` (
   `Prix` decimal(15,3) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `bateau`
---
-ALTER TABLE `bateau`
-  ADD CONSTRAINT `FK_Bateau_ID_Location` FOREIGN KEY (`ID_Location`) REFERENCES `location` (`ID`),
-  ADD CONSTRAINT `FK_Bateau_ID_Vente` FOREIGN KEY (`ID_Vente`) REFERENCES `vente` (`ID`);
-
---
--- Contraintes pour la table `evenement`
---
-ALTER TABLE `evenement`
-  ADD CONSTRAINT `FK_Evenement_ID_Admin` FOREIGN KEY (`ID_Admin`) REFERENCES `admin` (`ID`),
-  ADD CONSTRAINT `FK_Evenement_ID_Bateau` FOREIGN KEY (`ID_Bateau`) REFERENCES `bateau` (`ID`),
-  ADD CONSTRAINT `FK_Evenement_ID_Client` FOREIGN KEY (`ID_Client`) REFERENCES `client` (`ID`),
-  ADD CONSTRAINT `FK_Evenement_ID_Client_Ponctuel` FOREIGN KEY (`ID_Client_Ponctuel`) REFERENCES `client_ponctuel` (`ID`),
-  ADD CONSTRAINT `FK_Evenement_ID_Skipper` FOREIGN KEY (`ID_Skipper`) REFERENCES `skipper` (`ID`);
-
---
--- Contraintes pour la table `location`
---
-ALTER TABLE `location`
-  ADD CONSTRAINT `FK_Location_ID_Skipper` FOREIGN KEY (`ID_Skipper`) REFERENCES `skipper` (`ID`);
-
---
--- Contraintes pour la table `validation`
---
-ALTER TABLE `validation`
-  ADD CONSTRAINT `FK_Validation_ID_Admin` FOREIGN KEY (`ID_Admin`) REFERENCES `admin` (`ID`),
-  ADD CONSTRAINT `FK_Validation_ID_Client` FOREIGN KEY (`ID_Client`) REFERENCES `client` (`ID`),
-  ADD CONSTRAINT `FK_Validation_ID_Skipper` FOREIGN KEY (`ID_Skipper`) REFERENCES `skipper` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

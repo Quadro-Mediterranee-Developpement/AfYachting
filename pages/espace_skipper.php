@@ -22,7 +22,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'skipper') {
                 
-                iframe("./mod/calendar","takeplace");
+                iframe("./mod/calendar","takeplace",true);
 
                 
                 illustation("carousel_test/img_slider_1", function() {

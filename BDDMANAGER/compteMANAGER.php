@@ -99,15 +99,6 @@ class compteMANAGER extends loaderBDD {
         return false;
     }
 
-    public static function deleteID($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("UPDATE " . $id['ROLE'] . " set Password = ? WHERE ID = ? AND Password IS NOT NULL");
-        $requete->execute(array(null,$id['ID']));
-        if (($requete->fetch())) {
-            return true;
-        }
-        return false;
-    }
-
     public static function sendEmail($name, $mail, $code) {
         // Plusieurs destinataires
         $to = $mail; // notez la virgule
