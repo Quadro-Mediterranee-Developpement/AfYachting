@@ -22,30 +22,6 @@ if (isset($_GET['ajax'])) {
         $_SESSION['ActiveAjax'] = true;
     }
 }
-?>
-<!DOCTYPE html>
-<!--
-Site officiel de la société AfYachting
-Créé par QMD : Quadro Méditerranée Développement
-
-
-Administration : Ange CAESARI
-Architecture : Adrien ROUPIE
-Front : Paul-Emile NEU
-Back : Hugo MUSOLES
--->
-<html lang="fr">
-<?php
-require 'BDDMANAGER/loaderBDD.php';
-
-if (isset($_GET["p"])) {
-    $p = filter_input(INPUT_GET, "p");
-    if ($p == 'lastpage') {
-        $p = $_SESSION['activeBackPage']['url'];
-    }
-} else {
-    $p = "accueil";
-}
 
 if (isset($_GET["validationEmail"])) {
     $code = filter_input(INPUT_GET, "validationEmail");
@@ -81,6 +57,31 @@ if (isset($_SESSION['ID'])) {
     }
 } else {
     $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
+}
+
+?>
+<!DOCTYPE html>
+<!--
+Site officiel de la société AfYachting
+Créé par QMD : Quadro Méditerranée Développement
+
+
+Administration : Ange CAESARI
+Architecture : Adrien ROUPIE
+Front : Paul-Emile NEU
+Back : Hugo MUSOLES
+-->
+<html lang="fr">
+<?php
+require 'BDDMANAGER/loaderBDD.php';
+
+if (isset($_GET["p"])) {
+    $p = filter_input(INPUT_GET, "p");
+    if ($p == 'lastpage') {
+        $p = $_SESSION['activeBackPage']['url'];
+    }
+} else {
+    $p = "accueil";
 }
 
 $page = "pages/" . $p . ".php";
