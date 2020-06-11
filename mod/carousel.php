@@ -29,7 +29,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 foreach ($images as $i) {
                     ?>
                     <div class="carousel-item <?php echo ($slideshow === 0) ? "active" : ""; ?>">
-                        <img src="img/<?php echo $i ?>.png" alt="" class="pictSize"/>
+                        <img src="img/<?php echo $i['Url'] ?>" alt="<?php echo $i['Alt_Description'] ?>" class="pictSize"/>
                     </div>
                     <?php
                     $slideshow++;

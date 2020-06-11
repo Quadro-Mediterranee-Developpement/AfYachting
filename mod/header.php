@@ -16,18 +16,33 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    foreach ($lien as $k=>$i) {
+                    foreach ($lien as $k => $i) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="?p=<?php echo $i ?>&g=<?= (isset($_GET['p'])) ? $_GET['p'] : "accueil"; ?>"><?php echo $k ?></a>
+                            <a class="nav-link" href="?p=<?php echo $i ?>"><?php echo $k ?></a>
                         </li>
                     <?php } ?>
 
                 </ul>
             </div>
-        </nav>
-        <?php
-    }
 
-}
+        </nav>
+            <span class="volant">
+            <?php
+            if (!isset($_SESSION['ID'])) {
+                ?>
+            <a class="nav-link" href="?p=connexion">Connexion</a>/<a class="nav-link" href="?p=inscription">Inscription</a>
+            <?php
+              
+            } else {
+                           ?>
+            <a class="nav-link" href="?p=compte">Mon compte</a>/<a class="nav-link" href="?p=accueil&destroy=1">Se déconnecter</a>
+            <?php      
+            }
+            ?>
+            </span>
+            <?php
+        }
+
+    }
 

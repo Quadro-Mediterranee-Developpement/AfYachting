@@ -2,14 +2,11 @@
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESSION['ID'])) {
     header('Location: ../index?p=404');
     exit();
-} else if ($_SESSION['ID']['ROLE'] !== 'skipper') {
-    header('Location: ../index?p=404');
-    exit();
 } else {
 
 
-
-    $included = ["head", "header" ,"textual","illustration", "footer", "foot"];
+    $_SESSION['activeBackPage']['url'] = $p;
+    $included = ["head", "header", "textual", "illustration",'iframe', "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
@@ -22,8 +19,22 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) || !isset($_SESS
         <?php
         bloc_header($menu);
 
-        
-        illustation("carousel_test/img_slider_1",function(){textual("Espace skipper",FALSE,["En construction"],"","");});
+        if (isset($_SESSION['ID'])) {
+            if ($_SESSION['ID']['ROLE'] == 'skipper') {
+                
+                iframe("./mod/calendar","takeplace",true);
+
+                
+                illustation("carousel_test/img_slider_1", function() {
+                    textual("Espace skipper", FALSE, ["En construction"], "", "");
+                });
+            } else {
+                textual("Veuiller vous connectez avec un compte skipper", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+            }
+        } else {
+            textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+        }
+
 
 
         footer();

@@ -14,40 +14,42 @@ if (isset($_POST['userName']) && isset($_POST['mail']) && isset($_POST['password
                         if (empty(compteMANAGER::recupIDby($username, $email))) {
                             if (empty($id = compteMANAGER::creatNEWuser($username, $password, $email, $phone, $table)) === false) {
                                 $_SESSION['ID'] = $id;
-                                header('Location: ../index?p='. $g ."&g="."inscription");
+                                $tp = $_SESSION['activeBackPage']['url'];
+                                $_SESSION['activeBackPage']['url'] = 'inscription';
+                                header('Location: ../index?p='. $tp);
                             } else {
                                 $erreur = "erreur inconnue, l'inscription à échouer";
                                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 3];
-                                header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+                                header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
                             }
                         } else {
                             $erreur = "email, nom ou telephone deja existant";
                             $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 9];
-                            header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+                            header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
                         }
                     } else {
                         $erreur = "le nom d'utilisateur n'es pas correcte";
                         $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 4];
-                        header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+                        header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
                     }
                 } else {
                     $erreur = "l'email n'es pas correcte";
                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 5];
-                    header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+                    header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
                 }
             } else {
                 $erreur = "le mot de passe n'es pas correcte";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 6];
-                header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+                header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
             }
         } else {
             $erreur = "la confirmation du mot de passe a echouer";
             $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 7];
-            header('Location: ../index?p=inscription&g='. $g . '&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
+            header('Location: ../index?p=inscription&userName=' . $_POST['userName'] . '&mail=' . $_POST['mail']);
         }
     } else {
         $erreur = "Tous les champs doivent être  complétés !";
         $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 8];
-        header('Location: ../index?p=inscription&g='. $g);
+        header('Location: ../index?p=inscription');
     }
 }

@@ -17,7 +17,7 @@ body {
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    height: 50vh;
+    min-height: 50vh;
     width: 50vw;
     position: relative;
     top: 25vh;
@@ -43,9 +43,10 @@ body {
 }
 
 .closer {
-    position: relative;
-    height: 4vh;
-    top: -24.5vh;
-    left: 72.75vw;
+
+    height: 20px;
+        position: absolute;
+        right:0;
+        margin: 5px;
 }
 

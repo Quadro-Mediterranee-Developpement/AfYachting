@@ -1,0 +1,18 @@
+{
+    "name": "vendor/calendrier",
+    "description": "Description of project Calendrier.",
+    "authors": [
+        {
+            "name": "angec",
+            "email": "ange.cesari@isen.yncrea.fr"
+        }
+    ],
+    "autload": {
+        "psr-4":{
+            "Calendar\\":"./Source Files/src/Calendar"
+        }
+    
+    },
+    "require": {}
+    
+}

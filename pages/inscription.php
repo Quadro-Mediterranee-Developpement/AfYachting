@@ -17,7 +17,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         <?php
         
-            displayer("img_slider_1", "boat2", function(){inscription_form(true);});
+            displayer("img_slider_1", "boat2", function(){inscription_form($_SESSION['ActiveAjax']);});
             
             foot($included);
         

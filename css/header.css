@@ -9,15 +9,38 @@ and open the template in the editor.
 */
 
 .nav-link {
-    
+
     font-size: x-large;
     font-weight: bold;
 }
 
 nav {
     height: 8vh;
+    z-index: 11;
 }
 
 .bgColor{
     background: #1560BD;
+}
+
+.volant
+{
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    right: 0;
+    color:white;
+    font-weight:normal;
+    font-size:initial;
+    padding: 0;
+}
+
+.volant>a
+{
+    color:white;
+    font-weight:normal;
+    font-size:initial;
+    padding: 0;
+    text-decoration: underline;
 }

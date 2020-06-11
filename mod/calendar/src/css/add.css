@@ -1,0 +1,10 @@
+#errorform{
+    color:red;
+    font-size: 60%;
+}
+
+#retour{
+    top:30px;
+    right:30px; 
+    background-color: #848484;
+}
