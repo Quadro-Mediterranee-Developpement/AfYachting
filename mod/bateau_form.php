@@ -46,9 +46,6 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     </div>
                     <button type="submit" class="btn btn-primary button" name="payer" >Payer</button>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['erreur'])): ?>
-                    <p id="errorform" class="form-control is-invalid"><?= $_SESSION['erreur']['desc']; ?></p>
-                <?php endif; ?>
             </form>
         </div>
         <?php
