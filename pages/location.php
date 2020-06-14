@@ -3,14 +3,14 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
-    $included = ["head","header","column","textual","footer","foot"];
+    $included = ["head", "header", "column", "textual", "footer", "foot"];
     $_SESSION['activeBackPage']['url'] = $p;
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
 
-
-    head($included, "Description de la page bateau adaptée au référencement", "Titre de la page bateau adaptée au référencement");
+    //TEXT
+    head($included, "Bateau disponible à la location pour une qualité imbatable", "Location de bateau");
     ?>
 
     <body>
@@ -18,21 +18,21 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
 
-        textual("Louez un bateau",FALSE,["Ob haec et huius modi multa, quae cernebantur in paucis, omnibus timeri sunt coepta. et ne tot malisissimulatis paulatimque serpentibus acervi crescerent aerumnarum,nobilitatis decreto legati mittuntur: Praetextatus ex urbi praefecto et ex vicario Venustus et ex consulariMinervius oraturi, ne delictis supplicia sint grandiora, neve senator quisquam inusitato et inlicito more tormentis exponeretur."],"","");
+        //TEXT
+        textual("Louez un bateau", FALSE, ["Réservez directement en ligne de manière sécurisée et louez le bateau ou voilier de vos rêves en quelques clics. Vous ne serez débité qu’en cas d’acceptation de votre demande de location par le propriétaire du bateau. Paiement 100% sécurisé."], "", "");
+        //TEXT
+        column([["Bi-coque", "carousel_test/img_slider_1", "Libéré vos pensés", "Plus qu'une semaine avant les vacances, sa se fête", "Je réserve!", creatLienLocation(1)], ["Semi-coque", "carousel_test/img_slider_2", "Surfer sur la mer tel un dauphin", "Ce bateau à la capacité d'être rapide, efficace et silencieux", "Je réserve!", creatLienLocation(2)], ["tri-coque", "carousel_test/img_slider_3", "Chantez!", "Seul au large, chantez aussi que la bateau vous est agréable (personne vous dira d'arréter", "Je réserve!", creatLienLocation(3)], ["quadri-coque", "boat1", "Il n'y a pas de mot", "Avançons seul, à deux ou à plusieurs mais jamais sans l'envie de prendre le large", "Je réserve!", creatLienLocation(4)]]);
 
-        column([["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(1)],["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(2)], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(3)], ["image1", "carousel_test/img_slider_1", "l'image 1", "quoi?", "IMAge1", creatLienLocation(4)]]);
-        
         footer();
-        
+
         foot($included);
         ?>
 
     </body>
 
-<?php
+    <?php
 }
 
-function creatLienLocation($id)
-{
-    return 'bateau&batID='.$id;
+function creatLienLocation($id) {
+    return 'bateau&batID=' . $id;
 }

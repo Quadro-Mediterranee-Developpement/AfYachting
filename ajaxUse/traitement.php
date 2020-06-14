@@ -1,5 +1,6 @@
 <?php
-
+    //TEXT
+    // un peu partout (quand tu vois un $_SESSION['erreur'] c'est qu'il y a du text (les rapports d'erreurs)
 session_start();
 require_once '../BDDMANAGER/loaderBDD.php';
 require_once '../utilityPhp/verificationType.php';
@@ -55,7 +56,7 @@ if (isset($_POST['type'])) {
             break;
         case 'addboat':
             if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
-                
+                ajouteBateau($_POST['nom'], $_POST['description'], $_POST['nomModele'], $_POST['moteur'], $_POST['longueur'], $_POST['nombrePassager'], $_POST['Equipement'], $_POST['divers']);
             } else {
                 $erreur = "vous n'avez pas l'autorisation";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 21];
@@ -82,7 +83,7 @@ function connexion($user, $pass) {
                 if ($id) {
                     if (compteMANAGER::verifActivate($id)) {
                         $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
-                        $_SESSION['news']['connexion'] = ['desc'=>'Connexion réussite','code'=>true];
+                        $_SESSION['news']['connexion'] = ['desc' => 'Connexion réussite', 'code' => true];
                         $_SESSION['ID'] = $id;
                     } else {
                         $_SESSION['erreur'] = ['desc' => 'compte non activé (verifiez les spams)', 'code' => 1];
@@ -115,7 +116,7 @@ function inscription($user, $mail, $pass, $verifpass, $tel, $table) {
                             if (empty(compteMANAGER::recupIDby($username, $email))) {
                                 if (empty($id = compteMANAGER::creatNEWuser($username, $password, $email, $phone, $table)) === false) {
                                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
-                                    $_SESSION['news']['inscription'] = ['desc'=>'Inscription réussite, email de validation envoyé','code'=>true];
+                                    $_SESSION['news']['inscription'] = ['desc' => 'Inscription réussite, email de validation envoyé', 'code' => true];
                                 } else {
                                     $erreur = "erreur inconnue, l'inscription à échouer";
                                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 11];
@@ -219,5 +220,25 @@ function modification($user, $mail, $pass, $verifpass, $tel, $id, $table) {
         foreach ($prepare as $k => $i) {
             compteMANAGER::updateUSERone($k, $i, $id, $table);
         }
+    }
+}
+
+function ajouteBateau($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers) {
+    if (verificationType::isseter([$nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers])) {
+        if (verificationType::emptyer([$nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers])) {
+            if (ctype_digit($longueur) && ctype_digit($nombrePassager)) {
+                bateauMANAGER::creatNEWboat($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers);
+                $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+            } else {
+            $erreur = "Les champs longeurs et nombre de passager doivent etre des nombres";
+            $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 48];
+            }
+        } else {
+            $erreur = "Tous les champs doivent être  complétés !";
+            $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 47];
+        }
+    } else {
+        $erreur = "Tous les champs doivent être  complétés !";
+        $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 47];
     }
 }

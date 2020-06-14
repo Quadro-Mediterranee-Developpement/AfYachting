@@ -4,7 +4,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
     require_once 'utilityPhp/creationFormType.php';
-
+    //TEXT
+    // un peu partout
     function connexion_form($mode = false) {
         ?>
         <div style="width: 100%;">

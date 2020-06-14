@@ -4,6 +4,8 @@
 session_start();
 if (isset($_GET['destroy'])) {
     if (isset($_SESSION['ID'])) {
+
+        //TEXT
         $_SESSION['news']['deconnexion'] = ['desc' => 'Vous êtes déconnecter', 'code' => false];
         unset($_SESSION['ID']);
     }
@@ -17,7 +19,8 @@ if (!isset($_SESSION['activeBackPage'])) {
 
 if (isset($_GET['ajax'])) {
     if ($_GET['ajax'] == 'false') {
-        $_SESSION['ActiveAjax'] = false;
+        //option non disponible, toute les pages POST ne sont pas terminer
+        //$_SESSION['ActiveAjax'] = false;
     } else if ($_GET['ajax'] == 'true') {
         $_SESSION['ActiveAjax'] = true;
     }
@@ -35,65 +38,71 @@ Front : Paul-Emile NEU
 Back : Hugo MUSOLES
 -->
 <html lang="fr">
-<?php
-require 'BDDMANAGER/loaderBDD.php';
+    <?php
+    require 'BDDMANAGER/loaderBDD.php';
 
-if (isset($_GET["p"])) {
-    $p = filter_input(INPUT_GET, "p");
-    if ($p == 'lastpage') {
-        $p = $_SESSION['activeBackPage']['url'];
-    }
-} else {
-    $p = "accueil";
-}
-
-if (isset($_GET["validationEmail"])) {
-    $code = filter_input(INPUT_GET, "validationEmail");
-    if (compteMANAGER::validedation($code)) {
-        $_SESSION['news']['email'] = ['desc' => 'email valider', 'code' => true];
+    if (isset($_GET["p"])) {
+        $p = filter_input(INPUT_GET, "p");
+        if ($p == 'lastpage') {
+            $p = $_SESSION['activeBackPage']['url'];
+        }
     } else {
-        $_SESSION['news']['email'] = ['desc' => 'code de validation invalide', 'code' => false];
+        $p = "accueil";
     }
-    $p = "accueil";
-}
 
-if (isset($_SESSION['ID'])) {
-    switch ($_SESSION['ID']['ROLE']) {
-        case 'admin':
-            $menu = ["Accueil" => "Accueil", "Gestion" => "Gestion"];
-            break;
-
-        case 'skipper':
-            $menu = ["Accueil" => "Accueil", "Espace" => "espace_skipper"];
-            break;
-
-        case 'client':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Espace" => "espace_client"];
-            break;
-
-        case 'client_ponctuel':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
-            break;
-
-        default:
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
-            break;
+    if (isset($_GET["validationEmail"])) {
+        $code = filter_input(INPUT_GET, "validationEmail");
+        if (compteMANAGER::validedation($code)) {
+            //TEXT
+            $_SESSION['news']['email'] = ['desc' => 'email valider', 'code' => true];
+        } else {
+            //TEXT
+            $_SESSION['news']['email'] = ['desc' => 'code de validation invalide', 'code' => false];
+        }
+        $p = "accueil";
     }
-} else {
-    $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
-}
 
-$page = "pages/" . $p . ".php";
+    if (isset($_SESSION['ID'])) {
+        switch ($_SESSION['ID']['ROLE']) {
+            case 'admin':
+                $menu = ["Accueil" => "Accueil", "Gestion" => "Gestion"];
+                break;
 
-if (is_file($page)) {
-    require $page;
-} else {
-    require "pages/404.php";
-}
+            case 'skipper':
+                $menu = ["Accueil" => "Accueil", "Espace" => "espace_skipper"];
+                break;
+
+            case 'client':
+                //"Location" => "Location", "Ventes" => "Ventes",
+                $menu = ["Accueil" => "Accueil", "Contact" => "Contact", "Espace" => "espace_client"];
+                break;
+
+            case 'client_ponctuel':
+                //"Location" => "Location", "Ventes" => "Ventes",
+                $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+                break;
+
+            default:
+                //"Location" => "Location", "Ventes" => "Ventes",
+                $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+                break;
+        }
+    } else {
+        //"Location" => "Location", "Ventes" => "Ventes",
+        $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+    }
+
+    $page = "pages/" . $p . ".php";
+
+    if (is_file($page)) {
+        require $page;
+    } else {
+        require "pages/404.php";
+    }
 
 
-unset($_SESSION['news']);
+    unset($_SESSION['news']);
 
-unset($_SESSION['erreur']);
-?>
+    unset($_SESSION['erreur']);
+    ?>
 </html>

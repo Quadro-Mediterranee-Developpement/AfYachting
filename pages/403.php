@@ -9,7 +9,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
-
+    //TEXT
     head($included, "Page bad occurence 403", "Page bad occurence 403");
     ?>
 
@@ -18,7 +18,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
 
-        
+        //TEXT
         illustation("carousel_test/img_slider_1",function(){textual("Erreur 403 : accès refusé",FALSE,["Désolé, mais vous n'avez pas les droits pour accéder à cette page ou ce contenu.", "Il se peut que votre session ait expiré, et vous êtes donc invité à vous reconnecter."],"","");});
 
 

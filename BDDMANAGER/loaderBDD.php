@@ -27,8 +27,10 @@ class loaderBDD {
         $requete = loaderBDD::connexionBDD()->prepare("SELECT MAX(ID) FROM routageimage");
         $requete->execute();
         if (($retour = $requete->fetch())) {
-            return $retour;
+
+            return $retour[0];
         }
+        return 0;
     }
 
     public static function Addimage($url,$Alt_Descritpion,$selectid) {
@@ -38,10 +40,12 @@ class loaderBDD {
 
     public static function image($selectid) {
         $requete = loaderBDD::connexionBDD()->prepare("SELECT Url,Alt_Description FROM images WHERE ID_select = $selectid ");
+        
         $requete->execute();
         if (($retour = $requete->fetchAll())) {
             return $retour;
         }
+        return [];
     }
 
 }

@@ -9,8 +9,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
-
-    head($included, "Description de la page 404 adaptée au référencement", "Titre de la page 404 adaptée au référencement");
+    //TEXT
+    head($included, "", "Page 404");
     ?>
 
     <body>
@@ -18,7 +18,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
 
-        
+        //TEXT
         illustation("carousel_test/img_slider_1",function(){textual("Erreur 404",FALSE,["La page que vous cherchez semble introuvable."],"","");});
 
 

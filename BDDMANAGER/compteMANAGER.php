@@ -41,6 +41,7 @@ class compteMANAGER extends loaderBDD {
         if (($retour = $requete->fetchAll())) {
             return $retour;
         }
+        return [];
     }
 
     public static function creatNEWuser($username, $password, $email, $phone, $table) {
@@ -71,6 +72,7 @@ class compteMANAGER extends loaderBDD {
                 return ['ID' => $id['ID'], 'ROLE' => $table];
             }
         }
+        return [];
     }
 
     public static function validedation($code) {
@@ -100,34 +102,34 @@ class compteMANAGER extends loaderBDD {
     }
 
     public static function sendEmail($name, $mail, $code) {
-        // Plusieurs destinataires
-        $to = $mail; // notez la virgule
-        // Sujet
+     
+        $to = $mail; 
+
         $subject = 'validation email afYachting';
 
-        // message
+    
         $message = '
      <html>
       <head>
        <title>validation email afYachting</title>
       </head>
       <body>
-       <a href="https://afyachting.fr?p=accueil&validationEmail=' . $code . '">validation mail</p>
+       <a href="https://afyachting.fr?p=accueil&validationEmail=' . $code . '">validation mail</a>
        <p>si le lien ne marche pas, copier coller celui ci dans l\'url : https://afyachting.fr?p=accueil&validationEmail=' . $code . '</p>
       </body>
      </html>
      ';
 
-        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+      
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
-        // En-têtes additionnels
+   
         $headers[] = "To: $name <$to>";
         $headers[] = 'From: afyachting <afyachting@no-reply.fr>';
         $headers[] = 'Cc: afyachting_archive@afyachting.com';
 
-        // Envoi
+    
         mail($to, $subject, $message, implode("\r\n", $headers));
     }
 
