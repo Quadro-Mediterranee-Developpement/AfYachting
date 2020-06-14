@@ -32,9 +32,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <?php if (!isset($_SESSION['ID'])): ?>
                         <div class="form-group mt-2">
                             <?php
-                            input_text("text", "inputUserame", "Nom", "userName", "Nom");
+                                            creationFormType::input_text("text", "inputUserame", "Nom", "userName", "Nom");
 
-                            input_text("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
+                            creationFormType::input_text("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
                             ?>
                             <a class="btn btn-primary button" href="index?p=inscription&g=location">inscription</a>
                             <a class="btn btn-primary button" href="index?p=connexion&g=location">connexion</a>
