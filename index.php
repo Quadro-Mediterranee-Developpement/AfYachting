@@ -73,23 +73,23 @@ Back : Hugo MUSOLES
                 break;
 
             case 'client':
-                //"Location" => "Location", "Ventes" => "Ventes",
-                $menu = ["Accueil" => "Accueil", "Contact" => "Contact", "Espace" => "espace_client"];
+                //
+                $menu = ["Accueil" => "Accueil","Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Espace" => "espace_client"];
                 break;
 
             case 'client_ponctuel':
                 //"Location" => "Location", "Ventes" => "Ventes",
-                $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+                $menu = ["Accueil" => "Accueil","Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
                 break;
 
             default:
                 //"Location" => "Location", "Ventes" => "Ventes",
-                $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+                $menu = ["Accueil" => "Accueil","Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
                 break;
         }
     } else {
         //"Location" => "Location", "Ventes" => "Ventes",
-        $menu = ["Accueil" => "Accueil", "Contact" => "Contact"];
+        $menu = ["Accueil" => "Accueil","Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
     }
 
     $page = "pages/" . $p . ".php";
