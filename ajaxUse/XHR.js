@@ -98,6 +98,24 @@ function modificationAll(callback = log)
 
 }
 
+
+function creatnewboat(callback = log)
+{
+    var nom = document.getElementById('nom').value;
+    var description = document.getElementById('description').value;
+    var nomModele = document.getElementById('nomModele').value;
+    var moteur = document.getElementById('moteur').value;
+    var longueur = document.getElementById('longueur').value;
+    var nombrePassager = document.getElementById('nombrePassager').value;
+    var Equipement = document.getElementById('Equipement').value;
+    var divers = document.getElementById('divers').value;
+    
+    ajaxMethode(callback, [nom, description, nomModele, moteur, longueur,nombrePassager,Equipement,divers, 'addboat'], ['nom', 'description', 'nomModele', 'moteur', 'longueur','nombrePassager','Equipement','divers', 'type'], 'ajaxUse/traitement.php');
+    return false;
+
+}
+
+
 function suprimer(id,table)
 {
     ajaxMethode(function(data){ alert(data); }, [id,table, 'suprimer'], ['ID','table', 'type'], 'ajaxUse/traitement.php');

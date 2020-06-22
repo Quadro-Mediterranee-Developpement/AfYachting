@@ -19,6 +19,7 @@ class bateauMANAGER extends loaderBDD {
         if (($retour = $requete->fetchAll())) {
             return $retour;
         }
+        return [];
     }
 
     public static function recupOPTION($id) {
@@ -28,6 +29,13 @@ class bateauMANAGER extends loaderBDD {
             return $retour;
         }
         return [];
+    }
+
+    public static function creatNEWboat($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers) {
+        $image = self::giveRefImage();
+        $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO bateau (Description, Nom, Modele, Passagers, Moteur,Longueur, Equipement, Divers,ID_images) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete->execute(array($description, $nom, $nomModele, $nombrePassager, $moteur, $longueur, $Equipement, $divers,$image));
+        
     }
 
 }

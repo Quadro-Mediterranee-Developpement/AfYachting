@@ -34,6 +34,7 @@ nav {
     font-weight:normal;
     font-size:initial;
     padding: 0;
+    
 }
 
 .volant>a
@@ -43,4 +44,5 @@ nav {
     font-size:initial;
     padding: 0;
     text-decoration: underline;
+    text-shadow: 1px 1px black;
 }

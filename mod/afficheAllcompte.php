@@ -5,7 +5,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
     require 'identityCard.php';
-
+    //TEXT
+    // un peu partout
 //$col_title, $col_img, $col_subtitle, $col_data, $col_button, $col_button_link
     function afficheAllcompte($information) {
         echo "<div class='container-fluid mt-4 mb-4 infoContainer'> <div class='row ml-3 '>";
@@ -17,7 +18,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 echo '<div>';
                 identityCard($y[0], $y[1], $y[2], $y[3]);
                 echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#$y[4]&$k&$y[0]&$y[1]&$y[2]' >modifier id$y[4]</a>";
-                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return suprimer(\"$y[4]\",\"$k\")'>suprimer</a></div>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return suprimer(\"$y[4]\",\"$k\")'>supprimer</a></div>";
             }
             echo '</div></div>';
         } echo "</div></div>";

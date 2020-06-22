@@ -130,6 +130,12 @@ class Events {
         return $statement->fetch()['name'];
     }
 
+    public function findOneCompteMail(int $id, string $table) {
+        $statement = $this->bdd->query("SELECT Mail AS mail FROM $table WHERE ID = $id");
+        $statement->execute();
+        return $statement->fetch()['mail'];
+    }
+
     public function findOneBoat(int $id) {
         $statement = $this->bdd->query("SELECT nom AS name FROM bateau WHERE ID = $id");
         $statement->execute();
@@ -196,6 +202,42 @@ class Events {
     public function suppr(Event $event): bool {
         $statement = $this->bdd->prepare('DELETE FROM evenement WHERE ID= ?');
         return $statement->execute([$event->getId()]);
+    }
+
+    public function sendEmail($id, $newevent = false) {
+
+        $name = $this->findOneCompte($id,'skipper');
+        $to = $this->findOneCompteMail($id,'skipper');
+
+        if ($newevent) {
+            $subject = 'evenement ajouter afYachting';
+        } else {
+            $subject = 'evenement modifier afYachting';
+        }
+
+        $message = '
+     <html>
+      <head>
+       <title>' + $subject + '</title>
+      </head>
+      <body>
+       <a href="https://afyachting.fr?p=espace_skipper">accès à espace skipper</p>
+       <p>si le lien ne marche pas, copier coller celui ci dans l\'url : https://afyachting.fr?p=espace_skipper</p>
+      </body>
+     </html>
+     ';
+
+
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+
+        $headers[] = "To: $name <$to>";
+        $headers[] = 'From: afyachting <afyachting@no-reply.fr>';
+        $headers[] = 'Cc: afyachting_archive@afyachting.com';
+
+
+        mail($to, $subject, $message, implode("\r\n", $headers));
     }
 
 }

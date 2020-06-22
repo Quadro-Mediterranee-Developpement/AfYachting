@@ -8,8 +8,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
-
-    head($included, "Description de la page contact adaptée au référencement", "Titre de la page contact adaptée au référencement");
+    //TEXT
+    head($included, "Contacte AfYachting et localisation", "Contacte");
     ?>
 
     <body>

@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $id++;
         ?>
         <h4><a onclick="return depli('depliant<?= $id ?>')" href="" ><?= $text ?></a></h4>
-        <div  id="depliant<?= $id ?>" style="height:0px;opacity: 0; transition-duration: 1s; overflow:hidden">
+        <div  id="depliant<?= $id ?>" style="height:0px;opacity: 0; transition-duration: 1s; overflow:scroll">
             <?= $fonction('onclick="return depli(\'depliant' . $id . '\')"') ?>
         </div>
         <script type="text/javascript">
