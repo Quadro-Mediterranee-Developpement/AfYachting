@@ -1,6 +1,7 @@
 <?php
-    //TEXT
-    // un peu partout (quand tu vois un $_SESSION['erreur'] c'est qu'il y a du text (les rapports d'erreurs)
+
+//TEXT
+// un peu partout (quand tu vois un $_SESSION['erreur'] c'est qu'il y a du text (les rapports d'erreurs)
 session_start();
 require_once '../BDDMANAGER/loaderBDD.php';
 require_once '../utilityPhp/verificationType.php';
@@ -61,6 +62,12 @@ if (isset($_POST['type'])) {
                 $erreur = "vous n'avez pas l'autorisation";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 21];
             }
+            break;
+        case 'supprImage':
+                if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
+                    loaderBDD::deleteImage($_POST['ID']);
+                    $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                }
             break;
         default :
             $erreur = "erreur serveur";
@@ -230,8 +237,8 @@ function ajouteBateau($nom, $description, $nomModele, $moteur, $longueur, $nombr
                 bateauMANAGER::creatNEWboat($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers);
                 $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
             } else {
-            $erreur = "Les champs longeurs et nombre de passager doivent etre des nombres";
-            $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 48];
+                $erreur = "Les champs longeurs et nombre de passager doivent etre des nombres";
+                $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 48];
             }
         } else {
             $erreur = "Tous les champs doivent être  complétés !";

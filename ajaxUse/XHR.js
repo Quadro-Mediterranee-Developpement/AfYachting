@@ -122,6 +122,17 @@ function suprimer(id,table)
     return false;
 }
 
+function supprImage(id)
+{
+    ajaxMethode(function(data){ supprID("img"+id); console.log(data);},[id,'supprImage'],['ID','type'],'ajaxUse/traitement.php');
+    return false;
+}
+
+function supprID(id)
+{
+    document.getElementById(id).remove()
+}
+
 function log(data) {
     if (data === "OK") {
         document.location.search = "?p=lastpage";

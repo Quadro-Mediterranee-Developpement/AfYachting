@@ -39,13 +39,23 @@ class loaderBDD {
     }
 
     public static function image($selectid) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT Url,Alt_Description FROM images WHERE ID_select = $selectid ");
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Url,Alt_Description,ID FROM images WHERE ID_select = $selectid ");
         
         $requete->execute();
         if (($retour = $requete->fetchAll())) {
             return $retour;
         }
         return [];
+    }
+    
+    public static function deleteImage($id)
+    {
+        $requete1 = loaderBDD::connexionBDD()->prepare("SELECT Url FROM images WHERE ID = $id ");
+        $requete1->execute();
+        $tp = $requete1->fetch()[0];
+        unlink("../img/" . $tp);
+        $requete = loaderBDD::connexionBDD()->prepare("DELETE FROM images WHERE ID = $id ");
+        $requete->execute();
     }
 
 }
