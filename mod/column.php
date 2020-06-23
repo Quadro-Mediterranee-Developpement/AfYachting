@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         foreach ($information as $i) {
             echo "<div class='col d-flex flex-column mt-3 mb-3'>";
             if ($i[0] != NULL) {
-                echo "<h5 class='text-center mt-3'>$i[0]</h5>";
+                echo "<h3 class='text-center mt-3'>$i[0]</h3>";
             }
             if ($i[1] != NULL) {
                 if (is_array($i[1])) {
