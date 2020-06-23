@@ -4,7 +4,7 @@
 session_start();
 if (isset($_GET['destroy'])) {
     if (isset($_SESSION['ID'])) {
-        $_SESSION['news']['deconnexion'] = ['desc' => 'Vous êtes déconnecter', 'code' => false];
+        $_SESSION['news']['deconnexion'] = ['desc' => 'Vous êtes déconnecté', 'code' => false];
         unset($_SESSION['ID']);
     }
 }
@@ -26,9 +26,9 @@ if (isset($_GET['ajax'])) {
 if (isset($_GET["validationEmail"])) {
     $code = filter_input(INPUT_GET, "validationEmail");
     if (compteMANAGER::validedation($code)) {
-        $_SESSION['news']['email'] = ['desc' => 'email valider', 'code' => true];
+        $_SESSION['news']['email'] = ['desc' => 'Email validé', 'code' => true];
     } else {
-        $_SESSION['news']['email'] = ['desc' => 'code de validation invalide', 'code' => false];
+        $_SESSION['news']['email'] = ['desc' => 'Code de validation incorrect', 'code' => false];
     }
     $p = "accueil";
 }

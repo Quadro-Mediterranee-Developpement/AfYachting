@@ -105,17 +105,17 @@ class compteMANAGER extends loaderBDD {
      
         $to = $mail; 
 
-        $subject = 'validation email afYachting';
+        $subject = 'Validation Email AfYachting';
 
     
         $message = '
      <html>
       <head>
-       <title>validation email afYachting</title>
+       <title>validation Email AfYachting</title>
       </head>
       <body>
        <a href="https://afyachting.fr?p=accueil&validationEmail=' . $code . '">validation mail</a>
-       <p>si le lien ne marche pas, copier coller celui ci dans l\'url : https://afyachting.fr?p=accueil&validationEmail=' . $code . '</p>
+       <p>Si le lien ne fonctionne pas, copiez-collez celui ci : https://afyachting.fr?p=accueil&validationEmail=' . $code . '</p>
       </body>
      </html>
      ';

@@ -9,11 +9,11 @@ if (isset($_POST['connect']) && isset($_POST['userName']) && isset($_POST['passw
             $_SESSION['activeBackPage']['url'] = 'Connexion';
             header('Location: ../index?p='. $tp);
         } else {
-            $_SESSION['erreur'] = ['desc' => 'mauvais identifiant ou mot de passe', 'code' => 1];
+            $_SESSION['erreur'] = ['desc' => 'Identifiant ou mot de passe incorrect', 'code' => 1];
             header('Location: ../index?p=connexion&userName='.$userNameConnect);
         }
     } else {
-        $_SESSION['erreur'] = ['desc' => 'champ mot de passe ou identifiant vide', 'code' => 2];
+        $_SESSION['erreur'] = ['desc' => 'Champ mot de passe ou identifiant vide', 'code' => 2];
         header('Location: ../index?p=connexion');
     }
 }
