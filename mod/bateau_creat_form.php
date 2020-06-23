@@ -18,7 +18,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 creationFormType::input_text("text", "nom", "Nom du bateau", "nom", "Nom du bateau");
                 creationFormType::input_text("text", "description", "description du bateau", "description", "description du bateau");
 
-                creationFormType::input_text("text", "nomModele", "nom du model du bateau", "nomModele", "nom du model du bateau");
+                creationFormType::input_select("nomModele", "nomModele",["rigide"=>"Coque rigide", "semi"=>"Coque semi rigide", "prestige"=>"Gamme prestige"] ,"nom du model du bateau");
                 creationFormType::input_text("text", "moteur", "moteur", "moteur", "moteur");
                 creationFormType::input_text("number", "longueur", "longueur", "longueur", "longueur");
                 creationFormType::input_text("number", "nombrePassager", "nombrePassager", "nombrePassager", "nombrePassager");
