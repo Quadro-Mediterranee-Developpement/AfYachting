@@ -65,17 +65,8 @@ and open the template in the editor.
     </head>
     <body>
 
-
-
-        <nav class="navbar navbar-dark bg-primary nb-3">
-            <a href="./index.php" class="navbar-brand">Mon calendrier de <?= $mode['ROLE'] ?></a>   
-        </nav>
-
-
-
-
         <?php if (isset($_GET['day'])): ?>
-            <div class="">
+        <div class="">
                 <?php
                 $date = new \DateTime();
                 $date->setDate($month->getYear(), $month->getMonth(), $_GET['day']);

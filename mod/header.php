@@ -32,12 +32,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <?php
             if (!isset($_SESSION['ID'])) {
                 ?>
-            <a class="nav-link" href="?p=connexion">Connexion</a>/<a class="nav-link" href="?p=inscription">Inscription</a>
+                <a class="nav-link" href="?p=connexion">Connexion</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=inscription">Inscription</a>
             <?php
               
             } else {
                            ?>
-            <a class="nav-link" href="?p=compte">Mon compte</a>/<a class="nav-link" href="?p=accueil&destroy=1">Se déconnecter</a>
+            <a class="nav-link" href="?p=compte">Mon compte</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=accueil&destroy=1">Se déconnecter</a>
             <?php      
             }
             ?>

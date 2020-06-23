@@ -11,12 +11,16 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             foreach ($_SESSION['news'] as $k => $i) {
                 $id++;
                 ?>
-                <div class="popup <?= ($i['code']) ? "green" : "red"; ?>" id="popup<?= $id ?>" ><h5>Message <?= $k ?>:</h5><?= $i['desc'] ?>&nbsp;&nbsp;<a href="#" onclick="return closeee('popup<?= $id ?>')"> close</a></div>
+<div class="popup <?= ($i['code']) ? "green" : "red"; ?>" id="popup<?= $id ?>" ><h5><?= $i['desc'] ?></h5></div>
+<a class="fermeur" href="#" onclick="return closeee('popup<?= $id ?>')"> close</a>
                 <?php
             }
             echo "</span>";
             ?>
             <script type="text/javascript">
+                
+                setTimeout(function(){ window.document.getElementById("popup").remove(); }, 5000);
+                
                 function closeee(id)
                 {
                     var parent = window.document.getElementById("popup");

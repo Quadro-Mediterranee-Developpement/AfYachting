@@ -43,15 +43,6 @@ body::-webkit-scrollbar {
     object-fit: cover;
 }
 
-.midPict{
-    width: 28vw;
-    height: 300px;;
-}
-
-.col
-{
-    max-width: 34%;
-}
 .cubeForm 
 {
     max-width: 500px;

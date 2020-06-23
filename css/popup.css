@@ -10,10 +10,12 @@ and open the template in the editor.
 
 #popup
 {
-    width: 100%;
+    width: 50%;
     background-color:transparent;
     position: absolute;
     z-index: 12;
+    top: 1%;
+    left: 25%;
 }
 
 .popup
@@ -26,7 +28,14 @@ and open the template in the editor.
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     width: 80%;
+}
+
+.fermeur {
+    position: absolute;
+    top: 28%;
+    left: 85%;
 }
 
 .green

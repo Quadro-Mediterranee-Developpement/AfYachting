@@ -6,7 +6,7 @@ class loaderBDD {
         try {
             $bdd = new PDO('mysql:host=localhost;dbname=afyachtingV2', 'root', '');
         } catch (Exception $e) {
-            $bdd = new PDO('mysql:host=localhost:3308;dbname=afyachtingV2', 'root', '');
+            $bdd = new PDO('mysql:host=localhost;dbname=afyachtingV2', 'root', '');
         }
         $bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         return $bdd;

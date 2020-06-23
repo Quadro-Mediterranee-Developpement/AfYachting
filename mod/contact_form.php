@@ -32,7 +32,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 </div>
 
                 <div class="form-label-group">
-                    <textarea name="message"  placeholder="Votre message" class="form-control"></textarea>
+                    <textarea name="message"  placeholder="Votre message" class="form-control" style="height: 115px;"></textarea>
                 </div>
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Envoyer</button>

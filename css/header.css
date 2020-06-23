@@ -33,8 +33,10 @@ nav {
     color:white;
     font-weight:normal;
     font-size:initial;
-    padding: 0;
-    
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 25px;
+    margin: 10px;
 }
 
 .volant>a
@@ -43,6 +45,10 @@ nav {
     font-weight:normal;
     font-size:initial;
     padding: 0;
-    text-decoration: underline;
     text-shadow: 1px 1px black;
+}
+
+.volant>a:hover
+{
+    text-decoration: underline;
 }
