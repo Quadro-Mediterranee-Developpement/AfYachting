@@ -15,7 +15,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             foreach ($information as $y) {
                 echo '<div>';
                 identityCardBoat($y);
-                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return supprimer(\"" .$y['Nom'] . "\",\"bateau\")'>suprimer</a></div>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return supprimer(\"" .$y['Nom'] . "\",\"bateau\")'>suprimer</a>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddScreen&id=".$y['ID_images']."' >Ajouter Images</a></div>";
             }
             echo '</div></div>';
          echo "</div></div>";

@@ -8,21 +8,23 @@ if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
 
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
             if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                $erreur = "File is not an image.";
+                $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
                 $uploadOk = 0;
             }
 
             if ($_FILES["fileToUpload"]["size"] > 5000000) {
-                echo "Sorry, your file is too large.";
+                $erreur = "Sorry, your file is too large.";
+                $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
                 $uploadOk = 0;
             }
 
             $imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]), PATHINFO_EXTENSION));
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $erreur = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
                 $uploadOk = 0;
             }
 
@@ -33,20 +35,22 @@ if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
             while (file_exists($tempTarg . basename($_FILES["fileToUpload"]["name"]))) {
                 $i++;
                 $tempTarg = $target_dir . "($i)";
-                echo "Sorry, file already exists.";
             }
             $target_file = $tempTarg . basename($_FILES["fileToUpload"]["name"]);
 
             if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
+                $erreur = "Sorry, your file was not uploaded.";
+                $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                     loaderBDD::Addimage($target_file, $_POST['alt'], $_POST['id']);
-                    echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    $erreur = "Sorry, there was an error uploading your file.";
+                    $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
                 }
             }
         }
     }
 }
+
+header("location:".  $_SERVER['HTTP_REFERER']); 
