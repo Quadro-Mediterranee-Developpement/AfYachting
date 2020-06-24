@@ -33,7 +33,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <style>
                         .midPict {
                             width: 50vw;
-                            height: 38vw;
+                            height: 32vw;
                         }
                         .col {
                             max-width: 53%;
@@ -43,10 +43,14 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         }
 
                         .flex-column .carousel .carousel-inner .carousel-item .pictSize{
-                            height: 38vw;
+                            height: 32vw;
                         }
                         .row {
                             justify-content: flex-start!important;
+                        }
+
+                        .text-center {
+                            max-width: 35vw;
                         }
                     </style>
                     <?php

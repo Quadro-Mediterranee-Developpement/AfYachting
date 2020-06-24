@@ -23,7 +23,7 @@ class bateauMANAGER extends loaderBDD {
     }
     
     public static function recupINFORMATIONone($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT bateau.ID AS 'Option',Nom, Description,Modele,Passagers,Moteur,Longueur,Equipement,Divers,ID_images,HS,MS,BS,Caution,Age,State,Largeur,Prix FROM bateau LEFT JOIN location ON location.ID = bateau.ID_Location LEFT JOIN vente ON vente.ID = bateau.ID_Vente WHERE Password IS NOT NULL AND ID = $id");
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT bateau.ID AS 'Option',Nom, Description,Modele,Passagers,Moteur,Longueur,Equipement,Divers,ID_images,HS,MS,BS,Caution,Age,State,Largeur,Prix FROM bateau LEFT JOIN location ON location.ID = bateau.ID_Location LEFT JOIN vente ON vente.ID = bateau.ID_Vente WHERE (Password IS NOT NULL) AND bateau.ID = '".$id."'");
         $requete->execute();
         if (($retour = $requete->fetchAll())) {
             return $retour;

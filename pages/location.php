@@ -27,11 +27,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
             column([["Coque rigide", "carousel_test/img_slider_1", "Un large choix de bateaux à coques rigides.", " ", "En savoir plus", "location&type=rigide"], ["Coque semi-rigide", "carousel_test/img_slider_2", "Un large choix de bateaux à coques semi-rigides.", " ", "En savoir plus", "location&type=semi"], ["Gamme prestige", "carousel_test/img_slider_3", "Un large choix de bateaux prestigieux.", " ", "En savoir plus", "location&type=prestige"]]);
         } else if ($_GET["type"] == "rigide" || $_GET["type"] == "semi" || $_GET["type"] == "prestige") {
-            
-            $batmanager = new bateauMANAGER();
-            $imgmanager = new loaderBDD();
 
-            $bat = $batmanager->recupINFORMATIONall();
+            $bat = bateauMANAGER::recupINFORMATIONall();
 
             $returner = array();
             $buffout = array();
@@ -40,7 +37,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 if ($bat[$i]["Modele"] == $_GET["type"]) {
 
-                    $img = $imgmanager->image($bat[$i]["ID_images"]);
+                    $img = loaderBDD::image($bat[$i]["ID_images"]);
 
                     $buffout = [$bat[$i]["Nom"], $img ,$bat[$i]["Description"],$bat[$i]["Moteur"]."<br><i class='font-weight-bold'>".$bat[$i]["Passagers"]." personnes</i><br><br><b class='text-primary'>".number_format($bat[$i]["HS"], 0, '.', ',')." €</b> en haute saison<br><b class='text-primary'>".number_format($bat[$i]["MS"], 0, '.', ',')." €</b> le reste de la saison<br><i class='font-weight-light'>Caution : ".number_format($bat[$i]["Caution"], 0, '.', ',')." €</i>","Réserver","bateau&ID=".strval($bat[$i]["Option"])];
 
