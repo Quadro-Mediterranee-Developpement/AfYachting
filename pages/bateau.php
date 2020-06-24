@@ -2,8 +2,8 @@
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index.php?p=404');
     exit();
-} else if (!isset($_GET['batID'])) {
-    header('Location: index.php?p=bateau&batID=1');
+} else if (!isset($_GET['ID'])) {
+    header('Location: index.php?p=bateau&ID=1');
     exit();
 } else {
     $included = ["head", "header", "column", "bateau_form", "textual", "footer", "foot"];
