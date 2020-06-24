@@ -42,7 +42,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                     $img = $imgmanager->image($bat[$i]["ID_images"]);
 
-                    $buffout = [$bat[$i]["Nom"], $img ,"","Lorem ipsum pour le moment","En savoir plus","bateau&ID=".strval($bat[$i]["Option"])];
+                    $buffout = [$bat[$i]["Nom"], $img ,$bat[$i]["Description"],$bat[$i]["Moteur"]."<br><i class='font-weight-bold'>".$bat[$i]["Passagers"]." personnes</i><br><br><b class='text-primary'>".number_format($bat[$i]["HS"], 0, '.', ',')." €</b> en haute saison<br><b class='text-primary'>".number_format($bat[$i]["MS"], 0, '.', ',')." €</b> le reste de la saison<br><i class='font-weight-light'>Caution : ".number_format($bat[$i]["Caution"], 0, '.', ',')." €</i>","Réserver","bateau&ID=".strval($bat[$i]["Option"])];
 
                     array_push($returner, $buffout);
                 }
