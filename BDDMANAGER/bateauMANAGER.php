@@ -21,6 +21,15 @@ class bateauMANAGER extends loaderBDD {
         }
         return [];
     }
+    
+    public static function recupINFORMATIONone($id) {
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT bateau.ID AS 'Option',Nom, Description,Modele,Passagers,Moteur,Longueur,Equipement,Divers,ID_images,HS,MS,BS,Caution,Age,State,Largeur,Prix FROM bateau LEFT JOIN location ON location.ID = bateau.ID_Location LEFT JOIN vente ON vente.ID = bateau.ID_Vente WHERE Password IS NOT NULL AND ID = $id");
+        $requete->execute();
+        if (($retour = $requete->fetchAll())) {
+            return $retour;
+        }
+        return [];
+    }
 
     public static function recupOPTION($id) {
         $requete = loaderBDD::connexionBDD()->prepare("SELECT option_boat.Name AS name,option_boat.Description AS description,option_boat.Prix AS prix FROM option_boat INNER JOIN routageoption ON routageoption.ID_Option = option_boat.ID WHERE routageoption.ID_Bateau = $id");
