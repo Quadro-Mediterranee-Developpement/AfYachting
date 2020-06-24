@@ -44,19 +44,19 @@ if (isset($_SESSION['ID'])) {
             break;
 
         case 'client':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact", "Espace" => "espace_client"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact", "Espace" => "espace_client"];
             break;
 
         case 'client_ponctuel':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
             break;
 
         default:
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
             break;
     }
 } else {
-    $menu = ["Accueil" => "Accueil", "Location" => "Location", "Ventes" => "Ventes", "Contact" => "Contact"];
+    $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
 }
 
 ?>
