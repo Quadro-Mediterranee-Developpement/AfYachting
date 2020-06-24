@@ -12,9 +12,9 @@ function dd(...$vars) {
 
 function get_pdo(): \PDO {
     try {
-        $bdd = new \PDO('mysql:host=localhost;dbname=afyachtingV2', 'root', '');
+        $bdd = new \PDO('mysql:host=localhost:3308;dbname=afyachtingV2', 'root', '');
     } catch (\Exception $ex) {
-        $bdd = null;
+        $bdd = new \PDO('mysql:host=localhost;dbname=afyachtingV2', 'root', '');
     }
     return $bdd;
 }

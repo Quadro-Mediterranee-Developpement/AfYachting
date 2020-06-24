@@ -4,8 +4,6 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-
-    $_SESSION['activeBackPage']['url'] = $p;
     $included = ["head", "header", "mosaic", 'textual', "footer", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
@@ -21,12 +19,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'admin') {
-                if (isset($_GET['id'])) {
+                if (isset($_GET['id']) && isset($_GET['destination'])) {
                     ?>
                     <form action="traitementPOST/index.php?p=AddScreen" method="post" enctype="multipart/form-data">
 
                         <input type="hidden" value="<?= $_GET['id'] ?>" name="id" id="id">
-                        <input type="hidden" value="bateau" name="location" id="location">
+                        <input type="hidden" value="<?= $_GET['destination'] ?>" name="location" id="location">
                         <div class="form-label-group">
                             <label for="alt">description:</label>
                             <input type="text" value="" name="alt" id="alt">
@@ -61,7 +59,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             //TEXT
             textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigée"]);
         }
-
+        ?>
+        <a <?= "href='index?p=lastpage'"; ?>"><img class="closer" src="img/close.png" alt=""/></a>
+        <?php
         footer();
 
         foot($included);

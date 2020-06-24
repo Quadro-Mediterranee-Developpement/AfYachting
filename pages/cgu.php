@@ -5,7 +5,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 } else {
 
     $included = ["head","header","textual","footer","foot"];
- 
+    $_SESSION['activeBackPage']['url'] = $p;
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
