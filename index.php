@@ -6,6 +6,7 @@ if (isset($_GET['destroy'])) {
     if (isset($_SESSION['ID'])) {
         $_SESSION['news']['deconnexion'] = ['desc' => 'Vous êtes déconnecté', 'code' => false];
         unset($_SESSION['ID']);
+        $_SESSION['activeBackPage']['url'] = 'accueil';
     }
 }
 if (!isset($_SESSION['ActiveAjax'])) {
