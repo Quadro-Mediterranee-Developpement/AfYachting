@@ -1,0 +1,80 @@
+
+
+.calendar__table td{
+    padding:10px;
+    border:1px solid #ccc;
+    vertical-align: top;
+    width:56px;
+    height:56px;
+}
+
+.calendar__table--6weeks td{
+    height:16.66%;
+}
+
+.calendar__weekday{
+    font-weight:bold;
+    color:black;
+    font-size:1.2em;
+}
+
+.calendar__day{
+    font-size: 1.3em;
+
+
+}
+/*https://online-free-tools.com/fr/css_generateur_motif_pattern_background*/
+.calendar__othermonth{
+    background: linear-gradient(45deg, #000 1%, #fff 1%, #fff 49%, #000 49%, #000 51%, #fff 51%, #fff 99%, #000 99%);
+    background-size: 6px 6px;
+    background-position: 50px 50px;
+
+}
+
+.btndate
+{
+    width: 200px;
+}
+
+.calendar__button:hover{
+    text-decoration:none;
+    color:#FFF;
+    transform:scale(1.2);
+}
+
+.calendar__table td.is-today{
+    background-color:#D7F5FC;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+input
+{
+    position: absolute;
+    top: -9999px;
+}
+
+.half-day + label  /*demi journée*/
+{
+    color: blue;
+}
+
+input + label /*journée*/
+{
+    color: green;
+}
+
+input:disabled + label
+{
+    color: yellow;
+}
+
+input:checked + label /*journée cocher*/
+{
+    color: red;
+}
+
