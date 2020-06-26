@@ -9,45 +9,48 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     function footer() {
         ?>
         <footer>
-            <div class="mt-4 pt-5 pb-5 footer">
+            <div class="mt-4 pb-5 footer">
+                
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5 col-xs-12">
+                        <img style="align-self: center;" src="img/Logo-AFYACHTING.png" height="200px" width="200px" alt="Logo de l'entreprise AfYachting"/>
+                        <div>
+                            
+                            
                             <h2>
                                 Suivez-nous !
                             </h2>
-                            <p class="pr-5 text-white-50">
-                                Gardez contacte par être informé des dernieres actualité de AfYachting sur tous les réseaux sociaux.  
+                            <p class="text-white-50">
+                                Suivez notre activité en cliquant sur les liens ci-dessous  
                             </p>
                             <ul class="social">
                                 <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
                             </ul>
+                            
                         </div>
-                        <div class="col-lg-3 col-xs-12 links">
+                        <div class="localisation">
                             <h4 class="mt-lg-0 mt-sm-3">
-                                Lien vers des partenaires
+                                Nos partenaires :
                             </h4>
-                            <ul>
-                                <li><a href="https://www.google.com/search?q=La+plage+de+Toulon+et+CO&oq=La+plage+de+Toulon+et+CO&aqs=chrome..69i57j33l7.956j0j7&sourceid=chrome&ie=UTF-8">La plage de Toulon et CO</a> </li>
-                                <li><a href="https://www.google.com/search?q=Grillade+au+feu+de+bois&oq=Grillade+au+feu+de+bois&aqs=chrome..69i57j0l7.764j0j9&sourceid=chrome&ie=UTF-8">Grillade au feu de bois</a> </li>
-                                <li><a href="https://www.google.com/search?q=Le+retour+de+la+momie+2+vf&oq=Le+retour+de+la+momie+2+vf&aqs=chrome..69i57.767j0j9&sourceid=chrome&ie=UTF-8">Le retour de la momie 2 vf</a> </li>
-                                <li><a href="https://www.google.com/search?q=Maison+%C3%A0+vendre&oq=Maison+%C3%A0+vendre&aqs=chrome..69i57j0l7.450j0j9&sourceid=chrome&ie=UTF-8">Maison à vendre</a> </li>
-                                <li><a href="https://www.google.com/search?q=Concurence+%26%238249%3BNE+PAS+Y+ALLER%3E&oq=Concurence+%26%238249%3BNE+PAS+Y+ALLER%3E&aqs=chrome..69i57.546j0j9&sourceid=chrome&ie=UTF-8">Concurence &#8249;NE PAS Y ALLER></a> </li>
-                                
-                            </ul>
+                            <p><a href="https://www.medyacht-group.com/"class="text-white">Medyacht</a></p>
                         </div>
-                        <div class="col lg-4 col-xs-12 localisation">
-                            <h4>contact Rapide</h4>
-                            <p><i class="fa fa-map-marker">Nous localiser</i> </p>
-                            <p><i class="fa fa-phone">0600000000</i> </p>
-                            <p><i class="fa fa-enveloppe-o">info@mail.com</i> </p>
+                        <div class="localisation">
+                            
+                            <h4>Navigation :</h4>
+                           
+                            <p><a href="index?p=contact"class="text-white">Contact</a></p>
+                            <p><a href="index" class="text-white">Accueil</a></p>
+                            <p><a href="index?p=location" class="text-white">Location</a></p>
+                            <p><a href="index?p=vente" class="text-white">Vente</a></p>
+                            <p><a href="index?p=cgu" class="text-white">Les Conditions Générales d'utilisation</a></p>
+                            <p><a href="index?p=cgv" class="text-white">Les Conditions Générales de Vente</a></p>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col copyright text-center">
-                            <p><small class="text-white-50">AfYachting all right reserved</small></p>
+                    <div class="row mt-2">
+                        <div class="copyright text-center">
+                            <p><small class="text-white-50">© 2020 Copyright: AfYachting all right reserved</small></p>
                         </div>
                     </div>
                 </div>

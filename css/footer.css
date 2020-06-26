@@ -15,12 +15,6 @@ footer{
     background-color :#4682B4;
 }
 
-.col
-{
-    max-width: 34%;
-    align-items: center;
-}
-
 .footer .link ul{
     list-style-type: none;
 }
@@ -75,4 +69,20 @@ footer{
 
 h4{
     padding: 15px 0px;
+}
+
+.container{
+    margin: 0;
+}
+
+.row {
+    margin: 0;
+    width: 98vw;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.copyright {
+    
+        width: 100%;
 }
