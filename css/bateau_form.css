@@ -70,3 +70,28 @@ and open the template in the editor.
     width: 70%;
     background-color : #03224C;
 }
+
+.commentaire
+{
+    font-size: 12px;
+    color: #cccccc;
+    font-style: italic;
+}
+
+.noValide::after
+{
+  content: "pas de date";
+  background-color: #FFBA10;
+}
+
+.Valide::after
+{
+  content: "valide";
+  background-color: green;
+}
+
+.inValide::after
+{
+  content: "invalide";
+  background-color: red;
+}
