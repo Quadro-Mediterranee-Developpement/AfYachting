@@ -15,7 +15,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     unset($i);
 
 
-    head($included, "Description de la page bateau adaptée au référencement", "Titre de la page bateau adaptée au référencement");
+    head($included, "Retrouvez l'ensemble des informations du bateau", "Page bateau");
     ?>
 
     <body>

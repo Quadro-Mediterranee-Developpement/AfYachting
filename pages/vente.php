@@ -19,7 +19,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
         //TEXT
-        textual("Achetez un bateau",FALSE,["Le coup de coeur que l'on peut avoir à la vue d'un bateau sur un site de petites annonces ou amarré dans un port de plaisance, peut vite virer au calvaire s'il ne correspond finalement pas à son programme de navigation. Moteur, voile ou mixte voile-moteur, navigation côtière, petite croisière, course et régate : la première chose à bien définir est ce que l'on veut faire avec son bateau. Un bon conseil : les coups de coeur différents du programme de navigation mûrement réfléchi... sont à proscrire !"]);            
+        textual("Achetez un bateau",FALSE,["Vous trouverez sur cette page une sélection parmis un large choix de tous les bateaux disponibles à la vente chez AfYachting."]);            
         //TEXT 
         
         $bat = bateauMANAGER::recupINFORMATIONall();

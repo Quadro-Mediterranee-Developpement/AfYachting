@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "", "Espace skipper");
+    head($included, "Retrouvez ici votre espace de gestion", "Espace skipper");
     ?>
 
     <body>

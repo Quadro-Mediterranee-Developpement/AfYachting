@@ -9,7 +9,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "Contacte AfYachting et localisation", "Contacte");
+    head($included, "Retrouvez sur cette page un formulaire de contact et la localisation de l'entreprise", "Page de contact");
     ?>
 
     <body>

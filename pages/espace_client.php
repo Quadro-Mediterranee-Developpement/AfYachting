@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "", "Espace client");
+    head($included, "Retrouvez ici votre espace client", "Espace client");
     ?>
 
     <body>

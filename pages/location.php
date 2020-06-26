@@ -13,7 +13,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     require_once 'BDDMANAGER/loaderBDD.php';
 
     //TEXT
-    head($included, "Bateau disponible à la location pour une qualité imbatable", "Location de bateau");
+    head($included, "Louez un bateau via notre plate-forme de location spécialisée et notre large choix de bateaux parmis les trois types de gamme proposés", "Page de location");
     ?>
 
     <body>
@@ -23,7 +23,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         if (!isset($_GET["type"])) {
 
-            textual("Louez un bateau", FALSE, ["Réservez directement en ligne de manière sécurisée et louez le bateau ou voilier de vos rêves en quelques clics. Vous ne serez débité qu’en cas d’acceptation de votre demande de location par le propriétaire du bateau. Paiement 100% sécurisé."], "", "");
+            textual("Louez un bateau", FALSE, ["Louez un bateau via notre plate-forme de location spécialisée et notre large choix de bateaux parmis les trois types de gamme proposés."], "", "");
 
             column([["Coque rigide", "carousel_test/img_slider_1", "Un large choix de bateaux à coques rigides.", " ", "En savoir plus", "location&type=rigide"], ["Coque semi-rigide", "carousel_test/img_slider_2", "Un large choix de bateaux à coques semi-rigides.", " ", "En savoir plus", "location&type=semi"], ["Gamme prestige", "carousel_test/img_slider_3", "Un large choix de bateaux prestigieux.", " ", "En savoir plus", "location&type=prestige"]]);
         } else if ($_GET["type"] == "rigide" || $_GET["type"] == "semi" || $_GET["type"] == "prestige") {
