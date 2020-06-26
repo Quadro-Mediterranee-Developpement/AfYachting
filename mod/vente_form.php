@@ -5,10 +5,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 } else {
     //TEXT
     // un peu partout
-    function vente_form($categorie, $marque, $input) {
+    function vente_form($categorie, $marque, $input, $inputinput) {
         ?>
         <div class=" container-fluid d-flex justify-content-between mt-5 infoContainer ">
-            <?php $input(); ?>
+            <?php $input($inputinput); ?>
             <div class="formBox mt-4">
                 <form class="form" action="index.php" method="get">
                     <div class="form-group">

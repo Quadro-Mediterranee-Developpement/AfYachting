@@ -12,7 +12,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <div class="mt-4 pb-5 footer">
                 
                 <div class="container">
-                    <div class="row">
+                    <div class="foterino">
                         <img style="align-self: center;" src="img/Logo-AFYACHTING.png" height="200px" width="200px" alt="Logo de l'entreprise AfYachting"/>
                         <div>
                             
@@ -34,7 +34,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                             <h4 class="mt-lg-0 mt-sm-3">
                                 Nos partenaires :
                             </h4>
-                            <p><a href="https://www.medyacht-group.com/"class="text-white">Medyacht</a></p>
+                            <p><a target="_blank" href="https://www.medyacht-group.com/"class="text-white">Medyacht</a></p>
+                            <p><a target="_blank" href="https://mercurio.fr/"class="text-white">Mercurio</a></p>
+                            <p><a target="_blank" href="https://www.octopussy.fr/"class="text-white">Octopussy</a></p>
+                            <p><a target="_blank" href="https://www.omv.fr/"class="text-white">OMV</a></p>
                         </div>
                         <div class="localisation">
                             
@@ -48,8 +51,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                             <p><a href="index?p=cgv" class="text-white">Les Conditions Générales de Vente</a></p>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="copyright text-center">
+                    <div style="width: 98vw; text-align: center!important;" class="row mt-2">
+                        <div class="copyright">
                             <p><small class="text-white-50">© 2020 Copyright: AfYachting all right reserved</small></p>
                         </div>
                     </div>
