@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "Page bad occurence 403", "Page bad occurence 403");
+    head($included, "Il vous est interdit d'accéder à cette page", "Error 403");
     ?>
 
     <body>

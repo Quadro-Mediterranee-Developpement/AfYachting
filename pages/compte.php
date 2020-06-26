@@ -13,7 +13,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     }
 
 
-    head($included, "Description de la page contact adaptée au référencement", "Titre de la page contact adaptée au référencement");
+    head($included, "Ici, vous pourrez modifier les informations de votre compte", "Votre compte");
     ?>
 
     <body>

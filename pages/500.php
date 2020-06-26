@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "Page bad occurence 500", "Page bad occurence 500");
+    head($included, "Il semble que le serveur ait un problème pour charger cette page. Pour continuer cliquer sur un des liens situé dans la barre de navigation.", "Error 500");
     ?>
 
     <body>

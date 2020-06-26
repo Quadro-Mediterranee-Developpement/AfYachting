@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "", "Page 404");
+    head($included, "La page à laquelle vous tentez d'accéder n'existe pas. Pour continuer cliquer sur un des liens situé dans la barre de navigation.", "Error 404");
     ?>
 
     <body>

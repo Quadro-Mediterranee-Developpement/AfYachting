@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "Les CGU", "Les CGU d'AfYachting");
+    head($included, "CGU d'AfYachting", "Les Conditions Générales d'Utilisation d'AfYachting");
     ?>
 
     <body>
