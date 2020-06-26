@@ -13,7 +13,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <form <?= ($mode) ? "onsubmit='return connexion()'" : 'method="POST" action="traitementPOST/index.php?p=connexion"'; ?> class="form-signin" >
                 <?php
                 creationFormType::input_text("text", "inputNameEmail", "Nom ou adresse Email", "userName", "Nom ou adresse Email");
-                creationFormType::input_text("password", "inputPassword", "Mot de passe", "password", "Mot de passe");
+                creationFormType::input_text("password", "inputPassword", "Mot-de-passe", "password", "Mot de passe");
                 ?>
                 <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "connect"  >Se connecter</button>
 

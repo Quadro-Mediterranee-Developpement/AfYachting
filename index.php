@@ -37,15 +37,15 @@ if (isset($_GET["validationEmail"])) {
 if (isset($_SESSION['ID'])) {
     switch ($_SESSION['ID']['ROLE']) {
         case 'admin':
-            $menu = ["Accueil" => "Accueil", "Gestion" => "Gestion"];
+            $menu = ["Gestion" => "Gestion"];
             break;
 
         case 'skipper':
-            $menu = ["Accueil" => "Accueil", "Espace" => "espace_skipper"];
+            $menu = ["Espace" => "espace_skipper"];
             break;
 
         case 'client':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact", "Espace" => "espace_client"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
             break;
 
         case 'client_ponctuel':
