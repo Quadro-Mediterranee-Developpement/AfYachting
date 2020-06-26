@@ -59,7 +59,6 @@ if (isset($_SESSION['ID'])) {
 } else {
     $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
 }
-
 ?>
 <!DOCTYPE html>
 <!--
@@ -73,29 +72,50 @@ Front : Paul-Emile NEU
 Back : Hugo MUSOLES
 -->
 <html lang="fr">
-<?php
-require 'BDDMANAGER/loaderBDD.php';
+    <?php
+    require 'BDDMANAGER/loaderBDD.php';
 
-if (isset($_GET["p"])) {
-    $p = filter_input(INPUT_GET, "p");
-    if ($p == 'lastpage') {
-        $p = $_SESSION['activeBackPage']['url'];
+    if (isset($_GET["p"])) {
+        $p = filter_input(INPUT_GET, "p");
+        if ($p == 'lastpage') {
+            $p = $_SESSION['activeBackPage']['url'];
+        } else if ($p == 'espace') {
+            if (isset($_SESSION['ID'])) {
+                switch ($_SESSION['ID']['ROLE']) {
+                    case 'admin':
+                        $p = 'gestion';
+                        break;
+
+                    case 'skipper':
+                        $p = 'espace_skipper';
+                        break;
+
+                    case 'client':
+                        $p = 'espace_client';
+                        break;
+                    default:
+                        $p = 'connexion';
+                        break;
+                }
+            } else {
+                $p = 'connexion';
+            }
+        }
+    } else {
+        $p = "accueil";
     }
-} else {
-    $p = "accueil";
-}
 
-$page = "pages/" . $p . ".php";
+    $page = "pages/" . $p . ".php";
 
-if (is_file($page)) {
-    require $page;
-} else {
-    require "pages/404.php";
-}
+    if (is_file($page)) {
+        require $page;
+    } else {
+        require "pages/404.php";
+    }
 
 
-unset($_SESSION['news']);
+    unset($_SESSION['news']);
 
-unset($_SESSION['erreur']);
-?>
+    unset($_SESSION['erreur']);
+    ?>
 </html>

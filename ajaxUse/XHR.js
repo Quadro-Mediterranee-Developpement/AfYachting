@@ -135,7 +135,7 @@ function supprID(id)
 
 function log(data) {
     if (data === "OK") {
-        document.location.search = "?p=lastpage";
+        document.location.search = "?p=espace";
     } else {
         document.getElementById("errorform").innerHTML = data;
         document.getElementById("errorform").style.display = 'block';
