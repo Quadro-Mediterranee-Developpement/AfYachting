@@ -150,3 +150,28 @@ function logm(data) {
         document.getElementById("errorform").style.display = 'block';
     }
 }
+
+function completeInfo(data) {
+    if (data[0] === "h" && data[1] === "t") {
+         
+    } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
+    }
+}
+
+function bateauLocation(callback = completeInfo)
+{
+    var id = document.getElementById('ID').value;
+    var dure = document.getElementById('reservationduration').value;
+    var nomModele = document.getElementById('nomModele').value;
+    var moteur = document.getElementById('moteur').value;
+    var longueur = document.getElementById('longueur').value;
+    var nombrePassager = document.getElementById('nombrePassager').value;
+    var Equipement = document.getElementById('Equipement').value;
+    var divers = document.getElementById('divers').value;
+    
+    ajaxMethode(callback, [nom, description, nomModele, moteur, longueur,nombrePassager,Equipement,divers, 'addboat'], ['nom', 'description', 'nomModele', 'moteur', 'longueur','nombrePassager','Equipement','divers', 'type'], 'ajaxUse/traitement.php');
+    return false;
+
+}

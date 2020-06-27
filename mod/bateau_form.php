@@ -8,15 +8,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     //TEXT
     // un peu partout
     function bateau_form($id, $mode = false) {
-        
+
         $date = evenementMANAGER::recupAllHoraireByBateau($id);
-        //$esdate = evenementMANAGER::giveRefDate($date);
+        $esdate = evenementMANAGER::giveRefDate($date);
         $options = bateauMANAGER::recupOPTION($id);
-        
-        
         ?>
         <div>
-            <div id="setLocation" class="formBox mt-4">
+            <div id="setLocation" class="formBox mt-4" style="display:block;">
                 <p class="commentaire">
                     Pour la haute saison : Du 1er juillet au 31 Aout inclus et pendant les voiles de saint Tropez du 28 septembre au 15 octobre<br>
                     Pour la basse saison : du 1er mars au 30 juin et du 16 octobre au 31 octobre.<br>
@@ -24,10 +22,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 </p>
                 <form <?= ($mode) ? "onsubmit='return bateauLocation()'" : 'action="traitementPOST/index.php?p=bateauLocation" method="POST"'; ?> class="form" >
 
+                    <input type="hidden" value="<?= $id ?>">
                     <div class="form-group">
                         <label for="reserveduraction" class="text-center label">Durée de réservation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
-                            <option value="rien">pas de selection</option>
+                            
                             <option value="matin">1 matinée</option>
                             <option value="apresmidi">1 après-midi</option>
                             <option value="jour">1 journée</option>
@@ -35,8 +34,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="date">date</label>
-                        <div id="date" class="noValide"></div>
+                        <label for="date" class="text-center label">date</label>
+                        <div id="date" name="date" class="noValide"></div>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" id="skipper" name="skipper" checked>
@@ -48,6 +47,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         document.getElementById('reserveduraction').onchange = function (e) {
                             $('#date').datepicker('destroy');
                             document.getElementById('date').className = "noValide";
+                            document.getElementById('date').value = "";
                             switch (this.value)
                             {
                                 case 'matin':
@@ -61,6 +61,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                     $('#date').datepicker()
                                             .on("changeDate", function (e) {
                                                 document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                                document.getElementById('date').value = $('#date').datepicker('getDates').toString();
                                             });
                                     break;
                                 case 'apresmidi':
@@ -137,11 +138,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                             {
                                 var fin = new Date(debut);
                                 fin.setDate(debut.getDate() + 7);
-                                for (var i in getDatesDisabled(<?= $id ?>))
+                                var tbl = getDatesDisabled(<?= $id ?>);
+                                for (var i in tbl)
                                 {
-                                    if (i > debut && i < fin)
+                                    var act = new Date(tbl[i]);
+                                    if (act > debut && act < fin)
                                     {
-                                        return i;
+                                        return act;
                                         break;
                                     }
                                 }
@@ -150,44 +153,83 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                             function getDatesDisabled(id)
                             {
-                                return [];
+                                var allElementDate = <?= json_encode($esdate); ?>;
+                                return Object.keys(allElementDate);
                             }
                             function getDatesDisabledMatin(id)
                             {
-                                return [];
+                                var allElementDate = <?= json_encode($esdate); ?>;
+                                var key = Object.keys(allElementDate);
+
+                                var retour = [];
+                                for (var i = 0; i < key.length; i++)
+                                {
+                                    if (allElementDate[key[i]] === 1)
+                                    {
+                                        retour.push(key[i]);
+                                    }
+                                }
+                                return retour;
                             }
                             function getDatesDisabledMidi(id)
                             {
-                                return [];
+                                var allElementDate = <?= json_encode($esdate); ?>;
+                                var key = Object.keys(allElementDate);
+
+                                var retour = [];
+                                for (var i = 0; i < key.length; i++)
+                                {
+                                    if (allElementDate[key[i]] === 2)
+                                    {
+                                        retour.push(key[i]);
+                                    }
+                                }
+                                return retour;
                             }
                         };
 
                     </script>
                     <div class="manyOption">
-                        <?php 
-                        foreach ($options as $option)
-                        {
-                        ?>
-                        <div class="input-group mb-3">
-                            <div  class="form-control" ><?= $option["name"] ?><span class="price"><?= $option["prix"] ?></span></div>
-                            <div class="input-group-prepend">                 
-                                <div class="input-group-text">
-                                    <input type="checkbox" value="<?= $option["ID"] ?>">
+                        <?php
+                        foreach ($options as $option) {
+                            ?>
+                            <div class="input-group mb-3">
+                                <div  class="form-control" ><?= $option["name"] ?><span class="price"><?= $option["prix"] ?></span></div>
+                                <div class="input-group-prepend">                 
+                                    <div class="input-group-text">
+                                        <input type="checkbox" value="<?= $option["ID"] ?>">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
 
 
 
-                    <button type="submit" class="btn btn-primary button" name="calcul" value="<?= $id ?>">Valider</button>
+                    <button type="submit" class="btn btn-primary button" name="calcul" >Valider</button>
 
                 </form>
             </div>
             <div id="getLocation" class="formBox mt-4" style="display: none">
-
+                <div>
+                    <h3>Récapitulatif</h3>
+                    <p>Type : <span id="type"></span></p>
+                    <p>Date : <span id="datage"></span></p>
+                    <p>Skypper : <span id="skip"></span></p>
+                    <p>Option : <span id="opt"></span></p>
+                    <p>Prix total: <span id="prixTotal"></span></p>
+                </div>
+                <div id="toutBon" style="display: block">
+                    <a class="btn btn-primary" href="#">Payer</a>
+                </div>
+                <div id="Nco" style="display: none">
+                    formulaire connexion et inscription temp
+                </div>
+                <div id="manqueDoc" style="display: none">
+                    formulaire pour ajouter document
+                </div>
             </div>
+            <script src="ajaxUse/XHR.js" type="text/javascript"></script>
         </div>
         <?php
     }

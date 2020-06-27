@@ -11,7 +11,7 @@
  *
  * @author HugoMUSOLES
  */
-class evenementMANAGER extends loaderBDD{
+class evenementMANAGER extends loaderBDD {
 
     public static function recupAllHoraireByBateau($id) {
         $requete = loaderBDD::connexionBDD()->prepare("SELECT Start_Override, Stop_Override FROM evenement WHERE ID_Bateau = $id ORDER BY Start_Override");
@@ -24,39 +24,36 @@ class evenementMANAGER extends loaderBDD{
 
     public static function giveRefDate($tbl) {
         $retour = [];
-        
-        $maxHeure = date('24 hours');
-        $maxDemiHeure = date('7 hours');
-        var_dump($tbl);
+        $contexteFormat = "m-d-Y";
+        $maxHeure = 6;
         foreach ($tbl as $unique) {
             $Start = strtotime($unique['Start_Override']);
             $Stop = strtotime($unique['Stop_Override']);
-            $intervale = $Stop->diff($Start);
-            if ($intervale > $maxHeure.time()) {
-                $retour[date("Y-m-d", $Start)] = 3;
-                var_dump($intervale);
-                var_dump($maxHeure.time());
-            } elseif ($intervale > $maxDemiHeure) {
+
+            if (date("G", $Stop - $Start) > $maxHeure) {
+                $retour[date($contexteFormat, $Start)] = 3;
+            } else {
                 if (date("G", $Stop) <= 14 && date("G", $Start) <= 14) {
-                    if (isset($retour[date("Y-m-d", $Start)])) {
-                        if ($retour[date("Y-m-d", $Start)] == 2) {
-                            $retour[date("Y-m-d", $Start)] = 3;
+                    if (isset($retour[date($contexteFormat, $Start)])) {
+                        if ($retour[date($contexteFormat, $Start)] == 2) {
+                            $retour[date($contexteFormat, $Start)] = 3;
                         }
                     } else {
-                        $retour[date("Y-m-d", $Start)] = 1;
+                        $retour[date($contexteFormat, $Start)] = 1;
                     }
                 } elseif (date("G", $Stop) >= 12 && date("G", $Start) >= 12) {
-                    if (isset($retour[date("Y-m-d", $Start)])) {
-                        if ($retour[date("Y-m-d", $Start)] == 1) {
-                            $retour[date("Y-m-d", $Start)] = 3;
+                    if (isset($retour[date($contexteFormat, $Start)])) {
+                        if ($retour[date($contexteFormat, $Start)] == 1) {
+                            $retour[date($contexteFormat, $Start)] = 3;
                         }
                     } else {
-                        $retour[date("Y-m-d", $Start)] = 2;
+                        $retour[date($contexteFormat, $Start)] = 2;
                     }
+                } else {
+                    $retour[date($contexteFormat, $Start)] = 3;
                 }
             }
         }
-        var_dump($retour);
         return $retour;
     }
 
