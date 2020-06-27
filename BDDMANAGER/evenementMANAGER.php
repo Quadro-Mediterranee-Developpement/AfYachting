@@ -11,10 +11,10 @@
  *
  * @author HugoMUSOLES
  */
-class evenementMANAGER {
+class evenementMANAGER extends loaderBDD{
 
     public static function recupAllHoraireByBateau($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT Start_Override Stop_Override WHERE ID_Bateau = $id ORDER BY Start_Override");
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT Start_Override, Stop_Override FROM evenement WHERE ID_Bateau = $id ORDER BY Start_Override");
         $requete->execute();
         if (($retour = $requete->fetchAll())) {
             return $retour;
@@ -24,31 +24,39 @@ class evenementMANAGER {
 
     public static function giveRefDate($tbl) {
         $retour = [];
-        $maxHeure = (8 * 60 * 60);
-        $maxDemiHeure = (8 * 60 * 60);
+        
+        $maxHeure = date('24 hours');
+        $maxDemiHeure = date('7 hours');
+        var_dump($tbl);
         foreach ($tbl as $unique) {
-            if (time(strtotime($unique['Stop_Override']) - strtotime($unique['Start_Override'])) > $maxHeure) {
-                $retour[date("Y-m-d", strtotime($unique['Start_Override']))] = 3;
-            } elseif (time(strtotime($unique['Stop_Override']) - strtotime($unique['Start_Override'])) > $maxDemiHeure) {
-                if (date("G", strtotime($unique['Stop_Override'])) < 14 && date("G", strtotime($unique['Start_Override'])) < 14) {
-                    if (isset($retour[date("Y-m-d", strtotime($unique['Start_Override']))])) {
-                        if ($retour[date("Y-m-d", strtotime($unique['Start_Override']))] == 2) {
-                            $retour[date("Y-m-d", strtotime($unique['Start_Override']))] = 3;
+            $Start = strtotime($unique['Start_Override']);
+            $Stop = strtotime($unique['Stop_Override']);
+            $intervale = $Stop->diff($Start);
+            if ($intervale > $maxHeure.time()) {
+                $retour[date("Y-m-d", $Start)] = 3;
+                var_dump($intervale);
+                var_dump($maxHeure.time());
+            } elseif ($intervale > $maxDemiHeure) {
+                if (date("G", $Stop) <= 14 && date("G", $Start) <= 14) {
+                    if (isset($retour[date("Y-m-d", $Start)])) {
+                        if ($retour[date("Y-m-d", $Start)] == 2) {
+                            $retour[date("Y-m-d", $Start)] = 3;
                         }
                     } else {
-                        $retour[date("Y-m-d", strtotime($unique['Start_Override']))] = 1;
+                        $retour[date("Y-m-d", $Start)] = 1;
                     }
-                } elseif (date("G", strtotime($unique['Stop_Override'])) > 12 && date("G", strtotime($unique['Start_Override'])) > 12) {
-                    if (isset($retour[date("Y-m-d", strtotime($unique['Start_Override']))])) {
-                        if ($retour[date("Y-m-d", strtotime($unique['Start_Override']))] == 1) {
-                            $retour[date("Y-m-d", strtotime($unique['Start_Override']))] = 3;
+                } elseif (date("G", $Stop) >= 12 && date("G", $Start) >= 12) {
+                    if (isset($retour[date("Y-m-d", $Start)])) {
+                        if ($retour[date("Y-m-d", $Start)] == 1) {
+                            $retour[date("Y-m-d", $Start)] = 3;
                         }
                     } else {
-                        $retour[date("Y-m-d", strtotime($unique['Start_Override']))] = 2;
+                        $retour[date("Y-m-d", $Start)] = 2;
                     }
                 }
             }
         }
+        var_dump($retour);
         return $retour;
     }
 

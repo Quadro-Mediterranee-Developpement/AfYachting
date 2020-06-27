@@ -7,110 +7,189 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     //TEXT
     // un peu partout
-    function bateau_form() {
+    function bateau_form($id, $mode = false) {
+        
+        $date = evenementMANAGER::recupAllHoraireByBateau($id);
+        //$esdate = evenementMANAGER::giveRefDate($date);
+        $options = bateauMANAGER::recupOPTION($id);
+        
+        
         ?>
-        <div class="formBox mt-4">
-            <form class="form" action="traitementPOST/index.php?p=bateauLocation" method="POST">
+        <div>
+            <div id="setLocation" class="formBox mt-4">
                 <p class="commentaire">
                     Pour la haute saison : Du 1er juillet au 31 Aout inclus et pendant les voiles de saint Tropez du 28 septembre au 15 octobre<br>
                     Pour la basse saison : du 1er mars au 30 juin et du 16 octobre au 31 octobre.<br>
                     La cale sèche est le reste de l’année, c’est-à-dire du 1er novembre au dernier jour de février.<br>
                 </p>
-                <div class="form-group">
-                    <label for="reserveduraction" class="text-center label">Durée de réservation</label>
-                    <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
-                        <option value="1">1 matinée</option>
-                        <option value="2">1 après-midi</option>
-                        <option value="3">1 journée</option>
-                        <option value="4">plusieurs journées</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="date">date</label>
-                    <div id="date" class="noValide"></div>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="skipper" name="skipper" value="<?= (isset($_GET['skipper'])) ? $_GET['skipper'] : ''; ?>" checked>
-                    <label for="skipper">skipper</label>
-                </div>
-                
-
-                <script type="text/javascript">
-                    $('#date').datepicker({
-                        startDate: "today",
-                        endDate: "+1y",
-                        maxViewMode: 0,
-                        language: "fr",
-                        multidate: 2,
-                        multidateSeparator: ",",
-                        datesDisabled: ['06/06/2020', '06/21/2020']
-                    });
-                    $('#date').datepicker()
-                            .on("changeDate", function (e) {
-                                var sauv = e["dates"];
-                                if (sauv[0])
-                                {
-                                    var actual = new Date(sauv[0]);
-                                    var date = new Date(actual);
-                                    date.setDate(actual.getDate() + 7);
-                                    if(sauv[1])
-                                    {
-                                        if(date > sauv[1])
-                                        {
-                                            document.getElementById('date').class = "Valide";
-                                        }
-                                        else
-                                        {
-                                            $('#date').datepicker("setDates",actual);
-                                            document.getElementById('date').class = "inValide"
-                                        }
-                                    }
-                                }
-                            });
-                </script>
-                <button type="submit" class="btn btn-primary button" name="calcul" value="<?= (isset($_GET["batID"])) ? $_GET["batID"] : "-1"; ?>">Calculer le prix</button>
-
-                <?php if (isset($_GET['price'])): ?>
-                    <?php if (!isset($_SESSION['ID'])): ?>
-                        <div class="form-group mt-2">
-                            <?php
-                            creationFormType::input_text("text", "inputUserame", "Nom", "userName", "Nom");
-
-                            creationFormType::input_text("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
-                            ?>
-                            <a class="btn btn-primary button" href="index?p=inscription&g=location">inscription</a>
-                            <a class="btn btn-primary button" href="index?p=connexion&g=location">connexion</a>
-                        </div>
-                    <?php endif; ?>
+                <form <?= ($mode) ? "onsubmit='return bateauLocation()'" : 'action="traitementPOST/index.php?p=bateauLocation" method="POST"'; ?> class="form" >
 
                     <div class="form-group">
-                        <label for="prix" class="text-center label">prix</label>
-                        <input type="text"  id="prix" name="prix" value="<?= $_GET['price'] ?>€" class="form-control input" disabled="disabled">
+                        <label for="reserveduraction" class="text-center label">Durée de réservation</label>
+                        <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
+                            <option value="rien">pas de selection</option>
+                            <option value="matin">1 matinée</option>
+                            <option value="apresmidi">1 après-midi</option>
+                            <option value="jour">1 journée</option>
+                            <option value="jours">plusieurs journées</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary button" name="payer" >Payer</button>
-                <?php endif; ?>
-                <?php if (isset($_SESSION['erreur'])): ?>
-                    <p id="errorform" class="form-control is-invalid"><?= $_SESSION['erreur']['desc']; ?></p>
-                <?php endif; ?>
-            </form>
+                    <div class="form-group">
+                        <label for="date">date</label>
+                        <div id="date" class="noValide"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="skipper" name="skipper" checked>
+                        <label for="skipper">skipper</label>
+                    </div>
+
+
+                    <script type="text/javascript">
+                        document.getElementById('reserveduraction').onchange = function (e) {
+                            $('#date').datepicker('destroy');
+                            document.getElementById('date').className = "noValide";
+                            switch (this.value)
+                            {
+                                case 'matin':
+                                    $('#date').datepicker({
+                                        startDate: "today",
+                                        endDate: "+1y",
+                                        maxViewMode: 0,
+                                        language: "fr",
+                                        datesDisabled: getDatesDisabledMatin(<?= $id ?>)
+                                    });
+                                    $('#date').datepicker()
+                                            .on("changeDate", function (e) {
+                                                document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                            });
+                                    break;
+                                case 'apresmidi':
+                                    $('#date').datepicker({
+                                        startDate: "today",
+                                        endDate: "+1y",
+                                        maxViewMode: 0,
+                                        language: "fr",
+                                        datesDisabled: getDatesDisabledMidi(<?= $id ?>)
+                                    });
+                                    $('#date').datepicker()
+                                            .on("changeDate", function (e) {
+                                                document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                            });
+                                    break;
+                                case 'jour':
+                                    $('#date').datepicker({
+                                        startDate: "today",
+                                        endDate: "+1y",
+                                        maxViewMode: 0,
+                                        language: "fr",
+                                        datesDisabled: getDatesDisabled(<?= $id ?>)
+                                    });
+                                    $('#date').datepicker()
+                                            .on("changeDate", function (e) {
+                                                document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                            });
+                                    break;
+                                case 'jours':
+                                    $('#date').datepicker({
+                                        startDate: "today",
+                                        endDate: "+1y",
+                                        maxViewMode: 0,
+                                        language: "fr",
+                                        multidate: 2,
+                                        multidateSeparator: ",",
+                                        datesDisabled: getDatesDisabled(<?= $id ?>)
+                                    });
+
+                                    $('#date').datepicker()
+                                            .on("changeDate", function (e) {
+                                                var sauv = e["dates"];
+                                                if (sauv[0])
+                                                {
+                                                    var actual = new Date(sauv[0]);
+                                                    var date = findMaxDate(actual);
+
+
+                                                    if (sauv[1])
+                                                    {
+                                                        if (date > sauv[1])
+                                                        {
+                                                            document.getElementById('date').className = "Valide";
+                                                        } else
+                                                        {
+                                                            $('#date').datepicker("setDates", actual);
+                                                            document.getElementById('date').className = "inValide";
+                                                        }
+                                                    } else
+                                                    {
+                                                        document.getElementById('date').className = "noValide";
+                                                    }
+                                                } else
+                                                {
+                                                    document.getElementById('date').className = "noValide";
+                                                }
+                                            });
+                                    break;
+                                default:
+                                    document.getElementById('date').className = "";
+                                    break;
+                            }
+                            function findMaxDate(debut)
+                            {
+                                var fin = new Date(debut);
+                                fin.setDate(debut.getDate() + 7);
+                                for (var i in getDatesDisabled(<?= $id ?>))
+                                {
+                                    if (i > debut && i < fin)
+                                    {
+                                        return i;
+                                        break;
+                                    }
+                                }
+                                return fin;
+                            }
+
+                            function getDatesDisabled(id)
+                            {
+                                return [];
+                            }
+                            function getDatesDisabledMatin(id)
+                            {
+                                return [];
+                            }
+                            function getDatesDisabledMidi(id)
+                            {
+                                return [];
+                            }
+                        };
+
+                    </script>
+                    <div class="manyOption">
+                        <?php 
+                        foreach ($options as $option)
+                        {
+                        ?>
+                        <div class="input-group mb-3">
+                            <div  class="form-control" ><?= $option["name"] ?><span class="price"><?= $option["prix"] ?></span></div>
+                            <div class="input-group-prepend">                 
+                                <div class="input-group-text">
+                                    <input type="checkbox" value="<?= $option["ID"] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary button" name="calcul" value="<?= $id ?>">Valider</button>
+
+                </form>
+            </div>
+            <div id="getLocation" class="formBox mt-4" style="display: none">
+
+            </div>
         </div>
         <?php
     }
 
-}
-
-function creatListDeroulante($tbl, $id, $title) {
-    ?>
-    <div class = "form-group">
-        <label for = "<?= $id ?>" class = "text-center label"><?= $title ?></label>
-        <select class = "form-control input" name="<?= $id ?>" id = "<?= $id ?>">
-            <option value='null'>vide</option>
-            <?php
-            foreach ($tbl as $i) {
-                echo "<option value='$i'>$i</option>";
-            }
-            ?>
-        </select>
-    </div>
-    <?php
 }

@@ -32,7 +32,7 @@ class bateauMANAGER extends loaderBDD {
     }
 
     public static function recupOPTION($id) {
-        $requete = loaderBDD::connexionBDD()->prepare("SELECT option_boat.Name AS name,option_boat.Description AS description,option_boat.Prix AS prix FROM option_boat INNER JOIN routageoption ON routageoption.ID_Option = option_boat.ID WHERE routageoption.ID_Bateau = $id");
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT option_boat.Name AS name,option_boat.Description AS description,option_boat.Prix AS prix, option_boat.ID AS ID FROM option_boat INNER JOIN routageoption ON routageoption.ID_Option = option_boat.ID WHERE routageoption.ID_Bateau = $id");
         $requete->execute();
         if (($retour = $requete->fetchAll())) {
             return $retour;
