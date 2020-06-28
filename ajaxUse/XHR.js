@@ -65,7 +65,7 @@ function inscriptionAll(callback = log)
     var passverif = document.getElementById('inputConfirmPassword').value;
     var phone = document.getElementById('inputPhone').value;
     var role = document.getElementById('inputRole').value;
-    ajaxMethode(callback, [pseudo, mail, pass, passverif,phone,role, 'inscription'], ['userName', 'mail', 'password', 'passwordVerif','phone','table', 'type'], 'ajaxUse/traitement.php');
+    ajaxMethode(callback, [pseudo, mail, pass, passverif, phone, role, 'inscription'], ['userName', 'mail', 'password', 'passwordVerif', 'phone', 'table', 'type'], 'ajaxUse/traitement.php');
     return false;
 }
 
@@ -84,7 +84,7 @@ function modification(callback = log)
 
 function modificationAll(callback = log)
 {
-    
+
     var pseudo = document.getElementById('inputUserameModif').value;
     var mail = document.getElementById('inputEmailModif').value;
     var pass = document.getElementById('inputPasswordModif').value;
@@ -92,8 +92,8 @@ function modificationAll(callback = log)
     var phone = document.getElementById('inputPhoneModif').value;
     var id = document.getElementById('inputIDModif').value;
     var table = document.getElementById('inputRoleModif').value;
-    
-    ajaxMethode(callback, [pseudo, mail, pass, passverif, phone,id,table, 'modification'], ['userName', 'mail', 'password', 'passwordVerif', 'phone','ID','table', 'type'], 'ajaxUse/traitement.php');
+
+    ajaxMethode(callback, [pseudo, mail, pass, passverif, phone, id, table, 'modification'], ['userName', 'mail', 'password', 'passwordVerif', 'phone', 'ID', 'table', 'type'], 'ajaxUse/traitement.php');
     return false;
 
 }
@@ -109,22 +109,27 @@ function creatnewboat(callback = log)
     var nombrePassager = document.getElementById('nombrePassager').value;
     var Equipement = document.getElementById('Equipement').value;
     var divers = document.getElementById('divers').value;
-    
-    ajaxMethode(callback, [nom, description, nomModele, moteur, longueur,nombrePassager,Equipement,divers, 'addboat'], ['nom', 'description', 'nomModele', 'moteur', 'longueur','nombrePassager','Equipement','divers', 'type'], 'ajaxUse/traitement.php');
+
+    ajaxMethode(callback, [nom, description, nomModele, moteur, longueur, nombrePassager, Equipement, divers, 'addboat'], ['nom', 'description', 'nomModele', 'moteur', 'longueur', 'nombrePassager', 'Equipement', 'divers', 'type'], 'ajaxUse/traitement.php');
     return false;
 
 }
 
 
-function suprimer(id,table)
+function suprimer(id, table)
 {
-    ajaxMethode(function(data){ alert(data); }, [id,table, 'suprimer'], ['ID','table', 'type'], 'ajaxUse/traitement.php');
+    ajaxMethode(function (data) {
+        alert(data);
+    }, [id, table, 'suprimer'], ['ID', 'table', 'type'], 'ajaxUse/traitement.php');
     return false;
 }
 
 function supprImage(id)
 {
-    ajaxMethode(function(data){ supprID("img"+id); console.log(data);},[id,'supprImage'],['ID','type'],'ajaxUse/traitement.php');
+    ajaxMethode(function (data) {
+        supprID("img" + id);
+        console.log(data);
+    }, [id, 'supprImage'], ['ID', 'type'], 'ajaxUse/traitement.php');
     return false;
 }
 
@@ -152,26 +157,54 @@ function logm(data) {
 }
 
 function completeInfo(data) {
-    if (data[0] === "h" && data[1] === "t") {
-         
-    } else {
-        document.getElementById("errorform").innerHTML = data;
-        document.getElementById("errorform").style.display = 'block';
+    console.log(data);
+    var tbl = JSON.parse(data);
+    console.log(tbl);
+    document.getElementById('nom').innerHTML = tbl['nom'];
+    document.getElementById('type').innerHTML = tbl['type'];
+    document.getElementById('datage').innerHTML = tbl['datage'];
+    document.getElementById('skip').innerHTML = tbl['skip'];
+    document.getElementById('opt').innerHTML = tbl['opt'];
+    document.getElementById('prixTotal').innerHTML = tbl['prixTotal'];
+    document.getElementById('setLocation').style.display = "none";
+    document.getElementById('getLocation').style.display = "block";
+    switch(tbl["error"])
+    {
+        case 0:
+            document.getElementById('Nco').style.display = "none";
+            document.getElementById('manqueDoc').style.display = "none";
+            document.getElementById('toutBon').style.display = "block";
+            document.getElementById('toutBon').childNodes.href = tbl['link'];
+            break;
+        case 1:
+            document.getElementById('toutBon').style.display = "none";
+            document.getElementById('manqueDoc').style.display = "none";
+            document.getElementById('Nco').style.display = "block";
+            break;
+        case 2:
+            document.getElementById('Nco').style.display = "none";
+            document.getElementById('toutBon').style.display = "none";
+            document.getElementById('manqueDoc').style.display = "block";
+            break;
     }
 }
 
 function bateauLocation(callback = completeInfo)
 {
-    var id = document.getElementById('ID').value;
-    var dure = document.getElementById('reservationduration').value;
-    var nomModele = document.getElementById('nomModele').value;
-    var moteur = document.getElementById('moteur').value;
-    var longueur = document.getElementById('longueur').value;
-    var nombrePassager = document.getElementById('nombrePassager').value;
-    var Equipement = document.getElementById('Equipement').value;
-    var divers = document.getElementById('divers').value;
-    
-    ajaxMethode(callback, [nom, description, nomModele, moteur, longueur,nombrePassager,Equipement,divers, 'addboat'], ['nom', 'description', 'nomModele', 'moteur', 'longueur','nombrePassager','Equipement','divers', 'type'], 'ajaxUse/traitement.php');
+    var id = document.getElementById('inputID').value;
+    var dure = document.getElementById('reserveduraction').value;
+    var date = document.getElementById('date').value;
+    var skipper = document.getElementById('skipper').checked;
+    var option = [];
+    var all = document.getElementsByName('option[]');
+    all.forEach(function (e) {
+        if (e.checked)
+        {
+            option.push(e.value);
+        }
+    });
+
+    ajaxMethode(callback, [id, dure, date, skipper, option, 'boatLoc'], ['ID', 'dure', 'date', 'skipper', 'option', 'type'], 'ajaxUse/bateauLocation.php');
     return false;
 
 }

@@ -54,6 +54,7 @@ class evenementMANAGER extends loaderBDD {
                 }
             }
         }
+        
         return $retour;
     }
 

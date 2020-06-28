@@ -30,7 +30,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
             <?php
         } else {
-            bateau_form($_GET['ID']);
+            bateau_form($_GET['ID'],true);
         }
 
 

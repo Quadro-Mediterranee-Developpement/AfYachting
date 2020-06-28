@@ -22,11 +22,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 </p>
                 <form <?= ($mode) ? "onsubmit='return bateauLocation()'" : 'action="traitementPOST/index.php?p=bateauLocation" method="POST"'; ?> class="form" >
 
-                    <input type="hidden" value="<?= $id ?>">
+                    <input type="hidden" value="<?= $id ?>" id="inputID">
                     <div class="form-group">
                         <label for="reserveduraction" class="text-center label">Durée de réservation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
-                            
+                            <option value="" disabled selected>choix</option>
                             <option value="matin">1 matinée</option>
                             <option value="apresmidi">1 après-midi</option>
                             <option value="jour">1 journée</option>
@@ -61,7 +61,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                     $('#date').datepicker()
                                             .on("changeDate", function (e) {
                                                 document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
-                                                document.getElementById('date').value = $('#date').datepicker('getDates').toString();
+                                                document.getElementById('date').value = [toPhp($('#date').datepicker('getDates')[0])];
                                             });
                                     break;
                                 case 'apresmidi':
@@ -75,6 +75,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                     $('#date').datepicker()
                                             .on("changeDate", function (e) {
                                                 document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                                document.getElementById('date').value = [toPhp($('#date').datepicker('getDates')[0])];
                                             });
                                     break;
                                 case 'jour':
@@ -88,6 +89,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                     $('#date').datepicker()
                                             .on("changeDate", function (e) {
                                                 document.getElementById('date').className = e["dates"][0] ? "Valide" : "noValide";
+                                                document.getElementById('date').value = [toPhp($('#date').datepicker('getDates')[0])];
                                             });
                                     break;
                                 case 'jours':
@@ -115,6 +117,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                                         if (date > sauv[1])
                                                         {
                                                             document.getElementById('date').className = "Valide";
+                                                            document.getElementById('date').value = [toPhp($('#date').datepicker('getDates')[0]), toPhp($('#date').datepicker('getDates')[1])];
                                                         } else
                                                         {
                                                             $('#date').datepicker("setDates", actual);
@@ -186,10 +189,16 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                 }
                                 return retour;
                             }
+
+                            function toPhp(date)
+                            {
+                                var retour = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear();
+                                return retour;
+                            }
                         };
 
                     </script>
-                    <div class="manyOption">
+                    <div class="manyOption" id="boxTB">
                         <?php
                         foreach ($options as $option) {
                             ?>
@@ -197,7 +206,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                                 <div  class="form-control" ><?= $option["name"] ?><span class="price"><?= $option["prix"] ?></span></div>
                                 <div class="input-group-prepend">                 
                                     <div class="input-group-text">
-                                        <input type="checkbox" value="<?= $option["ID"] ?>">
+                                        <input type="checkbox" name="option[]" value="<?= $option["ID"] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -213,6 +222,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <div id="getLocation" class="formBox mt-4" style="display: none">
                 <div>
                     <h3>Récapitulatif</h3>
+                    <p>Bateau : <span id="nom"></span></p>
                     <p>Type : <span id="type"></span></p>
                     <p>Date : <span id="datage"></span></p>
                     <p>Skypper : <span id="skip"></span></p>
@@ -228,6 +238,14 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 <div id="manqueDoc" style="display: none">
                     formulaire pour ajouter document
                 </div>
+                <a class="btn btn-primary" onClick="closeform()" >Retour</a>
+                <script type="text/javascript">
+                    function closeform()
+                    {
+                        document.getElementById('getLocation').style.display = 'none';
+                        document.getElementById('setLocation').style.display = 'block';
+                    }
+                </script>
             </div>
             <script src="ajaxUse/XHR.js" type="text/javascript"></script>
         </div>
