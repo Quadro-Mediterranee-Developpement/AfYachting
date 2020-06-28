@@ -15,18 +15,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         ?>
         <div>
             <div id="setLocation" class="formBox mt-4" style="display:block;">
-                <p class="commentaire">
-                    Pour la haute saison : Du 1er juillet au 31 Aout inclus et pendant les voiles de saint Tropez du 28 septembre au 15 octobre<br>
-                    Pour la basse saison : du 1er mars au 30 juin et du 16 octobre au 31 octobre.<br>
-                    La cale sèche est le reste de l’année, c’est-à-dire du 1er novembre au dernier jour de février.<br>
-                </p>
                 <form <?= ($mode) ? "onsubmit='return bateauLocation()'" : 'action="traitementPOST/index.php?p=bateauLocation" method="POST"'; ?> class="form" >
 
                     <input type="hidden" value="<?= $id ?>" id="inputID">
                     <div class="form-group">
                         <label for="reserveduraction" class="text-center label">Durée de réservation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
-                            <option value="" disabled selected>choix</option>
+                            <option value="" disabled selected></option>
                             <option value="matin">1 matinée</option>
                             <option value="apresmidi">1 après-midi</option>
                             <option value="jour">1 journée</option>
@@ -34,12 +29,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="date" class="text-center label">date</label>
                         <div id="date" name="date" class="noValide"></div>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" id="skipper" name="skipper" checked>
-                        <label for="skipper">skipper</label>
+                        <label for="skipper">Engager un skipper pour piloter le bateau</label>
                     </div>
 
 
