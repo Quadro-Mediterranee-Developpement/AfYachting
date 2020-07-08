@@ -9,8 +9,8 @@ if (verificationType::isseter($tbl)) {
     if ($_POST['type'] == 'boatLoc') {
         $infoo = bateauMANAGER::recupINFORMATIONone(intval($_POST['ID']));
         $horaire = evenementMANAGER::recupAllHoraireByBateau($_POST['ID']);
-        $driverdate =  preg_split('/,/',$_POST['date']);
-    
+        $driverdate = preg_split('/,/', $_POST['date']);
+        $retour['IdBoat'] = intval($_POST['ID']);
         $convert = evenementMANAGER::giveRefDate($horaire);
         $retour['prixTotal'] = 0;
         $plusieurDate = -1;
@@ -20,24 +20,18 @@ if (verificationType::isseter($tbl)) {
                 $retour['type'] = 'matin';
                 if (dayGood($driverdate[0], $convert, 1)) {
                     $plusieurDate = 2;
-                } else {
-                    $retour['error'] = -2;
                 }
                 break;
             case "apresmidi":
                 $retour['type'] = 'après midi';
                 if (dayGood($driverdate[0], $convert, 2)) {
                     $plusieurDate = 2;
-                } else {
-                    $retour['error'] = -2;
                 }
                 break;
             case "jour":
                 $retour['type'] = 'journée';
                 if (dayGood($driverdate[0], $convert, 3)) {
                     $plusieurDate = 1;
-                } else {
-                    $retour['error'] = -2;
                 }
                 break;
             case "jours":
@@ -46,7 +40,7 @@ if (verificationType::isseter($tbl)) {
                 break;
             default:
                 $retour['type'] = 'indéfini';
-                $retour['error'] = -1;
+                $retour['error'] = -3;
                 break;
         }
         if ($plusieurDate == 0) {
@@ -54,18 +48,20 @@ if (verificationType::isseter($tbl)) {
             $oh1 = periode($driverdate[0]);
             $oh2 = periode($driverdate[1]);
             if ($oh1 > 0 && $oh2 > 0) {
-                $nbr = nbrDaysGood($driverdate[0], $driverdate[0], $convert);
+                $nbr = nbrDaysGood($driverdate[0], $driverdate[1], $convert);
                 if ($nbr < 2) {
-                    $retour['error'] = -2;
+                    $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
+                    $retour['error'] = -3;
                 } elseif ($oh1 == 2 || $oh2 == 2) {
                     $retour['prixTotal'] += $infoo[0]['HS'] * $nbr;
                 } else {
                     $retour['prixTotal'] += $infoo[0]['BS'] * $nbr;
                 }
             } else {
+                $retour['type'] = "date cale seche";
                 $retour['error'] = -2;
             }
-        } else {
+        } else if ($plusieurDate > 0) {
             $retour['datage'] = "le " . date("d-m-Y", strtotime($driverdate[0]));
             $oh = periode($driverdate[0]);
             if ($oh == 1) {
@@ -73,8 +69,12 @@ if (verificationType::isseter($tbl)) {
             } else if ($oh == 2) {
                 $retour['prixTotal'] += $infoo[0]['HS'] / $plusieurDate;
             } else {
+                $retour['type'] = "date de cale seche";
                 $retour['error'] = -2;
             }
+        } else {
+            $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
+            $retour['error'] = -3;
         }
 
         if ($_POST['skipper'] == "true") {
@@ -97,11 +97,34 @@ if (verificationType::isseter($tbl)) {
                 $retour['prixTotal'] += $i['prix'];
             }
         }
+        
+        if($retour['error'] >= 0)
+        {
+            $_SESSION['locationEnCours'] = $retour;
+            if(isset($_SESSION["ID"]))
+            {
+                if(manqueDoc($_SESSION["ID"]))
+                {
+                    $retour['error'] = 2;
+                }
+                else
+                {
+                    $retour['error'] = 0;
+                }
+            }
+            else
+            {
+                $retour['error'] = 1;
+            }
+        }
+        
     } else {
-        $retour['error'] = 1;
+        $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
+        $retour['error'] = -3;
     }
 } else {
-    $retour['error'] = 2;
+    $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
+    $retour['error'] = -3;
 }
 
 echo json_encode($retour);
@@ -123,22 +146,25 @@ function periode($date) {
 
 function nbrDaysGood($date1, $date2, $exlu) {
     $nbr = 0;
-    $time = strtotime($date2) - strtotime($date1) / strtotime("1 day");
+    $time = (strtotime($date2) - strtotime($date1)) / (strtotime("2 day") - strtotime("1 day"));
     if ($time > 7) {
         return 0;
     } else {
-        for ($i = 0; $i < 7; $i++) {
-            if (dayGood(strtotime($date1) + strtotime("1 day") * $i)) {
+        for ($i = 0; $i < $time; $i++) {
+            if (dayGood(date("d-m-Y",strtotime($date1) + ((strtotime("2 day") - strtotime("1 day")) * $i)),$exlu,3)) {
                 $nbr++;
             } else {
                 return 0;
             }
         }
     }
+    return $nbr;
 }
 
 function dayGood($date, $exlu, $like) {
-    if (isset($exlu[date("m-d-Y", strtotime($date))])) {
+    if (strtotime($date) < strtotime('today')) {
+        return false;
+    } else if (isset($exlu[date("m-d-Y", strtotime($date))])) {
         if ($exlu[date("m-d-Y", strtotime($date))] == 3) {
             return false;
         } else if ($exlu[date("m-d-Y", strtotime($date))] == $like) {
@@ -146,4 +172,9 @@ function dayGood($date, $exlu, $like) {
         }
     }
     return true;
+}
+
+function manqueDoc($id)
+{
+    return false;
 }

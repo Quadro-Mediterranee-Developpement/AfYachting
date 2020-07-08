@@ -4,6 +4,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
     require_once 'utilityPhp/creationFormType.php';
+    require_once 'mod/connexion_form.php';
 
     //TEXT
     // un peu partout
@@ -186,7 +187,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                             function toPhp(date)
                             {
-                                var retour = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear();
+                                var retour = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
                                 return retour;
                             }
                         };
@@ -210,7 +211,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
 
                     <button type="submit" class="btn btn-primary button" name="calcul" >Valider</button>
-
+                    <h4 id="error"></h4>
                 </form>
             </div>
             <div id="getLocation" class="formBox mt-4" style="display: none">
@@ -227,7 +228,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <a class="btn btn-primary" href="#">Payer</a>
                 </div>
                 <div id="Nco" style="display: none">
-                    formulaire connexion et inscription temp
+                    <?php
+                    connexion_form(true, "loc");
+                    ?>
                 </div>
                 <div id="manqueDoc" style="display: none">
                     formulaire pour ajouter document

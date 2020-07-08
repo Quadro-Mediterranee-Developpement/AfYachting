@@ -135,7 +135,7 @@ function supprImage(id)
 
 function supprID(id)
 {
-    document.getElementById(id).remove()
+    document.getElementById(id).remove();
 }
 
 function log(data) {
@@ -160,32 +160,52 @@ function completeInfo(data) {
     console.log(data);
     var tbl = JSON.parse(data);
     console.log(tbl);
-    document.getElementById('nom').innerHTML = tbl['nom'];
-    document.getElementById('type').innerHTML = tbl['type'];
-    document.getElementById('datage').innerHTML = tbl['datage'];
-    document.getElementById('skip').innerHTML = tbl['skip'];
-    document.getElementById('opt').innerHTML = tbl['opt'];
-    document.getElementById('prixTotal').innerHTML = tbl['prixTotal'];
-    document.getElementById('setLocation').style.display = "none";
-    document.getElementById('getLocation').style.display = "block";
-    switch(tbl["error"])
+    if (tbl["error"] >= 0)
     {
-        case 0:
-            document.getElementById('Nco').style.display = "none";
-            document.getElementById('manqueDoc').style.display = "none";
-            document.getElementById('toutBon').style.display = "block";
-            document.getElementById('toutBon').childNodes.href = tbl['link'];
-            break;
-        case 1:
-            document.getElementById('toutBon').style.display = "none";
-            document.getElementById('manqueDoc').style.display = "none";
-            document.getElementById('Nco').style.display = "block";
-            break;
-        case 2:
-            document.getElementById('Nco').style.display = "none";
-            document.getElementById('toutBon').style.display = "none";
-            document.getElementById('manqueDoc').style.display = "block";
-            break;
+        document.getElementById('nom').innerHTML = tbl['nom'];
+        document.getElementById('type').innerHTML = tbl['type'];
+        document.getElementById('datage').innerHTML = tbl['datage'];
+        document.getElementById('skip').innerHTML = tbl['skip'];
+        document.getElementById('opt').innerHTML = tbl['opt'];
+        document.getElementById('prixTotal').innerHTML = tbl['prixTotal'];
+        document.getElementById('setLocation').style.display = "none";
+        document.getElementById('getLocation').style.display = "block";
+        document.getElementById('error').innerHTML = "";
+        switch (tbl["error"])
+        {
+            case 0:
+                document.getElementById('Nco').style.display = "none";
+                document.getElementById('manqueDoc').style.display = "none";
+                document.getElementById('toutBon').style.display = "block";
+                document.getElementById('toutBon').childNodes.href = tbl['link'];
+                break;
+            case 1:
+                document.getElementById('toutBon').style.display = "none";
+                document.getElementById('manqueDoc').style.display = "none";
+                document.getElementById('Nco').style.display = "block";
+                break;
+            case 2:
+                document.getElementById('Nco').style.display = "none";
+                document.getElementById('toutBon').style.display = "none";
+                document.getElementById('manqueDoc').style.display = "block";
+                break;
+        }
+    } else
+    {
+        document.getElementById('error').innerHTML = tbl['type'];
+    }
+}
+
+function loc(data) {
+    if (data === "OK") {
+        document.getElementById('Nco').style.display = "none";
+        document.getElementById('manqueDoc').style.display = "none";
+        document.getElementById('toutBon').style.display = "block";
+        document.getElementById('isco').style.display = "";
+        document.getElementById('isnotco').style.display = "none";
+    } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
     }
 }
 
@@ -197,7 +217,8 @@ function bateauLocation(callback = completeInfo)
     var skipper = document.getElementById('skipper').checked;
     var option = [];
     var all = document.getElementsByName('option[]');
-    all.forEach(function (e) {
+
+    [...all].forEach(function (e) {
         if (e.checked)
         {
             option.push(e.value);

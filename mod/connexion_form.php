@@ -6,11 +6,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     require_once 'utilityPhp/creationFormType.php';
     //TEXT
     // un peu partout
-    function connexion_form($mode = false) {
+    function connexion_form($mode = false,$action = "") {
         ?>
         <div style="width: 100%;">
             <h5 class="card-title text-center">Connexion</h5>
-            <form <?= ($mode) ? "onsubmit='return connexion()'" : 'method="POST" action="traitementPOST/index.php?p=connexion"'; ?> class="form-signin" >
+            <form <?= ($mode) ? "onsubmit='return connexion($action)'" : 'method="POST" action="traitementPOST/index.php?p=connexion"'; ?> class="form-signin" >
                 <?php
                 creationFormType::input_text("text", "inputNameEmail", "Nom ou adresse Email", "userName", "Nom ou adresse Email");
                 creationFormType::input_text("password", "inputPassword", "Mot-de-passe", "password", "Mot de passe");

@@ -3,6 +3,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Location: ../index?p=404');
     exit();
 } else {
+
     //TEXT
     // un peu partout
     function bloc_header($lien) {
@@ -28,22 +29,14 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             </div>
 
         </nav>
-            <span class="volant">
-            <?php
-            if (!isset($_SESSION['ID'])) {
-                ?>
-                <a class="nav-link" href="?p=connexion">Connexion</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=inscription">Inscription</a>
-            <?php
-              
-            } else {
-                           ?>
-            <a class="nav-link" href="?p=compte">Mon compte</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=accueil&destroy=1">Se déconnecter</a>
-            <?php      
-            }
-            ?>
-            </span>
-            <?php
-        }
-
+        <span class="volant" id="isnotco" style="display:<?= (isset($_SESSION['ID'])) ? 'none' : ''; ?>;">
+            <a class="nav-link" href="?p=connexion">Connexion</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=inscription">Inscription</a>
+        </span>
+        <span class="volant" id="isco" style="display:<?= (isset($_SESSION['ID'])) ? '' : 'none'; ?>;">
+            <a class="nav-link"  href="?p=compte">Mon compte</a>&nbsp;&nbsp;&nbsp;<a class="nav-link" href="?p=accueil&destroy=1">Se déconnecter</a>
+        </span>
+        <?php
     }
+
+}
 
