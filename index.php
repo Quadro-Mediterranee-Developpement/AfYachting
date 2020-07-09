@@ -1,6 +1,4 @@
 <?php
-//gestion des variables de session
-
 session_start();
 if (isset($_GET['destroy'])) {
     if (isset($_SESSION['ID'])) {

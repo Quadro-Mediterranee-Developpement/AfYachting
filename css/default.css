@@ -45,11 +45,11 @@ body::-webkit-scrollbar {
 
 .cubeForm 
 {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 25vw;
+    max-height: 25vw;
 }
 .cubeForm img
 {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 25vw;
+    max-height: 25vw;
 }

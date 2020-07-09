@@ -10,6 +10,10 @@ and open the template in the editor.
 
 body {
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    height: 100vh!important;
 }
 
 .card {
@@ -25,17 +29,26 @@ body {
 }
 
 .card-body {
-  padding: 2rem;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    padding: 2rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.card-img-left {
-    width: 45%;
-    background: center / contain no-repeat;
-    background-size: cover;
+@media only screen and (orientation: portrait) {
+    .card-img-left {
+        background: center / contain no-repeat;
+        background-size: cover;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .card-img-left {
+        width: 45%;
+        background: center / contain no-repeat;
+        background-size: cover;
+    }
 }
 
 .closer:hover {
@@ -45,8 +58,8 @@ body {
 .closer {
 
     height: 20px;
-        position: absolute;
-        right:0;
-        margin: 5px;
+    position: absolute;
+    right:0;
+    margin: 5px;
 }
 
