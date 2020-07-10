@@ -225,7 +225,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <p>Prix total: <span id="prixTotal"></span></p>
                 </div>
                 <div id="toutBon" style="display: block">
-                    <a class="btn btn-primary" href="#">Payer</a>
+                    <a class="btn btn-primary" href="?p=accueil&location=true">Payer</a>
+                    
                 </div>
                 <div id="Nco" style="display: none">
                     <?php

@@ -58,16 +58,27 @@ if (isset($_POST['type'])) {
         case 'addboat':
             if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
                 ajouteBateau($_POST['nom'], $_POST['description'], $_POST['nomModele'], $_POST['moteur'], $_POST['longueur'], $_POST['nombrePassager'], $_POST['Equipement'], $_POST['divers']);
+            } else if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'entreprise') {
+                ajouteBateau($_POST['nom'], $_POST['description'], $_POST['nomModele'], $_POST['moteur'], $_POST['longueur'], $_POST['nombrePassager'], $_POST['Equipement'], $_POST['divers']);
             } else {
                 $erreur = "vous n'avez pas l'autorisation";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 21];
             }
             break;
         case 'supprImage':
-                if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
+            if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
+                loaderBDD::deleteImage($_POST['ID']);
+                $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+            } else if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'entreprise') {
+                if (bateauMANAGER::confirmeDonneeImage($_POST['ID']) == $_SESSION['ID']['ID']) {
                     loaderBDD::deleteImage($_POST['ID']);
                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
                 }
+                else
+                {
+                    $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas l\'autorisation', 'code' => 21];
+                }
+            }
             break;
         default :
             $erreur = "erreur serveur";
@@ -234,7 +245,11 @@ function ajouteBateau($nom, $description, $nomModele, $moteur, $longueur, $nombr
     if (verificationType::isseter([$nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers])) {
         if (verificationType::emptyer([$nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers])) {
             if (ctype_digit($longueur) && ctype_digit($nombrePassager)) {
-                bateauMANAGER::creatNEWboat($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers);
+                $id = 0;
+                if ($_SESSION['ID']['ROLE'] == 'entreprise') {
+                    $id = $_SESSION['ID']['ID'];
+                }
+                bateauMANAGER::creatNEWboat($nom, $description, $nomModele, $moteur, $longueur, $nombrePassager, $Equipement, $divers, $id);
                 $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
             } else {
                 $erreur = "Les champs longeurs et nombre de passager doivent etre des nombres";

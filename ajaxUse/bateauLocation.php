@@ -4,7 +4,7 @@ session_start();
 require_once '../BDDMANAGER/loaderBDD.php';
 require_once '../utilityPhp/verificationType.php';
 $retour = [];
-$tbl = [$_POST['type'], $_POST['ID'], $_POST['dure'], $_POST['date'], $_POST['skipper'], $_POST['option']];
+$tbl = [$_POST['type'], $_POST['ID'], $_POST['dure'], $_POST['date'], $_POST['skipper']];
 if (verificationType::isseter($tbl)) {
     if ($_POST['type'] == 'boatLoc') {
         $infoo = bateauMANAGER::recupINFORMATIONone(intval($_POST['ID']));
@@ -44,12 +44,17 @@ if (verificationType::isseter($tbl)) {
                 break;
         }
         if ($plusieurDate == 0) {
+            if (strtotime($driverdate[0]) > strtotime($driverdate[1])) {
+                $tp = $driverdate[0];
+                $driverdate[0] = $driverdate[1];
+                $driverdate[1] = $tp;
+            }
             $retour['datage'] = "du " . date("d-m-Y", strtotime($driverdate[0])) . " au " . date("d-m-Y", strtotime($driverdate[1]));
             $oh1 = periode($driverdate[0]);
             $oh2 = periode($driverdate[1]);
             if ($oh1 > 0 && $oh2 > 0) {
                 $nbr = nbrDaysGood($driverdate[0], $driverdate[1], $convert);
-                if ($nbr < 2) {
+                if ($nbr < 1) {
                     $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
                     $retour['error'] = -3;
                 } elseif ($oh1 == 2 || $oh2 == 2) {
@@ -87,37 +92,25 @@ if (verificationType::isseter($tbl)) {
 
 
         $retour['nom'] = $infoo[0]["Nom"];
+        if (isset($_POST['option'])) {
+            $alloption = bateauMANAGER::recupOPTION(intval($_POST['ID']));
+            $retour['opt'] = "";
 
-        $alloption = bateauMANAGER::recupOPTION(intval($_POST['ID']));
-        $retour['opt'] = "";
-
-        foreach ($alloption as $i) {
-            if (mb_substr_count($_POST['option'], $i['ID'])) {
-                $retour['opt'] .= $i['name'] . ", ";
-                $retour['prixTotal'] += $i['prix'];
+            foreach ($alloption as $i) {
+                if (mb_substr_count($_POST['option'], $i['ID'])) {
+                    $retour['opt'] .= $i['name'] . ", ";
+                    $retour['prixTotal'] += $i['prix'];
+                }
             }
         }
-        
-        if($retour['error'] >= 0)
-        {
+        if ($retour['error'] >= 0) {
             $_SESSION['locationEnCours'] = $retour;
-            if(isset($_SESSION["ID"]))
-            {
-                if(manqueDoc($_SESSION["ID"]))
-                {
-                    $retour['error'] = 2;
-                }
-                else
-                {
+            if (isset($_SESSION["ID"])) {
                     $retour['error'] = 0;
-                }
-            }
-            else
-            {
+            } else {
                 $retour['error'] = 1;
             }
         }
-        
     } else {
         $retour['type'] = "formulaire invalide, veuiller recomencer plus tard";
         $retour['error'] = -3;
@@ -151,7 +144,7 @@ function nbrDaysGood($date1, $date2, $exlu) {
         return 0;
     } else {
         for ($i = 0; $i < $time; $i++) {
-            if (dayGood(date("d-m-Y",strtotime($date1) + ((strtotime("2 day") - strtotime("1 day")) * $i)),$exlu,3)) {
+            if (dayGood(date("d-m-Y", strtotime($date1) + ((strtotime("2 day") - strtotime("1 day")) * $i)), $exlu, 3)) {
                 $nbr++;
             } else {
                 return 0;
@@ -174,7 +167,3 @@ function dayGood($date, $exlu, $like) {
     return true;
 }
 
-function manqueDoc($id)
-{
-    return false;
-}

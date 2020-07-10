@@ -22,7 +22,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 creationFormType::input_text("text", "inputPhone", "0600000000", "phone", "numéro de telephone");
 
-                creationFormType::input_select('inputRole', 'role', ['client' => 'client', 'skipper' => 'skipper', 'admin' => 'admin'], 'role')
+                creationFormType::input_select('inputRole', 'role', ['client' => 'client', 'skipper' => 'skipper', 'admin' => 'admin','entreprise' => 'entreprise'], 'role')
                 ?>
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="inscript">Inscription</button>

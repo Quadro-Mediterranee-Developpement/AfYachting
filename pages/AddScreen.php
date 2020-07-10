@@ -18,8 +18,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         bloc_header($menu);
 
         if (isset($_SESSION['ID'])) {
-            if ($_SESSION['ID']['ROLE'] == 'admin') {
-                if (isset($_GET['id']) && isset($_GET['destination'])) {
+            if ($_SESSION['ID']['ROLE'] == 'admin' || ($_SESSION['ID']['ROLE'] == 'entreprise')) {
+                if (isset($_GET['id']) && isset($_GET['destination']) && ($_SESSION['ID']['ROLE'] == 'admin' || bateauMANAGER::confirmeDonneeImage($_GET['id']) == $_SESSION['ID']['ID'])) {
                     ?>
                     <form action="traitementPOST/index.php?p=AddScreen" method="post" enctype="multipart/form-data">
 

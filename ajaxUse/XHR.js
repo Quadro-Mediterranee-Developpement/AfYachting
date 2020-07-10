@@ -177,7 +177,6 @@ function completeInfo(data) {
                 document.getElementById('Nco').style.display = "none";
                 document.getElementById('manqueDoc').style.display = "none";
                 document.getElementById('toutBon').style.display = "block";
-                document.getElementById('toutBon').childNodes.href = tbl['link'];
                 break;
             case 1:
                 document.getElementById('toutBon').style.display = "none";

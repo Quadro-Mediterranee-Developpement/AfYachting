@@ -13,7 +13,7 @@
  */
 class compteMANAGER extends loaderBDD {
 
-    private const tables = ["admin", "client", "skipper"];
+    private const tables = ["admin", "client", "skipper","entreprise"];
 
     public static function recupIDone($password, $identifiant) {
         foreach (self::tables as $table) {

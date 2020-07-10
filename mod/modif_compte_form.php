@@ -24,7 +24,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 creationFormType::input_text("number", "inputIDModif", "0", "id", "l'id du compte");
 
-                creationFormType::input_select('inputRoleModif', 'role', ['client' => 'client', 'skipper' => 'skipper', 'admin' => 'admin'], 'role')
+                creationFormType::input_select('inputRoleModif', 'role', ['client' => 'client', 'skipper' => 'skipper', 'admin' => 'admin','entreprise' => 'entreprise'], 'role')
                 ?>
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="modifier">modifier</button>
