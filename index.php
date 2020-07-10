@@ -24,26 +24,6 @@ if (isset($_GET['ajax'])) {
     }
 }
 
-if (isset($_GET['location'])) {
-    if (isset($_SESSION['locationEnCours'])) {
-        switch ($_SESSION['locationEnCours']["error"]) {
-            case 0:
-                $_SESSION['news']['location'] = ['desc' => 'Demande effectuer, veuiller attendre une réponse', 'code' => true];
-                //envoi email
-                break;
-            case 1:
-                $_SESSION['news']['location'] = ['desc' => 'Les donnée sont invalides', 'code' => false];
-                break;
-            case 2:
-                $_SESSION['news']['location'] = ['desc' => 'Tout les documents ne sont pas complet', 'code' => false];
-                break;
-        }
-    } else {
-        $_SESSION['news']['location'] = ['desc' => 'Veuiller rééffectuer votre demande de location', 'code' => false];
-        //envoi email
-    }
-}
-
 
 if (isset($_GET["validationEmail"])) {
     $code = filter_input(INPUT_GET, "validationEmail");

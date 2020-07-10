@@ -224,17 +224,27 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <p>Option : <span id="opt"></span></p>
                     <p>Prix total: <span id="prixTotal"></span></p>
                 </div>
-                <div id="toutBon" style="display: block">
-                    <a class="btn btn-primary" href="?p=accueil&location=true">Payer</a>
-                    
-                </div>
+
+                <form action="traitementPOST/index.php?p=bateau" method="post" enctype="multipart/form-data" id="toutBon" style="display: block" class="form">
+                    <div class="form-label-group">
+                        <label for="IDcard1">Pièce d'identitée 1</label>
+                        <input type="file" name="IDcard1" id="IDcard1">
+                    </div>
+                    <div class="form-label-group">
+                        <label for="IDcard2">Pièce d'identitée 2</label>
+                        <input type="file" name="IDcard2" id="IDcard2">
+                    </div>
+                    <div id="optionSansSkypper" class="form-label-group">
+                        <label for="permis">Permis</label>
+                        <input type="file" name="permis" id="permis">                        
+                    </div>
+                    <button type="submit" class="btn btn-primary button" name="validation" >envoier la demande</button>
+                </form>
+
                 <div id="Nco" style="display: none">
                     <?php
                     connexion_form(true, "loc");
                     ?>
-                </div>
-                <div id="manqueDoc" style="display: none">
-                    formulaire pour ajouter document
                 </div>
                 <a class="btn btn-primary" onClick="closeform()" >Retour</a>
                 <script type="text/javascript">

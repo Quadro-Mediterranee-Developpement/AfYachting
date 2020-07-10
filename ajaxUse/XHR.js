@@ -175,19 +175,20 @@ function completeInfo(data) {
         {
             case 0:
                 document.getElementById('Nco').style.display = "none";
-                document.getElementById('manqueDoc').style.display = "none";
                 document.getElementById('toutBon').style.display = "block";
                 break;
             case 1:
                 document.getElementById('toutBon').style.display = "none";
-                document.getElementById('manqueDoc').style.display = "none";
                 document.getElementById('Nco').style.display = "block";
                 break;
-            case 2:
-                document.getElementById('Nco').style.display = "none";
-                document.getElementById('toutBon').style.display = "none";
-                document.getElementById('manqueDoc').style.display = "block";
-                break;
+        }
+        if(tbl['skip'] === "non")
+        {
+            document.getElementById('optionSansSkypper').style.display = "block";
+        }
+        else
+        {
+            document.getElementById('optionSansSkypper').style.display = "none";
         }
     } else
     {
@@ -198,7 +199,6 @@ function completeInfo(data) {
 function loc(data) {
     if (data === "OK") {
         document.getElementById('Nco').style.display = "none";
-        document.getElementById('manqueDoc').style.display = "none";
         document.getElementById('toutBon').style.display = "block";
         document.getElementById('isco').style.display = "";
         document.getElementById('isnotco').style.display = "none";
