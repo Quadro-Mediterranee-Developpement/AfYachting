@@ -17,7 +17,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 creationFormType::input_text("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
 
-                creationFormType::input_text("password", "inputPassword", "Mot de passe", "password", "Mot de passe");
+                creationFormType::input_text("password", "inputPassword", "Mot de passe", "password", "Mot de passe <a class='small' href='https://www.economie.gouv.fr/particuliers/creer-mot-passe-securise'>(Doit respecter ce format)</a>");
 
                 creationFormType::input_text("password", "inputConfirmPassword", "Confirmer mot de passe", "passwordVerif", "Confirmer mot de passe");
                 ?>
