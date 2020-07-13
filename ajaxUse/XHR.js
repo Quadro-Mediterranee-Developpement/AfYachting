@@ -133,6 +133,15 @@ function supprImage(id)
     return false;
 }
 
+function supprOption(id)
+{
+    ajaxMethode(function (data) {
+        supprID("option" + id);
+        console.log(data);
+    }, [id, 'supprOption'], ['ID', 'type'], 'ajaxUse/traitement.php');
+    return false;
+}
+
 function supprID(id)
 {
     document.getElementById(id).remove();

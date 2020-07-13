@@ -4,12 +4,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     exit();
 } else {
 
-    $included = ["head", "header", "mosaic", 'textual', "footer", "foot"];
+    $included = ["head", "header", "mosaic", 'textual', "footer", "identityCardBoat", "foot"];
     foreach ($included as $i) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "", "Page d'ajout d'image");
+    head($included, "", "Page de gestion de location");
     ?>
 
     <body>
@@ -19,32 +19,34 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'admin' || ($_SESSION['ID']['ROLE'] == 'entreprise')) {
-                if (isset($_GET['id']) && isset($_GET['destination']) && ($_SESSION['ID']['ROLE'] == 'admin' || bateauMANAGER::confirmeDonneeImage($_GET['id']) == $_SESSION['ID']['ID'])) {
+                if (isset($_GET['id']) && ($_SESSION['ID']['ROLE'] == 'admin' || bateauMANAGER::confirmeDonneeImage($_GET['id']) == $_SESSION['ID']['ID'])) {
                     ?>
-                    <form action="traitementPOST/index.php?p=AddScreen" method="post" enctype="multipart/form-data">
+                    <form action="traitementPOST/index.php?p=SetLocation" method="post">
 
                         <input type="hidden" value="<?= $_GET['id'] ?>" name="id" id="id">
-                        <input type="hidden" value="<?= $_GET['destination'] ?>" name="location" id="location">
+                        <p>Si un des champs reste vide, le mode location sera supprimé</p>
                         <div class="form-label-group">
-                            <label for="alt">description:</label>
-                            <input type="text" value="" name="alt" id="alt">
+                            <label for="alt">Haut saison:</label>
+                            <input type="number" value="" name="HS" id="HS" >
                         </div>
                         <div class="form-label-group">
-                            <label for="fileToUpload">l'image à ajouté</label>
-                            <input type="file" name="fileToUpload" id="fileToUpload">
-                            <input type="submit" value="Upload Image" name="submit">
+                            <label for="alt">Basse Saison:</label>
+                            <input type="number" value="" name="BS" id="BS" >
                         </div>
+                        <div class="form-label-group">
+                            <label for="alt">Caution:</label>
+                            <input type="number" value="" name="Caution" id="Caution" >
+                        </div>
+                        <input type="submit" value="ajouter/modifier" name="ajouter/modifier">
                     </form>
+                    <?php
+                    $info = bateauMANAGER::recupINFORMATIONone($_GET['id']);
+                    identityCardBoat($info[0]);
+                    ?>
                     <?php
                     if (isset($_SESSION['erreur'])) {
                         echo $_SESSION['erreur']['desc'];
                     }
-                    $images = loaderBDD::image($_GET['id']);
-                    $all = [];
-                    foreach ($images as $i) {
-                        $all[] = [$i[0], "<a onClick='return supprImage($i[2]);' href='#'>supprimer</a>", $i[1], [], "img$i[2]"];
-                    }
-                    mosaic($all);
                     ?>
                     <script src="ajaxUse/XHR.js" type="text/javascript"></script>
                     <?php
@@ -61,11 +63,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         }
         ?>
         <a <?= "href='index?p=lastpage'"; ?>"><img class="closer" src="img/close.png" alt=""/></a>
-        <?php
-        footer();
+            <?php
+            footer();
 
-        foot($included);
-        ?>
+            foot($included);
+            ?>
 
     </body>
 

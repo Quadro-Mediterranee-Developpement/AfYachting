@@ -73,9 +73,20 @@ if (isset($_POST['type'])) {
                 if (bateauMANAGER::confirmeDonneeImage($_POST['ID']) == $_SESSION['ID']['ID']) {
                     loaderBDD::deleteImage($_POST['ID']);
                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                } else {
+                    $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas l\'autorisation', 'code' => 21];
                 }
-                else
-                {
+            }
+            break;
+        case 'supprOption':
+            if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin') {
+                bateauMANAGER::deleteOption($_POST['ID']);
+                $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+            } else if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'entreprise') {
+                if (bateauMANAGER::confirmeOption($_POST['ID'],$_SESSION['ID']['ID']) == 1) {
+                    bateauMANAGER::deleteOption($_POST['ID']);
+                    $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                } else {
                     $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas l\'autorisation', 'code' => 21];
                 }
             }
