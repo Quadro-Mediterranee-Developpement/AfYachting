@@ -40,6 +40,7 @@ and open the template in the editor.
     padding: 5vh;
     margin-bottom: 20vh;
     z-index: 99;
+    margin-bottom: 30%;
 }
     
 
@@ -164,18 +165,21 @@ and open the template in the editor.
 }
 
 .form-label-group>label {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   display: block;
   width: 100%;
-  margin-bottom: 0;
   /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
+}
+
+.form-label-group label{
+    margin-bottom: 1%;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -208,4 +212,13 @@ and open the template in the editor.
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
   color: #777;
+}
+
+#warningform{
+    color: orange;
+    margin-top: 5%;
+}
+
+.askidcard{
+    font-weight: bold;
 }

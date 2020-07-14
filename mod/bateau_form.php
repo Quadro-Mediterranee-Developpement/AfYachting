@@ -218,27 +218,35 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 <div>
                     <h3>Récapitulatif</h3>
                     <p>Bateau : <span id="nom"></span></p>
-                    <p>Type : <span id="type"></span></p>
+                    <p>Type de sortie : <span id="type"></span></p>
                     <p>Date : <span id="datage"></span></p>
-                    <p>Skypper : <span id="skip"></span></p>
+                    <p>Skipper : <span id="skip"></span></p>
                     <p>Option : <span id="opt"></span></p>
                     <p>Prix total: <span id="prixTotal"></span></p>
                 </div>
 
                 <form action="traitementPOST/index.php?p=bateau" method="post" enctype="multipart/form-data" id="toutBon" style="display: block" class="form">
                     <div class="form-label-group">
-                        <label for="IDcard1">Pièce d'identitée 1</label>
+                        <label class="askidcard" for="IDcard1">Merci de présenter une pièce d'identité</label>
+                        <label><a href="index?p=cgv" class="text-white" target = "_blank" >Pourquoi avons-nous besoin de plusieurs pièces d'identité ?</a></label>
                         <input type="file" name="IDcard1" id="IDcard1">
                     </div>
                     <div class="form-label-group">
-                        <label for="IDcard2">Pièce d'identitée 2</label>
+                        <label class="askidcard" for="IDcard2">Merci de présenter une pièce d'identité différente</label>
                         <input type="file" name="IDcard2" id="IDcard2">
                     </div>
                     <div id="optionSansSkypper" class="form-label-group">
-                        <label for="permis">Permis</label>
+                        <label class="askidcard" for="permis">Merci de présenter votre permis bateau</label>
                         <input type="file" name="permis" id="permis">                        
                     </div>
-                    <button type="submit" class="btn btn-primary button" name="validation" >envoier la demande</button>
+                    <div class="custom-control custom-checkbox container">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1" required="required">En cochant cette case vous reconnaissez avoir pris connaissance des <a href="index?p=cgu" class="text-white" target = "_blank" >CGU</a> et <a href="index?p=cgv" class="text-white" target = "_blank" >CGV</a> et les avoir acceptées</label>
+                    </div>
+                        <div class="container">
+                            <label id="warningform">Attention, si vous ne remplissez pas correctement le formulaire, il ne sera pas envoyé pour des raisons de sécurité et vous serez renvoyé à l'accueil avec un message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary button" name="validation" >envoyer la demande</button>
                 </form>
 
                 <div id="Nco" style="display: none">
