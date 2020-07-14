@@ -38,9 +38,18 @@ body::-webkit-scrollbar {
 }
 
 .pictSize{
+    min-width: 100%;
+    min-height: 92vh;
     width: 100%;
     height: 92vh;
     object-fit: cover;
+
+    text-align: center;
+
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
 }
 
 .cubeForm 
@@ -49,14 +58,10 @@ body::-webkit-scrollbar {
     max-height: 25vw;
 }
 
+
 .blank5{
     height: 5vh;
     width:100%;
-}
-.cubeForm img
-{
-    max-width: 500px;
-    max-height: 500px;
 }
 
 
@@ -86,12 +91,9 @@ img:after {
     width: 100%;
     height: 92vh;
     text-align: center;
-
-
 }
 .cubeForm img
 {
     max-width: 25vw;
     max-height: 25vw;
-
 }
