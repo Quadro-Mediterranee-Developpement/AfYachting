@@ -115,7 +115,7 @@ and open the template in the editor.
 }
 .price::after
 {
-    content:" \20AC";
+    content:" &euro;";
 }
 
 :root {

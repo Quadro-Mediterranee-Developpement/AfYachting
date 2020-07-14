@@ -44,7 +44,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         $str = "<b>Equipements :</b></p><ul class='text-center' style='list-style-type:none;'><i><li>" . $str . "</li></ul></i>";
         
         if (isset($_GET["vente"])) {
-            column([[$bat[0]["Nom"], $img, number_format($bat[0]["Prix"], 0, ',', ' ')." €", "<b>".$bat[0]["Description"]."</b><br>".$bat[0]["Moteur"] . "<br><br>Mis en circulation en <i class='font-weight-bold'>". strval($bat[0]["Age"])."<br>" . $bat[0]["State"] ."<br>" . $bat[0]["Passagers"] . " personnes<br>" . number_format($bat[0]["Longueur"], 0, '.', ',')." m / ".number_format($bat[0]["Largeur"], 0, '.', ',')." m</i><br><br>" . $bat[0]["Divers"] . "<br><br>" . $str, "GigahBigah", "GigahBigah"]]);
+            column([[$bat[0]["Nom"], $img, number_format($bat[0]["Prix"], 0, ',', ' ')." &euro;", "<b>".$bat[0]["Description"]."</b><br>".$bat[0]["Moteur"] . "<br><br>Mis en circulation en <i class='font-weight-bold'>". strval($bat[0]["Age"])."<br>" . $bat[0]["State"] ."<br>" . $bat[0]["Passagers"] . " personnes<br>" . number_format($bat[0]["Longueur"], 0, '.', ',')." m / ".number_format($bat[0]["Largeur"], 0, '.', ',')." m</i><br><br>" . $bat[0]["Divers"] . "<br><br>" . $str, "GigahBigah", "GigahBigah"]]);
 
         }
         else {
