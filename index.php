@@ -16,11 +16,12 @@ if (!isset($_SESSION['activeBackPage'])) {
 
 if (isset($_GET['ajax'])) {
     if ($_GET['ajax'] == 'false') {
-        $_SESSION['ActiveAjax'] = false;
+        //$_SESSION['ActiveAjax'] = false;
     } else if ($_GET['ajax'] == 'true') {
         $_SESSION['ActiveAjax'] = true;
     }
 }
+
 
 if (isset($_GET["validationEmail"])) {
     $code = filter_input(INPUT_GET, "validationEmail");
@@ -41,9 +42,11 @@ if (isset($_SESSION['ID'])) {
         case 'skipper':
             $menu = ["Espace" => "espace_skipper"];
             break;
-
+        case 'entreprise':
+            $menu = ["Espace" => "espace_entreprise"];
+            break;
         case 'client':
-            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente", "Contact" => "Contact"];
+            $menu = ["Accueil" => "Accueil", "Location" => "Location", "Vente" => "Vente","Espace" => "espace_client", "Contact" => "Contact"];
             break;
 
         case 'client_ponctuel':
@@ -90,6 +93,9 @@ Back : Hugo MUSOLES
 
                     case 'client':
                         $p = 'espace_client';
+                        break;
+                    case 'entreprise':
+                        $p = 'espace_entreprise';
                         break;
                     default:
                         $p = 'connexion';

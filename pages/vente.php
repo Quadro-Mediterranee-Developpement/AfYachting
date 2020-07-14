@@ -22,32 +22,30 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         textual("Achetez un bateau", FALSE, ["Vous trouverez sur cette page une sélection parmis un large choix de tous les bateaux disponibles à la vente chez AfYachting."]);
         //TEXT 
 
-        $bat = bateauMANAGER::recupINFORMATIONall();
+        $bat = bateauMANAGER::recupINFORMATIONallVente();
 
         $returner = array();
         $buffout = array();
-        $options = array();
-
+		$options = array();
+		
         for ($i = 0; $i < count($bat); $i++) {
-
-            if ($bat[$i]["Prix"] != 0 && $bat[$i]["Prix"] != null) {
-
-                $img = loaderBDD::image($bat[$i]["ID_images"]);
-
-                foreach (explode(";", trim($bat[0]["Equipement"], ";")) as $key => $value) {
-                    if (!in_array($value, $options)) {
+		    foreach (explode(";", trim($bat[0]["Equipement"], ";")) as $key => $value) {
+                if (!in_array($value, $options)) {
                         $options[] = $value;
-                    }
                 }
-
-                $buffout = [$img[0]["Url"], number_format($bat[0]["Prix"], 0, ',', ' ') . " €", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
-
-                array_push($returner, $buffout);
             }
-        }
-        
-        sort($options);
+            $img = loaderBDD::image($bat[$i]["ID_images"]);
+            $retour = "";
+            if(isset($img[0]))
+            {
+                $retour = $img[0]["Url"];
+            }
+            $buffout = [$retour, number_format($bat[0]["Prix"], 0, ',', ' ') . " €", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
 
+            array_push($returner, $buffout);
+        }
+		sort($options);
+		
         vente_form($options, (function($returner) {
                     mosaic($returner);
                 }), $returner);

@@ -43,8 +43,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             </div>
             <h6>Partie location</h6>
             <p><strong>haute saison:</strong><?= $info['HS'] ?></p>
-            <p><strong>moyenne saison:</strong><?= $info['MS'] ?></p>
-            <p><strong>basse saison:</strong><?= $info['BS'] ?></p>
+   
+            <p><strong>reste de la saison:</strong><?= $info['MS'] ?></p>
             <p><strong>caution:</strong><?= $info['Caution'] ?></p>
 
             <h6>Partie vente</h6>

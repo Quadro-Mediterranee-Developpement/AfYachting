@@ -38,9 +38,18 @@ body::-webkit-scrollbar {
 }
 
 .pictSize{
+    min-width: 100%;
+    min-height: 92vh;
     width: 100%;
     height: 92vh;
     object-fit: cover;
+
+    text-align: center;
+
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
 }
 
 .cubeForm 
@@ -52,4 +61,32 @@ body::-webkit-scrollbar {
 {
     max-width: 25vw;
     max-height: 25vw;
+}
+
+
+
+img:before {  
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 92vh;
+    background-color: rgb(230, 230, 230);
+    border: 2px dotted rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+img:after {  
+    content: "\f127" " Image introuvable, description :" attr(alt);
+    display: block;
+    font-size: 16px;
+    font-style: normal;
+    font-family: FontAwesome;
+    color: rgb(100, 100, 100);
+
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    height: 92vh;
+    text-align: center;
 }

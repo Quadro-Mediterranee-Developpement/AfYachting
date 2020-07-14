@@ -16,7 +16,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 echo '<div>';
                 identityCardBoat($y);
                 echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return supprimer(\"" .$y['Nom'] . "\",\"bateau\")'>suprimer</a>";
-                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddScreen&id=".$y['ID_images']."&destination=bateau' >Ajouter Images</a></div>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddScreen&id=".$y['ID_images']."&destination=bateau' >Ajouter Images</a>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddOption&id=".$y['ID_images']."' >Ajouter Option</a>";
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=modifLocation&id=".$y['ID_images']."' >modifier location</a></div>";
                 //iframe('?p=AddScreen&id='.$y['ID_images'].'&destination=bateau','');
                 
             }

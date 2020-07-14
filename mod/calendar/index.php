@@ -11,6 +11,7 @@ switch ($_SESSION['ID']['ROLE']) {
         $modif = true;
     case 'skipper':
     case 'client':
+    case 'entreprise':
         $mode = $_SESSION['ID'];
 
         break;
@@ -66,7 +67,7 @@ and open the template in the editor.
     <body>
 
         <?php if (isset($_GET['day'])): ?>
-        <div class="">
+            <div class="">
                 <?php
                 $date = new \DateTime();
                 $date->setDate($month->getYear(), $month->getMonth(), $_GET['day']);
@@ -88,21 +89,74 @@ and open the template in the editor.
 
                             <a <?php if ($modif == true): ?>href="./edit.php?id=<?= $event['id']; ?>"<?php endif; ?>><h4><?= $event['name']; ?></h4></a>
                             <p>
-                                <?= $event['description'] ?>
                                 <?php
-                                foreach (["Admin" => ["admin", "idAdmin"], "Client" => ["client", "idClient"], "Skipper" => ["skipper", "idSkipper"], "Client ponctuel" => ["client_ponctuel", "idClientTemp"]] as $k => $i) {
-                                    $name = $eventss->findOneCompte($event[$i[1]], $i[0]);
-                                    echo "<div><strong>$k:</strong>$name</div>";
-                                }
-                                $name = $eventss->findOneBoat($event['idBoat']);
-                                echo "<div><strong>Bateau:</strong>$name</div>";
-                                echo "<div><strong>Prix:</strong>" . $event['prix'] . "</div>";
-                                $option = $eventss->findOption($event['option']);
-                                foreach ($option as $i) {
-                                    echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
-                                    echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
-                                    echo "<div><strong>Prix de l'option:</strong>" . $i['prix'] . "</div>";
-                                }
+                                switch ($_SESSION['ID']['ROLE']):
+                                    case 'admin':
+                                        echo $event['description'];
+                                        foreach (["Admin" => ["admin", "idAdmin"], "Client" => ["client", "idClient"], "Skipper" => ["skipper", "idSkipper"], "Client ponctuel" => ["client_ponctuel", "idClientTemp"]] as $k => $i) {
+                                            $name = $eventss->findOneCompte($event[$i[1]], $i[0]);
+                                            echo "<div><strong>$k:</strong>$name</div>";
+                                        }
+                                        $name = $eventss->findOneBoat($event['idBoat']);
+                                        echo "<div><strong>Bateau:</strong>$name</div>";
+                                        echo "<div><strong>Prix:</strong>" . $event['prix'] . "</div>";
+                                        $option = $eventss->findOption($event['option']);
+                                        foreach ($option as $i) {
+                                            echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
+                                            echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
+                                            echo "<div><strong>Prix de l'option:</strong>" . $i['prix'] . "</div>";
+                                        }
+
+                                        break;
+                                    case 'client':
+                                        //echo "<div><strong>Admin:</strong>" . $eventss->findOneCompte($event["idAdmin"], 'admin') . "</div>";
+                                        if (empty($event["idSkipper"])) {
+                                            echo "<div>sans skipper</div>";
+                                        } else {
+                                            echo "<div>avec skipper</div>";
+                                        }
+                                        $name = $eventss->findOneBoat($event['idBoat']);
+                                        echo "<div><strong>Bateau:</strong>$name</div>";
+                                        echo "<div><strong>Prix:</strong>" . $event['prix'] . "</div>";
+                                        $option = $eventss->findOption($event['option']);
+                                        foreach ($option as $i) {
+                                            echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
+                                            echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
+                                            echo "<div><strong>Prix de l'option:</strong>" . $i['prix'] . "</div>";
+                                        }
+                                        break;
+
+                                    case 'skipper':
+                                        echo "<div><strong>Admin:</strong>" . $eventss->findOneCompte($event["idAdmin"], 'admin') . "</div>";
+
+                                        $name = $eventss->findOneBoat($event['idBoat']);
+                                        echo "<div><strong>Bateau:</strong>$name</div>";
+
+                                        $option = $eventss->findOption($event['option']);
+                                        foreach ($option as $i) {
+                                            echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
+                                            echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
+                                            echo "<div><strong>Prix de l'option:</strong>" . $i['prix'] . "</div>";
+                                        }
+                                        break;
+                                    case 'entreprise':
+                                        echo "<div><strong>Admin:</strong>" . $eventss->findOneCompte($event["idAdmin"], 'admin') . "</div>";
+                                        if (empty($event["idSkipper"])) {
+                                            echo "<div>sans skipper</div>";
+                                        } else {
+                                            echo "<div>avec skipper</div>";
+                                        }
+                                        $name = $eventss->findOneBoat($event['idBoat']);
+                                        echo "<div><strong>Bateau:</strong>$name</div>";
+
+                                        $option = $eventss->findOption($event['option']);
+                                        foreach ($option as $i) {
+                                            echo "<div><strong>Nom de l'option:</strong>" . $i['name'] . "</div>";
+                                            echo "<div><strong>Description de l'option:</strong>" . $i['description'] . "</div>";
+                                            
+                                        }
+                                        break;
+                                endswitch;
                                 ?>
 
                             </p>

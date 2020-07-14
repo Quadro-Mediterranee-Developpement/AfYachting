@@ -50,6 +50,9 @@ class Events {
             case 'client':
                 $add = " evenement.ID_Client = " . $id['ID'] . " AND ";
                 break;
+            case 'entreprise':
+                $add = " EXISTS (SELECT bateau.ID FROM bateau WHERE bateau.ID_entreprise = " . $_SESSION['ID']['ID'] . " AND evenement.ID_Bateau = bateau.ID) AND ";
+                break;
             default:
                 $add = " 1 = 2 AND ";
                 break;
@@ -206,8 +209,8 @@ class Events {
 
     public function sendEmail($id, $newevent = false) {
 
-        $name = $this->findOneCompte($id,'skipper');
-        $to = $this->findOneCompteMail($id,'skipper');
+        $name = $this->findOneCompte($id, 'skipper');
+        $to = $this->findOneCompteMail($id, 'skipper');
 
         if ($newevent) {
             $subject = 'evenement ajouter afYachting';

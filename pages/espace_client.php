@@ -21,7 +21,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID']['ROLE'] == 'client') {
-                //iframe("./mod/calendar","takeplace",true);
+                iframe("./mod/calendar","takeplace",true);
                 //TEXT
                 illustation("carousel_test/img_slider_1", function() {
                     textual("Espace client", FALSE, ["En construction"], "", "");

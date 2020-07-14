@@ -24,7 +24,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 iframe("./mod/calendar", "takeplace", true);
 
-                foreach (['admin' => 'admin', 'client' => 'client', 'skipper' => 'skipper'] as $k => $i) {
+                foreach (['admin' => 'admin', 'client' => 'client', 'skipper' => 'skipper','entreprise' => 'entreprise'] as $k => $i) {
                     $info[$k] = compteMANAGER::recupINFORMATIONall($i);
                 }
 
