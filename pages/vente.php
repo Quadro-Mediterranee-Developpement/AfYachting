@@ -40,7 +40,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             {
                 $retour = $img[0]["Url"];
             }
-            $buffout = [$retour, number_format($bat[0]["Prix"], 0, ',', ' ') . " â‚¬", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
+            $buffout = [$retour, number_format($bat[0]["Prix"], 0, ',', ' ') . " &euro;", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
 
             array_push($returner, $buffout);
         }
