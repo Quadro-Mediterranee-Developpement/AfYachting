@@ -18,11 +18,6 @@ and open the template in the editor.
     margin: auto;
 }
 
-.pictSizeVente{
-    width : 200px;
-    height : 200px;
-}
-
 .boxSize{
     width : 70vw;
     height : auto;

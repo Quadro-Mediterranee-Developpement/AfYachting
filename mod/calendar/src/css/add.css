@@ -6,5 +6,7 @@
 #retour{
     top:30px;
     right:30px; 
+    color: white;
     background-color: #848484;
+    cursor: context-menu;        
 }
