@@ -12,9 +12,6 @@ and open the template in the editor.
     --input-padding-y: .75rem;
 }
 
-body{
-    background-attachment: fixed;
-}
 
 .card-title {
   margin-bottom: 2rem;
