@@ -112,7 +112,7 @@ function connexion($user, $pass) {
                 if ($id) {
                     if (compteMANAGER::verifActivate($id)) {
                         $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
-                        $_SESSION['news']['connexion'] = ['desc' => 'Connexion réussite', 'code' => true];
+                        $_SESSION['news']['connexion'] = ['desc' => 'Connexion réussie', 'code' => true];
                         $_SESSION['ID'] = $id;
                     } else {
                         $_SESSION['erreur'] = ['desc' => 'compte non activé (verifiez les spams)', 'code' => 1];
@@ -145,7 +145,7 @@ function inscription($user, $mail, $pass, $verifpass, $tel, $table) {
                             if (empty(compteMANAGER::recupIDby($username, $email))) {
                                 if (empty($id = compteMANAGER::creatNEWuser($username, $password, $email, $phone, $table)) === false) {
                                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
-                                    $_SESSION['news']['inscription'] = ['desc' => 'Inscription réussite, email de validation envoyé', 'code' => true];
+                                    $_SESSION['news']['inscription'] = ['desc' => 'Inscription réussie, email de validation envoyé', 'code' => true];
                                 } else {
                                     $erreur = "erreur inconnue, l'inscription à échouer";
                                     $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 11];

@@ -57,11 +57,13 @@ body::-webkit-scrollbar {
     max-width: 25vw;
     max-height: 25vw;
 }
-.cubeForm img
-{
-    max-width: 25vw;
-    max-height: 25vw;
+
+
+.blank5{
+    height: 5vh;
+    width:100%;
 }
+
 
 
 
@@ -89,4 +91,9 @@ img:after {
     width: 100%;
     height: 92vh;
     text-align: center;
+}
+.cubeForm img
+{
+    max-width: 25vw;
+    max-height: 25vw;
 }

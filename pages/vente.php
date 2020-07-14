@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     $_SESSION['activeBackPage']['url'] = $p;
     //TEXT
-    head($included, "Bateau disponible à la vente pour une qualité imbatable", "Vente de bateau");
+    head($included, "Bateau disponible Ã  la vente pour une qualitÃ© imbatable", "Vente de bateau");
     ?>
 
     <body>
@@ -19,7 +19,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
         //TEXT
-        textual("Achetez un bateau", FALSE, ["Vous trouverez sur cette page une sélection parmis un large choix de tous les bateaux disponibles à la vente chez AfYachting."]);
+        textual("Achetez un bateau", FALSE, ["Vous trouverez sur cette page une sÃ©lection parmis un large choix de tous les bateaux disponibles Ã  la vente chez AfYachting."]);
         //TEXT 
 
         $bat = bateauMANAGER::recupINFORMATIONallVente();
@@ -40,7 +40,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             {
                 $retour = $img[0]["Url"];
             }
-            $buffout = [$retour, number_format($bat[0]["Prix"], 0, ',', ' ') . " €", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
+            $buffout = [$retour, number_format($bat[0]["Prix"], 0, ',', ' ') . " â‚¬", "<b>" . $bat[$i]["Nom"] . "</b><br>" . $bat[$i]["Description"] . "<br><br>Mis en circulation en " . $bat[$i]["Age"] . "<br>" . number_format($bat[$i]["Longueur"], 0, '.', ',') . " m / " . number_format($bat[$i]["Largeur"], 0, '.', ',') . " m", array_merge([$bat[$i]["Modele"]], explode(";", trim($bat[0]["Equipement"], ";"))), strval($bat[$i]["Option"])];
 
             array_push($returner, $buffout);
         }
