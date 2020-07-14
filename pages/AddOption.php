@@ -22,9 +22,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 if (isset($_GET['id']) && ($_SESSION['ID']['ROLE'] == 'admin' || bateauMANAGER::confirmeDonneeImage($_GET['id']) == $_SESSION['ID']['ID'])) {
                     ?>
                     <form action="traitementPOST/index.php?p=AddOption" method="post">
-
+                        <br><br><br>
                         <input type="hidden" value="<?= $_GET['id'] ?>" name="id" id="id">
-
+                        
                         <div class="form-label-group">
                             <label for="alt">Nom:</label>
                             <input type="text" value="" name="Nom" id="Nom" required>
@@ -45,6 +45,9 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     foreach ($option as $i) {
                         ?>
                         <div id='option<?= $i['ID'] ?>'>
+                            <br>
+                            <br>
+                            <br>
                             <p><strong>Nom:</strong><?= $i['name'] ?></p>
                             <p><strong>Description:</strong><?= $i['description'] ?></p>
                             <p><strong>Prix:</strong><?= $i['prix'] ?></p>
@@ -61,18 +64,18 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <script src="ajaxUse/XHR.js" type="text/javascript"></script>
                     <?php
                 } else {
-                    textual("accès illegale", true, ["cette page est apparue car vous êtes tomber sur une page qui nécessite l'accès par un lien dedier"]);
+                    textual("accès illegale", true, ["cette page est apparue car vous êtes tomber sur une page qui nécessite l'accès par un lien dedié"]);
                 }
             } else {
                 //TEXT
-                textual("Veuiller vous connectez avec un compte admin", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+                textual("Veuiller vous connecter avec un compte admin", true, ["cette page est apparue car vous êtes tombé sur une page où une connexion est exigée"]);
             }
         } else {
             //TEXT
-            textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigée"]);
+            textual("Veuillez vous connecter", true, ["cette page est apparue car vous êtes tombé sur une page où une connexion est exigée"]);
         }
         ?>
-        <a <?= "href='index?p=lastpage'"; ?>"><img class="closer" src="img/close.png" alt=""/></a>
+                    <br><br><a <?= "href='index?p=lastpage'"; ?>"><img class="closer CloserWidth" src="img/close.png" alt=""/></a><br><br>
             <?php
             footer();
 

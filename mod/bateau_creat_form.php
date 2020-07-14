@@ -16,14 +16,15 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 //ajout d'option a cree
 
                 creationFormType::input_text("text", "nom", "Nom du bateau", "nom", "Nom du bateau");
-                creationFormType::input_text("text", "description", "description du bateau", "description", "modele du bateau");
+                creationFormType::input_text("text", "description", "Modèle du bateau", "description", "Modèle du bateau");
 
                 creationFormType::input_select("nomModele", "nomModele",["rigide"=>"Coque rigide", "semi"=>"Coque semi rigide", "prestige"=>"Gamme prestige"] ,"type de coque");
-                creationFormType::input_text("text", "moteur", "moteur", "moteur", "moteur");
-                creationFormType::input_text("number", "longueur", "longueur", "longueur", "longueur");
-                creationFormType::input_text("number", "nombrePassager", "nombrePassager", "nombrePassager", "nombrePassager");
-                creationFormType::input_text("text", "Equipement", "Equipement", "Equipement", "Equipement");
-                creationFormType::input_text("text", "divers", "divers", "divers", "divers");
+                creationFormType::input_text("text", "moteur", "Moteur", "moteur", "Moteur");
+                creationFormType::input_text("number", "longueur", "Longueur", "longueur", "Longueur");
+                creationFormType::input_text("number", "nombrePassager", "Nombre de passagers", "nombrePassager", "Nombre de passagers");
+                echo '<p>Pour ajouter des options, merci de coller les équipements avec des ";" sans espace, tout accroché. <b>Ex: "Equipement Numéro 1;Equipement Numéro 2;...;Equipement Numéro n"</b></p>';
+                creationFormType::input_text("text", "Equipement", "Equipement(s)", "Equipement", "Equipement(s)");
+                creationFormType::input_text("text", "divers", "Divers", "divers", "Divers");
                 ?>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name='bat_loc_form'>Enregistrer</button>
                 <?php if (isset($_SESSION['erreur'])): ?>

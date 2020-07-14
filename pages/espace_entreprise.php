@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         require_once "mod/$i.php";
     }
     //TEXT
-    head($included, "Retrouvez ici votre espace de gestion", "Espace skipper");
+    head($included, "Retrouvez ici votre espace de gestion", "Espace Entreprise");
     ?>
 
     <body>
@@ -33,11 +33,11 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 });
             } else {
                 //TEXT
-                textual("Veuiller vous connectez avec un compte entreprise", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigé"]);
+                textual("Veuillez vous connecter avec un compte entreprise", true, ["cette page est apparue car vous êtes tombé sur une page où une connexion est exigée"]);
             }
         } else {
             //TEXT
-            textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigée"]);
+            textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tombé sur une page où une connexion est exigée"]);
         }
 
 
