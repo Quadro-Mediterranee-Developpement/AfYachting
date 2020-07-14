@@ -20,13 +20,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                     <input type="hidden" value="<?= $id ?>" id="inputID">
                     <div class="form-group">
-                        <label for="reserveduraction" class="text-center label">Durée de réservation</label>
+                        <label for="reserveduraction" class="text-center label">DurÃ©e de rÃ©servation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
                             <option value="" disabled selected></option>
-                            <option value="matin">1 matinée</option>
-                            <option value="apresmidi">1 après-midi</option>
-                            <option value="jour">1 journée</option>
-                            <option value="jours">plusieurs journées</option>
+                            <option value="matin">1 matinÃ©e</option>
+                            <option value="apresmidi">1 aprÃ¨s-midi</option>
+                            <option value="jour">1 journÃ©e</option>
+                            <option value="jours">plusieurs journÃ©es</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -220,25 +220,49 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     <p>Bateau : <span id="nom"></span></p>
                     <p>Type : <span id="type"></span></p>
                     <p>Date : <span id="datage"></span></p>
-                    <p>Skypper : <span id="skip"></span></p>
+                    <p>Skipper : <span id="skip"></span></p>
                     <p>Option : <span id="opt"></span></p>
                     <p>Prix total: <span id="prixTotal"></span></p>
                 </div>
 
                 <form action="traitementPOST/index.php?p=bateau" method="post" enctype="multipart/form-data" id="toutBon" style="display: block" class="form">
-                    <div class="form-label-group">
-                        <label for="IDcard1">Pièce d'identitée 1</label>
-                        <input type="file" name="IDcard1" id="IDcard1">
+                    <div class="input-group classinputfile">
+                        <div class="custom-file">
+                            <input type="file" required class="custom-file-input" id="IDcard1"
+                                   aria-describedby="IDcard1" name="IDcard1">
+                            <label class="custom-file-label identitypaper" for="IDcard1">Merci d'entrer une pièce d'identité</label>
+                        </div>
                     </div>
-                    <div class="form-label-group">
-                        <label for="IDcard2">Pièce d'identitée 2</label>
-                        <input type="file" name="IDcard2" id="IDcard2">
+                    
+                    
+                    <div class="input-group classinputfile">
+                        <div class="custom-file">
+                            <input type="file" required class="custom-file-input" id="IDcard2"
+                                   aria-describedby="IDcard2" name="IDcard2">
+                            <label class="custom-file-label identitypaper" for="IDcard2">Merci d'entrer une seconde P.I.</label>
+                        </div>
                     </div>
-                    <div id="optionSansSkypper" class="form-label-group">
-                        <label for="permis">Permis</label>
-                        <input type="file" name="permis" id="permis">                        
+                    
+                    <div id="optionSansSkypper" class="input-group classinputfile">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="permis"
+                                   aria-describedby="permis" name="permis">
+                            <label class="custom-file-label identitypaper" for="permis">Merci d'entrer votre permis bateau</label>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary button" name="validation" >envoier la demande</button>
+
+
+
+                
+                    <label><a href="index?p=cgu" class="text-white">Pourquoi avons-nous besoin de ces pièces d'identité ?</a></label>
+                    <label id="paperwatchout">Pour des raisons de sécurité, si vous ne remplissez pas toutes les informations correctement vous serez redirigé sur la page d'accueil</label>
+
+                    <div class="form-check">
+                        <input type="checkbox" required class="form-check-input">
+                        <label class="form-check-label" for="exampleCheck1">En cochant cette case vous certifiez avoir pris connaissance et accepté les <a href="index?p=cgu" class="text-white">CGU</a> et les <a href="index?p=cgu" class="text-white">CGV</a></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary button" name="validation" >envoyer la demande</button>
                 </form>
 
                 <div id="Nco" style="display: none">
