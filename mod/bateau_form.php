@@ -23,10 +23,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         <label for="reserveduraction" class="text-center label">Duréee de réservation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
                             <option value="" disabled selected></option>
-                            <option value="matin">1 matinÃ©e</option>
-                            <option value="apresmidi">1 aprÃ¨s-midi</option>
-                            <option value="jour">1 journÃ©e</option>
-                            <option value="jours">plusieurs journÃ©es</option>
+                            <option value="matin">1 matinée</option>
+                            <option value="apresmidi">1 après-midi</option>
+                            <option value="jour">1 journèe</option>
+                            <option value="jours">plusieurs journées</option>
                         </select>
                     </div>
                     <div class="form-group">

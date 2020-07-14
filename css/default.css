@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
 
 .pictSize{
     min-width: 100%;
-    min-height: 92vh;
+    min-height: 25vh;
     width: 100%;
     height: 92vh;
     object-fit: cover;
@@ -71,7 +71,7 @@ img:before {
     content: " ";
     display: block;
     width: 100%;
-    height: 92vh;
+    height: 100%;
     background-color: rgb(230, 230, 230);
     border: 2px dotted rgb(200, 200, 200);
     border-radius: 5px;
@@ -89,7 +89,7 @@ img:after {
     top: 5px;
     left: 0;
     width: 100%;
-    height: 92vh;
+    height: 100%;
     text-align: center;
 }
 .cubeForm img
