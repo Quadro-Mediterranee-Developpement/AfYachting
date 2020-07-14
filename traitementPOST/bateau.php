@@ -17,7 +17,7 @@ if (isset($_SESSION['ID']) && ($_SESSION['ID']['ROLE'] == 'client')) {
                     <p>Bateau : <span id="nom">' . $_SESSION['locationEnCours']['nom'] . '</span></p>
                     <p>Type : <span id="type">' . $_SESSION['locationEnCours']['type'] . '</span></p>
                     <p>Date : <span id="datage">' . $_SESSION['locationEnCours']['datage'] . '</span></p>
-                    <p>Skypper : <span id="skip">' . $_SESSION['locationEnCours']['skip'] . '</span></p>
+                    <p>Skipper : <span id="skip">' . $_SESSION['locationEnCours']['skip'] . '</span></p>
                     <p>Option : <span id="opt">' . $_SESSION['locationEnCours']['opt'] . '</span></p>
                     <p>Prix total: <span id="prixTotal">' . $_SESSION['locationEnCours']['prixTotal'] . '</span></p>
                 </div>';
@@ -99,6 +99,7 @@ if (isset($_SESSION['ID']) && ($_SESSION['ID']['ROLE'] == 'client')) {
             }
 
             if (mail($email_to, $email_subject, $email_message, $headers) == false) {
+                $_SESSION['news']['location'] = ['desc' => 'Email non envoyé, Veuillez réessayer plus tard', 'code' => false];
                 $erreur = "email non envoier";
                 $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 50];
             } else {
