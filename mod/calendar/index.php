@@ -109,7 +109,7 @@ and open the template in the editor.
 
                                         break;
                                     case 'client':
-                                        echo "<div><strong>Admin:</strong>" . $eventss->findOneCompte($event["idAdmin"], 'admin') . "</div>";
+                                        //echo "<div><strong>Admin:</strong>" . $eventss->findOneCompte($event["idAdmin"], 'admin') . "</div>";
                                         if (empty($event["idSkipper"])) {
                                             echo "<div>sans skipper</div>";
                                         } else {
