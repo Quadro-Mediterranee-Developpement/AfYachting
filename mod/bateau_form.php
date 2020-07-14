@@ -20,7 +20,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                     <input type="hidden" value="<?= $id ?>" id="inputID">
                     <div class="form-group">
-                        <label for="reserveduraction" class="text-center label">DurÃ©e de rÃ©servation</label>
+                        <label for="reserveduraction" class="text-center label">Duréee de réservation</label>
                         <select id="reserveduraction" name="reserveduraction" class="form-control input" required>
                             <option value="" disabled selected></option>
                             <option value="matin">1 matinÃ©e</option>
