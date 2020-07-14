@@ -18,8 +18,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='#' onclick='return supprimer(\"" .$y['Nom'] . "\",\"bateau\")'>suprimer</a>";
                 echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddScreen&id=".$y['ID_images']."&destination=bateau' >Ajouter Images</a>";
                 echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=AddOption&id=".$y['ID_images']."' >Ajouter Option</a>";
-                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=modifLocation&id=".$y['ID_images']."' >modifier location</a></div>";
-                //iframe('?p=AddScreen&id='.$y['ID_images'].'&destination=bateau','');
+                echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=modifLocation&id=".$y['ID_images']."' >modifier location</a>";
+                if(isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'admin')
+                {
+                    echo "<a class='btn btn-outline-primary btn-lg align-self-center' href='?p=modifVente&id=".$y['ID_images']."' >modifier vente</a>";
+                }
+                echo "</div>";
+//iframe('?p=AddScreen&id='.$y['ID_images'].'&destination=bateau','');
                 
             }
             echo '</div></div>';
