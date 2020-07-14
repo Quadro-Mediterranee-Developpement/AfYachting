@@ -204,3 +204,33 @@ and open the template in the editor.
   font-size: 12px;
   color: #777;
 }
+
+
+.identitypaper{
+    margin-bottom: 5%;
+    font-weight: bold;
+}
+#paperwatchout{
+    color: orange;
+}
+
+
+#Centragegauche{
+    width:50%;
+}
+
+.classinputfile{
+    width: 35vw;
+    margin-bottom: 1vh;
+}
+
+@media only screen and (max-width:600px){
+    
+.classinputfile{
+    margin-left: -10vw;
+    width: 40vw;
+    margin-bottom: 1vh;
+}
+    
+    
+}
