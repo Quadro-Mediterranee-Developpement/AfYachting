@@ -127,8 +127,8 @@ class bateauMANAGER extends loaderBDD {
                     $requete->execute(array($retour[0], $id));
                 }
             } else {
-                $requete = loaderBDD::connexionBDD()->prepare("UPDATE bateau SET ID_Location = ? WHERE ID = ? AND Password IS NOT NULL");
-                $requete->execute(array($retour[0], $id));
+                $requete = loaderBDD::connexionBDD()->prepare("UPDATE location SET HS = ?, MS = ?, BS = ? , Caution = ? WHERE ID = ?");
+                $requete->execute(array($HS,$BS,0, $Caution,$retour[0]));
             }
         }
     }
@@ -144,4 +144,36 @@ class bateauMANAGER extends loaderBDD {
         }
     }
 
+        public static function creatVente($Age, $State, $Largeur,$Prix, $id) {
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT bateau.ID_Vente FROM bateau WHERE Password IS NOT NULL AND ID = $id");
+        $requete->execute();
+        if (($retour = $requete->fetch())) {
+            if ($retour[0] == 0) {
+                
+                $requete = loaderBDD::connexionBDD()->prepare("INSERT INTO vente ( Age, State, Largeur, Prix) VALUES ( ?, ?, ?, ?)");
+                $requete->execute(array($Age, $State, $Largeur,$Prix));
+
+                $requete = loaderBDD::connexionBDD()->prepare("SELECT MAX(ID) FROM vente");
+                $requete->execute();
+                if (($retour = $requete->fetch())) {
+                    $requete = loaderBDD::connexionBDD()->prepare("UPDATE bateau SET ID_Vente = ? WHERE ID = ? AND Password IS NOT NULL");
+                    $requete->execute(array($retour[0], $id));
+                }
+            } else {
+                $requete = loaderBDD::connexionBDD()->prepare("UPDATE vente SET Age = ?, State = ?, Largeur = ?, Prix = ? WHERE ID = ?");
+                $requete->execute(array($Age, $State, $Largeur,$Prix,$retour[0]));
+            }
+        }
+    }
+
+    public static function supprVente($id) {
+        $requete = loaderBDD::connexionBDD()->prepare("SELECT bateau.ID_Vente FROM bateau WHERE Password IS NOT NULL AND ID = $id");
+        $requete->execute();
+        if (($retour = $requete->fetch())) {
+            $requete = loaderBDD::connexionBDD()->prepare("DELETE FROM vente WHERE ID = $retour[0] ");
+            $requete->execute();
+            $requete = loaderBDD::connexionBDD()->prepare("UPDATE bateau SET ID_Vente = ? WHERE ID = ? AND Password IS NOT NULL");
+            $requete->execute(array(0, $id));
+        }
+    }
 }
