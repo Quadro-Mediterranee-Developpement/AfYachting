@@ -14,13 +14,13 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <form <?= ($mode) ? "onsubmit='return inscription()'" : 'action="traitementPOST/index.php?p=inscription" method="POST"'; ?> class="form-signin" >
 
                 <?php
-                creationFormType::input_text("text", "inputUserame", "Nom", "userName", "Nom");
+                creationFormType::formconnect("text", "inputUserame", "Nom", "userName", "Nom");
 
-                creationFormType::input_text("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
+                creationFormType::formconnect("email", "inputEmail", "Adresse Email", "mail", "Adresse Email");
 
-                creationFormType::input_text("password", "inputPassword", "Mot de passe", "password", "Mot de passe");
+                creationFormType::formconnect("password", "inputPassword", "Mot de passe", "password", "Mot de passe");
 
-                creationFormType::input_text("password", "inputConfirmPassword", "Confirmer mot de passe", "passwordVerif", "Confirmer mot de passe");
+                creationFormType::formconnect("password", "inputConfirmPassword", "Confirmer mot de passe", "passwordVerif", "Confirmer mot de passe");
                 ?>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="inscript">Inscription</button>
                 <?php if (isset($_SESSION['erreur'])): ?>
