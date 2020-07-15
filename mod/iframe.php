@@ -9,7 +9,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         ?>
         <div>
             <iframe src="<?php echo $src ?>" class="concated <?php echo $otherclass ?>" frameborder="0" style="border:0; " allowfullscreen="TRUE" aria-hidden="false" tabindex="0"></iframe>
-            <?php if($openNewTab) { ?><a href="<?php echo $src ?>" target="_blank">ouvrir a part</a><?php } ?>
+            <?php if($openNewTab) { ?><a href="<?php echo $src ?>" target="_blank">Ouvrir le calendrier dans un nouvel onglet</a><?php } ?>
         </div>
         <?php
     }

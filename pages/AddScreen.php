@@ -22,17 +22,18 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 if (isset($_GET['id']) && isset($_GET['destination']) && ($_SESSION['ID']['ROLE'] == 'admin' || bateauMANAGER::confirmeDonneeImage($_GET['id']) == $_SESSION['ID']['ID'])) {
                     ?>
                     <form action="traitementPOST/index.php?p=AddScreen" method="post" enctype="multipart/form-data">
+                        <br>
 
                         <input type="hidden" value="<?= $_GET['id'] ?>" name="id" id="id">
                         <input type="hidden" value="<?= $_GET['destination'] ?>" name="location" id="location">
                         <div class="form-label-group">
-                            <label for="alt">description:</label>
-                            <input type="text" value="" name="alt" id="alt">
+                            <label for="alt">description:</label><br>
+                            <input type="text" value="" name="alt" id="alt"><br>
                         </div>
-                        <div class="form-label-group">
-                            <label for="fileToUpload">l'image à ajouté</label>
-                            <input type="file" name="fileToUpload" id="fileToUpload">
-                            <input type="submit" value="Upload Image" name="submit">
+                        <div class="form-label-group"><br><br>
+                            <label for="fileToUpload">l'image à ajouter</label><br>
+                            <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                            <input type="submit" value="Envoyer l'image" name="submit">
                         </div>
                     </form>
                     <?php
@@ -60,7 +61,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             textual("Veuiller vous connectez", true, ["cette page est apparue car vous êtes tomber sur une page où une connexion est exigée"]);
         }
         ?>
-        <a <?= "href='index?p=lastpage'"; ?>"><img class="closer" src="img/close.png" alt=""/></a>
+                    <br><br><a <?= "href='index?p=lastpage'"; ?>"><img class="closer CloserWidth" src="img/close.png" alt=""/></a><br><br>
         <?php
         footer();
 

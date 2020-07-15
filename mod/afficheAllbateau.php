@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     function afficheAllbateau($information) {
         echo "<div class='container-fluid mt-4 mb-4 infoContainer'> <div class='row ml-3 '>";
             echo "<div class='col d-flex flex-column mt-3 mb-3' style='max-width:100%;'>";
-            echo"<a onclick='return depli(\"bateauAll\")' href='#' ><h2>bateauAll</h2></a><div id='bateauAll' style='height:0;overflow:scroll;transition-duration:1s;'>";
+            echo"<a onclick='return depli(\"bateauAll\")' href='#' ><h2>Liste de tous les bateaux</h2></a><div id='bateauAll' style='height:0;overflow:scroll;transition-duration:1s;'>";
 
             foreach ($information as $y) {
                 echo '<div>';

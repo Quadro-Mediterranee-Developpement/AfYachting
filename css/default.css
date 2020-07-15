@@ -97,3 +97,7 @@ img:after {
     max-width: 25vw;
     max-height: 25vw;
 }
+
+.CloserWidth{
+    width:5vw;
+}

@@ -6,11 +6,24 @@ class creationFormType {
         //https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input
         ?>
         <div class="form-label-group">
+            <label for="<?= $id ?>"><?= $label ?></label>
+            <input maxlength="32" minlength="1" type="<?= $type ?>" id="<?= $id ?>" class="form-control" placeholder="<?= $placeholder ?>" name='<?= $name ?>' <?= (isset($_GET[$name])) ? 'value="' . $_GET[$name] . '"' : 'value="' . $value . '"'; ?> <?= ($require) ? 'require' : ''; ?> autofocus>
+            
+        </div>
+        <?php
+    }
+    
+     public static function formconnect($type, $id, $placeholder, $name, $label, $require = true, $value = '') {
+        //https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input
+        ?>
+        <div class="form-label-group">
             <input maxlength="32" minlength="1" type="<?= $type ?>" id="<?= $id ?>" class="form-control" placeholder="<?= $placeholder ?>" name='<?= $name ?>' <?= (isset($_GET[$name])) ? 'value="' . $_GET[$name] . '"' : 'value="' . $value . '"'; ?> <?= ($require) ? 'require' : ''; ?> autofocus>
             <label for="<?= $id ?>"><?= $label ?></label>
         </div>
         <?php
     }
+    
+    
 
     public static function input_select($id, $name, $tbl, $label, $require = true) {
         ?>
