@@ -14,7 +14,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 <?php
                 creationFormType::input_text("mail", "mail", "mail", "mail", "adresse Email");
                 ?>
-                <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "oublie"  >envoier un code</button>
+                <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "oublie"  >envoyer un code</button>
 
                 <script src = "ajaxUse/XHR.js" type = "text/javascript"></script>
 

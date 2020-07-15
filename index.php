@@ -67,7 +67,7 @@ Site officiel de la société AfYachting
 Créé par QMD : Quadro Méditerranée Développement
 
 
-Administration : Ange CAESARI
+Administration : Ange CESARI
 Architecture : Adrien ROUPIE
 Front : Paul-Emile NEU
 Back : Hugo MUSOLES

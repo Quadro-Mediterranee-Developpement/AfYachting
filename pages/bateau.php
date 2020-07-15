@@ -51,6 +51,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             column([[$bat[0]["Nom"], $img, $bat[0]["Description"], $bat[0]["Moteur"] . "<br><i class='font-weight-bold'>" . $bat[0]["Passagers"] . " personnes<br>" . number_format($bat[0]["Longueur"], 0, '.', ',')." m / ".number_format($bat[0]["Largeur"], 0, '.', ',')." m</i><br><br>" . $bat[0]["Divers"] . "<br><br>" . $str, "GigahBigah", "GigahBigah"]]);
         }
 
+        echo '<div class="blank5"></div>';
+        echo '<div id="Centragegauche">';
+        textual("Saison de location", FALSE, ["<b>La haute Saison</b> : Du <b><i>1er juillet au 31 Aout</b></i> inclus et pendant les voiles de saint Tropez du <b><i>28 septembre</b></i> au <b><i>15 octobre</b></i><br><br><b>La basse Saison :</b> du <b><i>1er mars</b></i> au <b><i>30 juin</b><i>, du <b><i>1er septembre</b></i> au <b><i>27 septembre</b></i> et du <b><i>16 octobre</b></i> au <b><i>31 octobre</b></i>.<br><br>Nous sommes en cale-sèche le reste de l'année,  du <b></i>1er novembre</i></b> au <b><i>dernier jour de février</b></i>."], null, null);
+        //TEXT
+        
+        echo '</div>';
         
         footer();
         foot($included);

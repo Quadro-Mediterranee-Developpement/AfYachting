@@ -115,7 +115,7 @@ and open the template in the editor.
 }
 .price::after
 {
-    content:" &euro;";
+    content:' \20AC';
 }
 
 :root {
@@ -220,7 +220,7 @@ and open the template in the editor.
 }
 
 .classinputfile{
-    width: 35vw;
+    width: 25vw;
     margin-bottom: 1vh;
 }
 
@@ -228,7 +228,7 @@ and open the template in the editor.
     
 .classinputfile{
     margin-left: -10vw;
-    width: 40vw;
+    width: 15vw;
     margin-bottom: 1vh;
 }
     

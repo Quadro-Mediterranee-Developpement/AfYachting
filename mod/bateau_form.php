@@ -194,6 +194,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                     </script>
                     <div class="manyOption" id="boxTB">
+                        <label class="text">Merci de sélectionner vos options</label>
                         <?php
                         foreach ($options as $option) {
                             ?>
@@ -226,11 +227,12 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 </div>
 
                 <form action="traitementPOST/index.php?p=bateau" method="post" enctype="multipart/form-data" id="toutBon" style="display: block" class="form">
+                    <label class='text-white'>Merci de présenter des pièces d'identité différentes (Passeport/Carte d'identité/Permis de conduire)</label>
                     <div class="input-group classinputfile">
                         <div class="custom-file">
                             <input type="file" required class="custom-file-input" id="IDcard1"
                                    aria-describedby="IDcard1" name="IDcard1">
-                            <label class="custom-file-label identitypaper" for="IDcard1">Merci d'entrer une pièce d'identité</label>
+                            <label class="custom-file-label identitypaper" for="IDcard1">Pièce d'identité 1</label>
                         </div>
                     </div>
                     
@@ -239,7 +241,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                         <div class="custom-file">
                             <input type="file" required class="custom-file-input" id="IDcard2"
                                    aria-describedby="IDcard2" name="IDcard2">
-                            <label class="custom-file-label identitypaper" for="IDcard2">Merci d'entrer une seconde P.I.</label>
+                            <label class="custom-file-label identitypaper" for="IDcard2">Pièce d'identité 2</label>
                         </div>
                     </div>
                     
@@ -255,7 +257,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 
                     <label><a href="index?p=cgu" class="text-white">Pourquoi avons-nous besoin de ces pièces d'identité ?</a></label>
-                    <label id="paperwatchout">Pour des raisons de sécurité, si vous ne remplissez pas toutes les informations correctement vous serez redirigé sur la page d'accueil</label>
+                    <label id="paperwatchout">Pour des raisons de sécurité, si vous ne remplissez pas toutes les informations correctement vous serez redirigé sur la page d'accueil et la demande sera perdue</label>
 
                     <div class="form-check">
                         <input type="checkbox" required class="form-check-input">

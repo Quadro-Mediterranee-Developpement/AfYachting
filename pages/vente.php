@@ -11,7 +11,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
     $_SESSION['activeBackPage']['url'] = $p;
     //TEXT
-    head($included, "Bateau disponible Ã  la vente pour une qualitÃ© imbatable", "Vente de bateau");
+    head($included, "Bateau disponible Ã  la vente pour une qualité imbatable", "Vente de bateau");
     ?>
 
     <body>
@@ -19,7 +19,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
         <?php
         bloc_header($menu);
         //TEXT
-        textual("Achetez un bateau", FALSE, ["Vous trouverez sur cette page une sÃ©lection parmis un large choix de tous les bateaux disponibles Ã  la vente chez AfYachting."]);
+        textual("Achetez un bateau", FALSE, ["Vous trouverez sur cette page une sélection parmi un large choix de tous les bateaux disponibles Ã  la vente chez AfYachting."]);
         //TEXT 
 
         $bat = bateauMANAGER::recupINFORMATIONallVente();
