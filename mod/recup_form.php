@@ -13,7 +13,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <h5 class="card-title text-center">Code</h5>
             <form <?= ($mode) ? "onsubmit='return inspect($action)'" : 'method="POST" action="traitementPOST/index.php?p=inspect"'; ?> class="form-signin" >
                 <?php
-                creationFormType::input_text("text", "code", "code", "code", "code");
+                creationFormType::formconnect("text", "code", "code", "code", "code");
                 ?>
                 <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "oublie"  >valider le code</button>
 
@@ -30,8 +30,8 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <form <?= ($mode) ? "onsubmit='return modifMDP($action)'" : 'method="POST" action="traitementPOST/index.php?p=modifMDP"'; ?> class="form-signin" id='modifMDP' style="display:none">
                 <input type='hidden' id='stockCode'>
                 <?php
-                creationFormType::input_text("password", "inputPassword", "Mot-de-passe", "password", "Mot de passe");
-                creationFormType::input_text("password", "inputVerifPassword", "Mot-de-passe", "password", "verification");
+                creationFormType::formconnect("password", "inputPassword", "Mot-de-passe", "password", "Mot de passe");
+                creationFormType::formconnect("password", "inputVerifPassword", "Mot-de-passe", "password", "verification");
                 ?>
                 <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "oublie"  >valider le code</button>
 
