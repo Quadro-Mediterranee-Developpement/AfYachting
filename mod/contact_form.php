@@ -36,6 +36,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                 </div>
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Envoyer</button>
+                <br>
             </form>
         </div>
 
