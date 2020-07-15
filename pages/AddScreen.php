@@ -42,7 +42,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
                     $images = loaderBDD::image($_GET['id']);
                     $all = [];
                     foreach ($images as $i) {
-                        $all[] = [$i[0], "<a onClick='return supprImage($i[2]);' href='#'>supprimer</a>", $i[1], [], "img$i[2]"];
+                        $all[] = [$i[0], "<a onClick='return supprImage($i[2]);' href='#'>supprimer</a>", $i[1], [], "$i[2]"];
                     }
                     mosaic($all);
                     ?>

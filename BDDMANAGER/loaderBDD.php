@@ -2,7 +2,7 @@
 
 class loaderBDD {
 
-    protected static function connexionBDD() {
+    public static function connexionBDD() {
         try {
             $bdd = new PDO('mysql:host=localhost:3308;dbname=afyachtingv2', 'root', '');
         } catch (Exception $e) {

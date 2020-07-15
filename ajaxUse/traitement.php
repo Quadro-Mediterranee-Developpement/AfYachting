@@ -83,13 +83,25 @@ if (isset($_POST['type'])) {
                 bateauMANAGER::deleteOption($_POST['ID']);
                 $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
             } else if (isset($_SESSION['ID']) && $_SESSION['ID']['ROLE'] == 'entreprise') {
-                if (bateauMANAGER::confirmeOption($_POST['ID'],$_SESSION['ID']['ID']) == 1) {
+                if (bateauMANAGER::confirmeOption($_POST['ID'], $_SESSION['ID']['ID']) == 1) {
                     bateauMANAGER::deleteOption($_POST['ID']);
                     $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
                 } else {
                     $_SESSION['erreur'] = ['desc' => 'vous n\'avez pas l\'autorisation', 'code' => 21];
                 }
             }
+            break;
+
+        case 'oublie':
+            recuperation($_POST['mail']);
+
+
+            break;
+        case 'inspect':
+            codeverif($_POST['code']);
+            break;
+        case 'modifMDP':
+            reiniMDP($_POST['mdp1'], $_POST['mdp2'], $_POST['code']);
             break;
         default :
             $erreur = "erreur serveur";
@@ -273,5 +285,157 @@ function ajouteBateau($nom, $description, $nomModele, $moteur, $longueur, $nombr
     } else {
         $erreur = "Tous les champs doivent être  complétés !";
         $_SESSION['erreur'] = ['desc' => $erreur, 'code' => 47];
+    }
+}
+
+function codeverif($donnee) {
+    if (isset($donnee)) {
+        if (!empty($donnee)) {
+            $bdd = loaderBDD::connexionBDD();
+            $verif_code = htmlspecialchars($donnee);
+            $verif_req = $bdd->prepare('SELECT id FROM recuperation WHERE code = ?');
+            $verif_req->execute(array($verif_code));
+            $verif_req = $verif_req->rowCount();
+            if ($verif_req == 1) {
+                $up_req = $bdd->prepare('UPDATE recuperation SET confirme= 1 WHERE code = ?');
+                $up_req->execute(array($verif_code));
+                $error = "OK";
+                $_SESSION['erreur'] = ['desc' => $error, 'code' => -1];
+            } else {
+                $error = "Le code que vous avez saisi est invalide";
+                $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+            }
+        } else {
+            $error = "Veuillez entrer le code de confirmation";
+            $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+        }
+    }
+}
+
+function recuperation($donnee) {
+    if (isset($donnee)) {
+        if (!empty($donnee)) {
+            $bdd = loaderBDD::connexionBDD();
+            $recup_mail = htmlspecialchars($donnee);
+            if (filter_var($recup_mail, FILTER_VALIDATE_EMAIL)) {
+                $mailexist = $bdd->prepare('SELECT ID,Username FROM client WHERE Mail = ?');
+                $mailexist->execute(array($recup_mail));
+                $mailexist_count = $mailexist->rowCount();
+                if ($mailexist_count == 1) {
+                    $username = $mailexist->fetch();
+                    $username = $username['Username'];
+
+                    $recup_code = "";
+                    for ($i = 0; $i < 8; $i++) {
+                        $recup_code .= mt_rand(0, 9);
+                    }
+
+                    $mail_recup_exist = $bdd->prepare('SELECT id FROM recuperation WHERE mail= ?');
+                    $mail_recup_exist->execute(array($recup_mail));
+                    $mail_recup_exist = $mail_recup_exist->rowCount();
+
+                    if ($mail_recup_exist == 1) {
+                        $recup_insert = $bdd->prepare('UPDATE recuperation SET code= ? WHERE mail= ?');
+                        $recup_insert->execute(array($recup_code, $recup_mail));
+                    } else {
+                        $recup_insert = $bdd->prepare('INSERT INTO recuperation(mail,code) VALUES (?,?)');
+                        $recup_insert->execute(array($recup_mail, $recup_code));
+                    }
+
+                    $header = "MIME-Version: 1.0\r\n";
+                    $header .= 'From:"[AfYachting]"<ange.cesari1@gmail.com>' . "\n";
+                    $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
+                    $header .= 'Content-Transfer-Encoding: 8bit';
+                    $message = '
+                <html>
+                <head>
+                  <title>Récupération de mot de passe - AfYachting</title>
+                  <meta charset="utf-8" />
+                </head>
+                <body>
+                  <font color="#303030";>
+                    <div align="center">
+                      <table width="600px">
+                        <tr>
+                          <td>
+
+                            <div align="center">Bonjour <b>' . $username . '</b>,</div>
+                            Voici votre code de récupération: <b>' . $recup_code . '</b>
+                            A bientôt sur <a href="#">Votre site</a> !
+
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <font size="2">
+                              Ceci est un email automatique, merci de ne pas y répondre
+                            </font>
+                          </td>
+                         <td align="center">
+                            <font size="2">
+                              Si la demande ne vient pas de vous, ignorez simplement ce message
+                            </font>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </font>
+                </body>
+                </html>
+                ';
+
+                    if (/* mail($recup_mail, "Récupération de mot de passe - AfYachting", $message, $header) */ true == false) {
+                        $_SESSION['erreur'] = ['desc' => 'Probleme interne', 'code' => 50];
+                    } else {
+                        $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                    }
+                } else {
+                    $error = "L'adresse que vous avez saisie n'est pas liée à un compte";
+                    $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+                }
+            } else {
+                $error = "L'adresse que vous avez saisi est invaldie";
+                $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+            }
+        } else {
+            $error = 'Veuillez entrer votre adresse mail';
+            $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+        }
+    }
+}
+
+function reiniMDP($mdp1, $mdp2, $code) {
+    if (isset($mdp1, $mdp2)) {
+        $bdd = loaderBDD::connexionBDD();
+        $verif_confirme = $bdd->prepare('SELECT confirme FROM recuperation WHERE code = ?');
+        $verif_confirme->execute(array($code));
+        $verif_confirme = $verif_confirme->fetch();
+        $verif_confirme = $verif_confirme['confirme'];
+        if ($verif_confirme == 1) {
+            $mdp = htmlspecialchars($mdp1);
+            $mdpc = htmlspecialchars($mdp2);
+            if (!empty($mdp) AND!empty($mdpc)) {
+                if ($mdp == $mdpc) {
+                    $mdp = sha1($mdp);
+                    $ins_mdp = $bdd->prepare('UPDATE client INNER JOIN recuperation ON client.Mail = recuperation.mail SET client.password = ? WHERE recuperation.code = ?');
+                    $ins_mdp->execute(array($mdp, $code));
+                    $del_req = $bdd->prepare('DELETE FROM recuperation WHERE code =? ');
+                    $del_req->execute(array($code));
+                    $_SESSION['erreur'] = ['desc' => 'OK', 'code' => -1];
+                } else {
+                    $error = "Vos mots de passes ne correspondent pas";
+                    $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+                }
+            } else {
+                $error = "Veuillez valider votre grâce au code de vérification";
+                $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+            }
+        } else {
+            $error = "Merci de remplir tous les champs avant de valider";
+            $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
+        }
+    } else {
+        $error = 'Veuillez remplr tous les champs';
+        $_SESSION['erreur'] = ['desc' => $error, 'code' => 47];
     }
 }

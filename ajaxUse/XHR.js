@@ -47,6 +47,31 @@ function connexion(callback = log)
     return false;
 }
 
+
+function oubliee(callback = logmm)
+{
+    var pseudo = document.getElementById('mail').value;
+    ajaxMethode(callback, [pseudo, 'oublie'], ['mail', 'type'], 'ajaxUse/traitement.php');
+    return false;
+}
+
+function inspect(callback = logmmm)
+{
+    var pseudo = document.getElementById('code').value;
+    document.getElementById('stockCode').value = pseudo;
+    ajaxMethode(callback, [pseudo, 'inspect'], ['code', 'type'], 'ajaxUse/traitement.php');
+    return false;
+}
+
+function modifMDP(callback = logco)
+{
+    var pass1 = document.getElementById('inputVerifPassword').value;
+    var pass2 = document.getElementById('inputPassword').value;
+    var code = document.getElementById('stockCode').value;
+    ajaxMethode(callback, [pass1,pass2,code, 'modifMDP'], ['mdp1','mdp2','code', 'type'], 'ajaxUse/traitement.php');
+    return false;
+}
+
 function inscription(callback = log)
 {
     var pseudo = document.getElementById('inputUserame').value;
@@ -127,7 +152,7 @@ function suprimer(id, table)
 function supprImage(id)
 {
     ajaxMethode(function (data) {
-        supprID("img" + id);
+        supprID("bateau" + id);
         console.log(data);
     }, [id, 'supprImage'], ['ID', 'type'], 'ajaxUse/traitement.php');
     return false;
@@ -156,10 +181,39 @@ function log(data) {
     }
 }
 
+function logco(data) {
+    if (data === "OK") {
+        document.location.search = "?p=connexion";
+    } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
+    }
+}
+
 function logm(data) {
     if (data === "OK") {
         document.location.reload();
     } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
+    }
+}
+
+function logmm(data) {
+    if (data === "OK") {
+        document.location.search = "?p=jaiuncode";
+    } else {
+        document.getElementById("errorform").innerHTML = data;
+        document.getElementById("errorform").style.display = 'block';
+    }
+}
+
+function logmmm(data) {
+    if (data === "OK") {
+        document.getElementById("modifMDP").style.display = 'block';
+        document.getElementById("errorform").style.display = 'none';
+    } else {
+        document.getElementById("modifMDP").style.display = 'none';
         document.getElementById("errorform").innerHTML = data;
         document.getElementById("errorform").style.display = 'block';
     }
@@ -191,11 +245,10 @@ function completeInfo(data) {
                 document.getElementById('Nco').style.display = "block";
                 break;
         }
-        if(tbl['skip'] === "non")
+        if (tbl['skip'] === "non")
         {
             document.getElementById('optionSansSkypper').style.display = "block";
-        }
-        else
+        } else
         {
             document.getElementById('optionSansSkypper').style.display = "none";
         }
@@ -211,6 +264,7 @@ function loc(data) {
         document.getElementById('toutBon').style.display = "block";
         document.getElementById('isco').style.display = "";
         document.getElementById('isnotco').style.display = "none";
+        document.getElementById("errorform").style.display = 'none';
     } else {
         document.getElementById("errorform").innerHTML = data;
         document.getElementById("errorform").style.display = 'block';
