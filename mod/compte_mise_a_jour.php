@@ -13,15 +13,15 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
                 <?php
                 $info = compteMANAGER::recupINFORMATIONone($_SESSION['ID']);
-                creationFormType::input_text("text", "inputUserame", $info['Username'], "userName", "Nom", false);
+                creationFormType::formconnect("text", "inputUserame", $info['Username'], "userName", "Nom", false);
 
-                creationFormType::input_text("email", "inputEmail", $info['Mail'], "mail", "Nouvelle adresse Email", false);
+                creationFormType::formconnect("email", "inputEmail", $info['Mail'], "mail", "Nouvelle adresse Email", false);
 
-                creationFormType::input_text("password", "inputPassword", "Nouveau mot de passe", "password", "Nouveau mot de passe", false);
+                creationFormType::formconnect("password", "inputPassword", "Nouveau mot de passe", "password", "Nouveau mot de passe", false);
 
-                creationFormType::input_text("password", "inputConfirmPassword", "Confirmer mot de passe", "passwordVerif", "Confirmer mot de passe", false);
+                creationFormType::formconnect("password", "inputConfirmPassword", "Confirmer mot de passe", "passwordVerif", "Confirmer mot de passe", false);
 
-                creationFormType::input_text("text", "inputTelephone", $info['Phone'], "phone", "Numéro de téléphone", false);
+                creationFormType::formconnect("text", "inputTelephone", $info['Phone'], "phone", "Numéro de téléphone", false);
                 ?>
                 <button class = "btn btn-lg btn-primary btn-block text-uppercase" type = "submit" name = "modif"  >Modifier</button>
 
