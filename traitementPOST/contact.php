@@ -9,13 +9,7 @@ if(isset($_POST['nameuser']) && isset($_POST['email']) && isset($_POST['tel']) &
     $sujet=$_POST['sujet'];
     $message=$_POST['message'];
     
-    
-}
- else {
-$error='Merci de remplir tous les champs';    
-}
-
-            $email_to='contact@afyachting-location.com';
+    $email_to='contact@afyachting-location.com';
             $messageFinal = '<div>
                     <h3>'.$sujet.'</h3>
                     <h2>Message venant de'.$uname.' avec l\'adresse '.$email.'</h2>
@@ -42,3 +36,9 @@ $error='Merci de remplir tous les champs';
             }
         
 header("location: ../index.php");
+}
+ else {
+$error='Merci de remplir tous les champs';    
+}
+
+            
