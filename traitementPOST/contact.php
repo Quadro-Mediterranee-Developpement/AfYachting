@@ -23,13 +23,13 @@ $error='Merci de remplir tous les champs';
                     <p>'.$message.'</p>
                     
                 </div>';
-            $passage_ligne=\n;
+            $passage_ligne='\n';
 
 
 
             $headers .= "Reply-to: " . $uname . " <" . $email . ">" . $passage_ligne; //Emetteur
             $header = "MIME-Version: 1.0\r\n";
-            $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
+            $header .= 'Content-Type:text/html; charset="utf-8"' . $passage_ligne;
             $header .= 'Content-Transfer-Encoding: 8bit';
 
             
