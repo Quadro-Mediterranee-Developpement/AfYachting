@@ -12,27 +12,27 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
             <h5 class="card-title text-center">Nous contacter</h5>
             <form action="traitementPOST/index.php?p=contact" class="form-signin" method="post">
                 <div class="form-label-group">
-                    <input type="text" id="inputUserame" class="form-control" placeholder="Nom" required autofocus>
+                    <input type="text" id="inputUserame" name="nameuser" class="form-control" placeholder="Nom" required autofocus>
                     <label for="inputUserame">Nom</label>
                 </div>
 
                 <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Adresse Email" required>
+                    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Adresse Email" required>
                     <label for="inputEmail">Adresse Email</label>
                 </div>
                 
                 <div class="form-label-group">
-                    <input type="tel" id="inputPhone" class="form-control" placeholder="Numéro de téléphone" required>
+                    <input type="tel" id="inputPhone" name="tel" class="form-control" placeholder="Numéro de téléphone" required>
                     <label for="inputPhone">Téléphone</label>
                 </div>
 
                 <div class="form-label-group">
-                    <input name = "sujet" type = "text" placeholder="Sujet" class="form-control" id='sujet'>
+                    <input name = "sujet" type = "text" placeholder="Sujet" required class="form-control" id='sujet'>
                     <label class="control-label" for='sujet'>Objet</label>
                 </div>
 
                 <div class="form-label-group">
-                    <textarea name="message"  placeholder="Votre message" class="form-control" id="contactext"></textarea>
+                    <textarea name="message"  placeholder="Votre message" required class="form-control" id="contactext"></textarea>
                 </div>
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Envoyer</button>
