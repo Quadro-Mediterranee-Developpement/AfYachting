@@ -55,11 +55,11 @@ if (isset($_SESSION['ID']) && ($_SESSION['ID']['ROLE'] == 'client')) {
             $f = fclose($handle); //Fermeture du fichier
 
             $email_message .= $passage_ligne . "--" . $boundary . $passage_ligne; //Deuxième séparateur d'ouverture
-            $email_message .= 'Content-type:' . $type_fichier . ';name="IDcard1"' . "n"; //Type de contenu (application/pdf ou image/jpeg)
-            $email_message .= 'Content-Disposition: attachment; filename="IDcard1"' . "n"; //Précision de pièce jointe
-            $email_message .= 'Content-transfer-encoding:base64' . "n"; //Encodage
-            $email_message .= "n"; //Ligne blanche. IMPORTANT !
-            $email_message .= $encoded_content . "n"; //Pièce jointe
+            $email_message .= 'Content-type:' . $type_fichier . ';name="IDcard1"' . "\n"; //Type de contenu (application/pdf ou image/jpeg)
+            $email_message .= 'Content-Disposition: attachment; filename="IDcard1"' . "\n"; //Précision de pièce jointe
+            $email_message .= 'Content-transfer-encoding:base64' . "\n"; //Encodage
+            $email_message .= "\n"; //Ligne blanche. IMPORTANT !
+            $email_message .= $encoded_content . "\n"; //Pièce jointe
 
 
             $source = $_FILES['IDcard2']['tmp_name'];
@@ -72,11 +72,11 @@ if (isset($_SESSION['ID']) && ($_SESSION['ID']['ROLE'] == 'client')) {
             $f = fclose($handle); //Fermeture du fichier
 
             $email_message .= $passage_ligne . "--" . $boundary . $passage_ligne; //Deuxième séparateur d'ouverture
-            $email_message .= 'Content-type:' . $type_fichier . ';name="IDcard2"' . "n"; //Type de contenu (application/pdf ou image/jpeg)
-            $email_message .= 'Content-Disposition: attachment; filename="IDcard2"' . "n"; //Précision de pièce jointe
-            $email_message .= 'Content-transfer-encoding:base64' . "n"; //Encodage
-            $email_message .= "n"; //Ligne blanche. IMPORTANT !
-            $email_message .= $encoded_content . "n"; //Pièce jointe
+            $email_message .= 'Content-type:' . $type_fichier . ';name="IDcard2"' . "\n"; //Type de contenu (application/pdf ou image/jpeg)
+            $email_message .= 'Content-Disposition: attachment; filename="IDcard2"' . "\n"; //Précision de pièce jointe
+            $email_message .= 'Content-transfer-encoding:base64' . "\n"; //Encodage
+            $email_message .= "\n"; //Ligne blanche. IMPORTANT !
+            $email_message .= $encoded_content . "\n"; //Pièce jointe
 
 
             if ($_SESSION['locationEnCours']['skip'] == 'non' && isset($_FILES["permis"])) {
@@ -91,11 +91,11 @@ if (isset($_SESSION['ID']) && ($_SESSION['ID']['ROLE'] == 'client')) {
                 $f = fclose($handle); //Fermeture du fichier
 
                 $email_message .= $passage_ligne . "--" . $boundary . $passage_ligne; //Deuxième séparateur d'ouverture
-                $email_message .= 'Content-type:' . $type_fichier . ';name="Permis"' . "n"; //Type de contenu (application/pdf ou image/jpeg)
-                $email_message .= 'Content-Disposition: attachment; filename="Permis"' . "n"; //Précision de pièce jointe
-                $email_message .= 'Content-transfer-encoding:base64' . "n"; //Encodage
-                $email_message .= "n"; //Ligne blanche. IMPORTANT !
-                $email_message .= $encoded_content . "n"; //Pièce jointe
+                $email_message .= 'Content-type:' . $type_fichier . ';name="Permis"' . "\n"; //Type de contenu (application/pdf ou image/jpeg)
+                $email_message .= 'Content-Disposition: attachment; filename="Permis"' . "\n"; //Précision de pièce jointe
+                $email_message .= 'Content-transfer-encoding:base64' . "\n"; //Encodage
+                $email_message .= "\n"; //Ligne blanche. IMPORTANT !
+                $email_message .= $encoded_content . "\n"; //Pièce jointe
             }
 
             if (mail($email_to, $email_subject, $email_message, $headers) == false) {
