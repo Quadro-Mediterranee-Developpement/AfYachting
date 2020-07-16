@@ -10,7 +10,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 
         <div style="width: 100%;">
             <h5 class="card-title text-center">Nous contacter</h5>
-            <form class="form-signin">
+            <form action="traitementPOST/index.php?p=contact" class="form-signin" method="post">
                 <div class="form-label-group">
                     <input type="text" id="inputUserame" class="form-control" placeholder="Nom" required autofocus>
                     <label for="inputUserame">Nom</label>
